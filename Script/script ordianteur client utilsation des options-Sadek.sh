@@ -4,7 +4,6 @@
 #   Auteur : Sadek SABIRI
 #   description  : script ordianteur client utilsation des options
 ###################################
-#!/bin/bash
 
 # Affichage du menu
 echo "Choisissez une option :"
