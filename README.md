@@ -3,13 +3,16 @@
 
 Le projet consiste à effectuer 
 
+
 # 🎯 Présentation du projet
 
 L'objectif est de
 
+
 ## **Sujet choisi**
 
 - 
+
 
 ## **Présentation des outils**
 
@@ -19,11 +22,38 @@ L'objectif est de
 
 # 👥 Membres du groupe par sprint
 
+Sprint 1 
+
 | Membre   | Rôle         | Missions |
 |----------|-------------|----------|
 | Chahine  | Scrummaster | Responsable de la communication et organisation du travail |
 | Pauline  | Product Owner | Définition des besoins et priorisation des tâches |
 | Sadek    | Dev              | Développement des scripts |
+
+Sprint 2  
+
+| Membre   | Rôle         | Missions |
+|----------|-------------|----------|
+| Pauline  | Scrummaster | Responsable de la communication et organisation du travail |
+| Sadek  | Product Owner | Définition des besoins et priorisation des tâches |
+| Chahine    | Dev              | Développement des scripts |
+
+Sprint 3 
+
+| Membre   | Rôle         | Missions |
+|----------|-------------|----------|
+| Chahine  | Scrummaster | Responsable de la communication et organisation du travail |
+| Pauline  | Product Owner | Définition des besoins et priorisation des tâches |
+| Sadek    | Dev              | Développement des scripts |
+
+Sprint 4 
+
+| Membre   | Rôle         | Missions |
+|----------|-------------|----------|
+| Sadek  | Scrummaster | Responsable de la communication et organisation du travail |
+| Chahine  | Product Owner | Définition des besoins et priorisation des tâches |
+| Pauline    | Dev              | Développement des scripts |
+
 
 # ⚙️ Choix Techniques
 
