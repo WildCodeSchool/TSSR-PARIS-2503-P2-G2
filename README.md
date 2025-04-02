@@ -13,10 +13,8 @@ L'objectif est de
 
 ## **Présentation des outils**
 
-### 🛠 Qu'est-ce que John The Ripper ?
+### 🛠 Qu'est-ce que Proxmox
 
-
-### 🔥 Qu'est-ce que Hashcat ?
 
 
 # 👥 Membres du groupe par sprint
@@ -43,7 +41,7 @@ Sur la machine client, exécuter :
 
 ```
 
-Extraire le hash d'un fichier ZIP :
+Sur la machine serveur, exécuter :
 
 ```bash
 
@@ -69,8 +67,8 @@ Extraire le hash d'un fichier ZIP :
 
 # 📦 Prérequis
 
-- **Ubuntu** (ou une distribution Linux similaire)
-- **Outils installés** : John The Ripper, Hashcat, Zip2John
+- **Compte Proxmox** (ou une distribution Linux similaire)
+- **Ubuntu, Debian, Windows11, WindowsServer22 installés sur Proxmox** : John The Ripper, Hashcat, Zip2John
 - **Accès réseau** pour les tests à distance sur le serveur Windows
 
 # 📝 Résultats
