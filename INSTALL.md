@@ -33,7 +33,7 @@ Assurez-vous également d'avoir installé la commande `sudo`. Sinon suivez les �
    sudo usermod -aG sudo nom_utilisateur # Remplacez `nom_utilisateur` par le nom de l'utilisateur.
 
 
-# CONFIGURATION 
+# CONFIGURATION   
 
 
 ## 1. Configuration du réseau interne entre Debian Server et Ubuntu Client
@@ -52,7 +52,8 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
 1. Ouvrir un terminal 
 
 2. Chercher les noms des cartes réseaux, ils serviront pour la configuration dans les étapes suivantes 
-   ```ip a
+   ```bash
+   ip a
    ```
 
 2. Créer un fichier de configuration réseau dans /etc/systemd/network 
@@ -88,7 +89,8 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
 1. Ouvrir un terminal 
 
 2. Chercher le nom de la carte réseaux
-   ```ip a
+   ```bash
+   ip a
    ```
 
 2. Créer un fichier de configuration réseau dans /etc/systemd/network 
