@@ -33,7 +33,7 @@ Assurez-vous également d'avoir installé la commande `sudo`. Sinon suivez les �
    sudo usermod -aG sudo nom_utilisateur # Remplacez `nom_utilisateur` par le nom de l'utilisateur.
 
 
-# CONFIGURATION 
+# CONFIGURATION   
 
 
 ## 1. Configuration du réseau interne entre Debian Server et Ubuntu Client
