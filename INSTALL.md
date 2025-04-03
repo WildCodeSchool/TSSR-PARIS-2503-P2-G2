@@ -1,7 +1,7 @@
 
 # Documentation pour la mise en place du projet
 
-Cette documentation explique les étapes à suivre pour configurer un réseau entre un serveur Debian, un client Ubuntu, et des machines Windows. Elle couvre la configuration des cartes réseau et des adresses IP sur Debian, Ubuntu, ainsi que Windows Server et Windows 11. Elle est destinée à toute personne souhaitant dupliquer cette configuration.
+Cette documentation explique les étapes à suivre pour configurer un réseau via Proxmox. Elle couvre la configuration des cartes réseaux et des adresses IP sur Debian, Ubuntu, Windows Server et Windows 11. Elle est destinée à toute personne souhaitant dupliquer cette configuration.
 
 ## Prérequis
 
