@@ -52,7 +52,8 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
 1. Ouvrir un terminal 
 
 2. Chercher les noms des cartes réseaux, ils serviront pour la configuration dans les étapes suivantes 
-   ```ip a
+   ```bash
+   ip a
    ```
 
 2. Créer un fichier de configuration réseau dans /etc/systemd/network 
@@ -88,7 +89,8 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
 1. Ouvrir un terminal 
 
 2. Chercher le nom de la carte réseaux
-   ```ip a
+   ```bash
+   ip a
    ```
 
 2. Créer un fichier de configuration réseau dans /etc/systemd/network 
