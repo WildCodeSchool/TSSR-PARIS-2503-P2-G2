@@ -20,20 +20,35 @@ read -p "Veuillez indiquer le nom d'utilisateur concerné : " user
                 case "choix" in
                     1) 
                         sudo usermod -aG administrateurs $user
+                        #ajouter commande retour menu précédent
                         ;;
                     2)  
-                        #Ajout groupe local 
-                        sudo usermod -aG groupe_local $user
+                        read -p "Dans quel groupe local voulez vous ajouter $user?" groupadd #demande groupe
+                            if  cat /etc/group | grep -q "^$group:" ; #vérification existence groupe
+                            then #Ajout groupe local 
+                                sudo usermod -aG $groupadd $user
+                            else echo "ce groupe n'existe pas" #si le groupe indiqué n'existe pas
+                            #ajouter commande retour menu précédent
+                            fi 
                         ;;
                     3) 
                         # Sortie groupe local 
                         sudo gpasswd -d utilisateur groupe_local
+
+                        read -p "Dans quel groupe local voulez vous supprimer $user?" groupdel #demande groupe
+                            if  cat /etc/group | grep -q "^$group:" ; #vérification existence groupe
+                            then #Suppression de $user dans $groupedel 
+                                sudo usermod -aG $groupdel $user
+                            else echo "ce groupe n'existe pas" #si le groupe indiqué n'existe pas
+                            #ajouter commande retour menu précédent
+                            fi 
                         ;;
                     4)  
-                        # Retour menu précédent 
-                        command ...
+                        # Ajouter commande Retour menu précédent 
                         ;;
                 esac
     else 
-        echo "Erreur, cet utilisateur n'existe pas" 
+        echo "Erreur, cet utilisateur n'existe pas" #si $user n'existe pas
+        # Ajouter commande Retour menu précédent 
+
     fi 
