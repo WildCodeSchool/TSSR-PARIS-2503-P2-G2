@@ -18,17 +18,17 @@ Assurez-vous d'avoir accès aux comptes root sur Debian/Ubuntu et administrateur
 
 Assurez-vous également d'avoir installé la commande `sudo`. Sinon suivez les étapes suivantes : 
 
-1. **Passez en root** :
+1. **Passer en root** :
    ```bash
    su
    ```
 
-2. **Installez sudo avec la commande suivante** :
+2. **Installer sudo avec la commande suivante** :
    ```bash
    apt update && apt install sudo -y 
    ```
 
-3. **Ajoutez un utilisateur au groupe `sudo`** pour lui permettre d'utiliser `sudo` :
+3. **Ajouter un utilisateur au groupe `sudo`** pour lui permettre d'utiliser `sudo` :
    ```bash
    sudo usermod -aG sudo nom_utilisateur # Remplacez `nom_utilisateur` par le nom de l'utilisateur.
 
@@ -77,9 +77,9 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
    Gateway=192.168.1.254  # Passerelle par défaut
    ```
 
-4. Enregistrez les modifications et quittez avec `Ctrl + X`, puis `Y` pour sauvegarder.
+4. Enregistrer les modifications et quittez avec `Ctrl + X`, puis `Y` pour sauvegarder.
 
-5. Redémarrez le service réseau :
+5. Redémarrer le service réseau :
    ```bash
    sudo systemctl restart systemd-networkd
    ```
@@ -107,9 +107,9 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
    Address=192.168.X.X  # Remplacer avec l'adresse IP du réseau local
    ```
 
-4. Enregistrez les modifications et quittez avec `Ctrl + X`, puis `Y` pour sauvegarder.
+4. Enregistrer les modifications et quittez avec `Ctrl + X`, puis `Y` pour sauvegarder.
 
-5. Redémarrez le service réseau :
+5. Redémarrer le service réseau :
    ```bash
    sudo systemctl restart systemd-networkd
    ```
@@ -118,27 +118,62 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
 
 ### Étape 1 : Modifier les paramètres réseau sur Windows
 
-1. Allez dans les **Paramètres Ethernet** :
-   - Clic droit sur l'icône réseau dans la barre des tâches.
-   - Sélectionnez **Paramètres réseau et Internet**.
-   - Cliquez sur **Ethernet**, puis **Modifier les options d'adaptateur**.
+1. Aller dans les **Paramètres Ethernet** :
+   - Clique-droit sur l'icône réseau dans la barre des tâches.
+   - Sélectionner **Paramètres réseau et Internet**.
+   - Cliquer sur **Ethernet**, puis **Modifier les options d'adaptateur**.
 
-2. Désactivez le **DHCP** en entrant l'adresse IP manuellement :
-   - Cliquez droit sur la connexion Ethernet, puis sélectionnez **Propriétés**.
-   - Sélectionnez **Protocole Internet version 4 (TCP/IPv4)** et cliquez sur **Propriétés**.
-   - Choisissez **Utiliser l'adresse IP suivante** et entrez l'IP requise manuellement dans le champ approprié.
+2. Désactivez le **DHCP** et entrer l'adresse IP manuellement :
+   - Clique droit sur la connexion Ethernet, puis sélectionner **Propriétés**.
+   - Sélectionner **Protocole Internet version 4 (TCP/IPv4)** et cliquer sur **Propriétés**.
+   - Choisir **Utiliser l'adresse IP suivante** et entrer l'IP requise manuellement dans le champ approprié.
 
-3. Après avoir configuré les adresses IP et résolu le problème de connexion Internet, la machine Windows devrait être capable d'accéder au réseau.
+3. Après avoir configuré les adresses IP et résolu le problème de connexion Internet, la machine Windows est capable d'accéder au réseau.
 
 ## 3. Vérification des connexions 
 
+Selon le cas, entrer les lignes de commandes dans un terminal. 
+S'il y a une réponse, alors la connexion est établie. 
+Sinon, reprendre l'installation et vérifier les configurations 
+
 ### Ping entre Debian Server et Ubuntu Client 
+
+```bash
+ping (adresse IP Ubuntu Client) 
+```
+
+### Ping entre Ubuntu Client et Debian Server   
+
+```bash
+ping (adresse IP Debian Server) 
+```
+
 ### Ping entre Debian Server et Google 
+
+```bash
+ping google.com
+```
+
 ### Ping entre Windows Server et Windows 11 
+
+```powershell 
+ping (adresse IP Windows 11) 
+```
+### Ping entre Windows 11 et Windows Server
+
+```powershell 
+ping (adresse IP Windows Server) 
+```
+
 ### Ping entre Windows Server et Google
+
+```powershell 
+ping google 
+```
 
 ## 4. Conclusion
 
-Une fois ces configurations terminées, vous avez un réseau configuré entre Debian Server/Ubuntu Client et Windows Server/Windows 11 Client. Ce projet peut être dupliqué en suivant les étapes ci-dessus et en ajustant les paramètres IP selon votre environnement.
+Une fois ces configurations terminées, vous avez un réseau configuré entre Debian Server/Ubuntu Client et Windows Server/Windows 11 Client. 
+Ce projet peut être dupliqué en suivant les étapes ci-dessus et en ajustant les paramètres IP selon votre environnement.
 
-Si vous rencontrez des problèmes de connexion, vérifiez la configuration IP sur chaque machine et assurez-vous que les interfaces réseau sont correctement configurées.
+Si vous rencontrez des problèmes de connexion, vérifiez la configuration IP sur chaque machine et assurez-vous que les interfaces réseaux sont correctement configurées.
