@@ -1,20 +1,29 @@
 
 # 📜 Introduction
 
-Le projet consiste à effectuer 
+Le projet consiste à créer un script permettant aux utilisateurs d'effectuer diverses actions ou de récolter des informations sur le système.   
+
+Dans un premier temps, nous allons créer les scripts (bash et powershell) avec toutes les options demandés.  
+Puis, nous configurerons Proxmox afin de pouvoir travailler dans deux contextes :  
+- Windows Server vers Windows 11 Client  
+- Debian Server vers UBuntu Client  
+Enfin, nous enverrons ce script depuis les machines virtuels server vers les machines virtuels clients.  
 
 
 # 🎯 Présentation du projet
 
-L'objectif est de
+L'objectif est de savoir créer des scripts bash/powershell et savoir configurer un réseaux via Proxmox.  
 
 
 ## **Sujet choisi**
+N/A 
 
-- 
 
+## **Présentation des outils**  
 
-## **Présentation des outils**
+Pour la conception des scripts, nous collaberons ensemble sur GitHub (pour le distant) et Visual Code Studio (pour le local).  
+Pour la mise en réseaux, nous utiliserons Proxmox avec Windows Server 22, Windows 11, Debian 12 Server et Ubuntu 24 Client.  
+
 
 ### 🛠 Qu'est-ce que Proxmox
 
@@ -98,7 +107,7 @@ Sur la machine serveur, exécuter :
 # 📦 Prérequis
 
 - **Compte Proxmox** (ou une distribution Linux similaire)
-- **Ubuntu, Debian, Windows11, WindowsServer22 installés sur Proxmox** : John The Ripper, Hashcat, Zip2John
+- **Ubuntu, Debian, Windows11, WindowsServer22 installés sur Proxmox** 
 - **Accès réseau** pour les tests à distance sur le serveur Windows
 
 # 📝 Résultats
@@ -107,4 +116,3 @@ Sur la machine serveur, exécuter :
 
 # 🔧 Fichiers supplémentaires
 
-- **rockyou.txt** : Dictionnaire commun utilisé pour les attaques. Le fichier est trop lourd pour être hebergé sur github, il est téléchargeable ici : [Télécharger rockyou.txt](https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt)
