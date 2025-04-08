@@ -5,6 +5,7 @@ Cette documentation explique les étapes à suivre pour configurer un réseau en
 Nous utiliserons Proxmox pour la virtualisation des machines.  
 
 
+
 # PREREQUIS
 
 Voici les prérequis concernant le matériel:
@@ -18,25 +19,30 @@ Assurez-vous d'avoir accès aux comptes root sur Debian/Ubuntu et administrateur
 
 Assurez-vous également d'avoir installé la commande `sudo`. Sinon suivez les étapes suivantes : 
 
+
 1. **Passer en root** :
    ```bash
    su
    ```
+
 
 2. **Installer sudo avec la commande suivante** :
    ```bash
    apt update && apt install sudo -y 
    ```
 
+
 3. **Ajouter un utilisateur au groupe `sudo`** pour lui permettre d'utiliser `sudo` :
    ```bash
    sudo usermod -aG sudo nom_utilisateur # Remplacez `nom_utilisateur` par le nom de l'utilisateur.
 
 
-# CONFIGURATION   
+
+# CONFIGURATION RESEAUX    
 
 
 ## 1. Configuration du réseau interne entre Debian Server et Ubuntu Client
+
 
 ### Etape 1 : Installation des carte réseaux
 
@@ -46,6 +52,7 @@ Sur **Debian Server**, ajouter deux cartes réseaux :
 
 Sur **Ubuntu Client**, ajouter une carte réseaux :
    - Une pour le réseau interne avec le server
+
 
 ### - Etape 2 : Configuration des cartes réseaux sur Debian Server
 
@@ -84,6 +91,7 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
    sudo systemctl restart systemd-networkd
    ```
 
+
 ### Étape 2 : Configuration de la carte réseau sur Ubuntu Client
 
 1. Ouvrir un terminal 
@@ -114,7 +122,9 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
    sudo systemctl restart systemd-networkd
    ```
 
+
 ## 2. Configuration du réseau sur Windows Server et Windows 11 Client
+
 
 ### Étape 1 : Modifier les paramètres réseau sur Windows
 
@@ -124,18 +134,23 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
    - Cliquer sur **Ethernet** (3)
    - Puis **Modifier l'attribution d'adresse IP** (4).
 
+
 ![Configuration IP Win 11 - Capture 1](https://github.com/WildCodeSchool/TSSR-PARIS-2503-P2-G2/blob/main/Ressources/Configuration%20IP%20Client%20Win%2011%20-%20Capture%201.png)
 
 ![Configuration IP Win 11 - Capture 2](https://github.com/WildCodeSchool/TSSR-PARIS-2503-P2-G2/blob/main/Ressources/Configuration%20IP%20Client%20Win%2011%20-%20Capture%202.png)
+
 
 2. Désactivez le **DHCP** et entrer l'adresse IP manuellement :
    - Modifier Automatique en **Manuel** (5).
    - Activer **IPv4** (6).
    - Entrer l'IP, le masque et éventuellement le DSN manuellement dans les champs appropriés (7).
 
+
 ![Configuration IP Win 11 - Capture 3](https://github.com/WildCodeSchool/TSSR-PARIS-2503-P2-G2/blob/main/Ressources/Configuration%20IP%20Client%20Win%2011%20-%20Capture%203.png)
 
+
 3. Après avoir configuré les adresses IP et résolu le problème de connexion Internet, la machine Windows est capable d'accéder au réseau.
+
 
 ## 3. Vérification des connexions 
 
@@ -143,11 +158,13 @@ Selon le cas, entrer les lignes de commandes dans un terminal.
 S'il y a une réponse, alors la connexion est établie. 
 Sinon, reprendre l'installation et vérifier les configurations 
 
+
 ### Ping entre Debian Server et Ubuntu Client 
 
 ```bash
 ping (adresse IP Ubuntu Client) 
 ```
+
 
 ### Ping entre Ubuntu Client et Debian Server   
 
@@ -155,22 +172,27 @@ ping (adresse IP Ubuntu Client)
 ping (adresse IP Debian Server) 
 ```
 
+
 ### Ping entre Debian Server et Google
 
 ```bash
 ping google.com
 ```
 
+
 ### Ping entre Windows Server et Windows 11
 
 ```powershell 
 ping (adresse IP Windows 11) 
 ```
+
+
 ### Ping entre Windows 11 et Windows Server
 
 ```powershell 
 ping (adresse IP Windows Server) 
 ```
+
 
 ### Ping entre Windows Server et Google
 
@@ -178,9 +200,17 @@ ping (adresse IP Windows Server)
 ping google.com
 ```
 
+
 ## 4. Conclusion
 
 Une fois ces configurations terminées, vous avez un réseau configuré entre Debian Server/Ubuntu Client et Windows Server/Windows 11 Client. 
 Ce projet peut être dupliqué en suivant les étapes ci-dessus et en ajustant les paramètres IP selon votre environnement.
 
 Si vous rencontrez des problèmes de connexion, vérifiez la configuration IP sur chaque machine et assurez-vous que les interfaces réseaux sont correctement configurées.
+
+
+# LANCEMENT DES SCRIPTS SUR MACHINE CLIENT  
+
+Under construction ... 
+#WinRM machine a distance win
+#SSH debian/ubuntu 
