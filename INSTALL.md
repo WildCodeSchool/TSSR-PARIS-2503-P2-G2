@@ -119,14 +119,21 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
 ### Étape 1 : Modifier les paramètres réseau sur Windows
 
 1. Aller dans les **Paramètres Ethernet** :
-   - Clique-droit sur l'icône réseau dans la barre des tâches.
-   - Sélectionner **Paramètres réseau et Internet**.
-   - Cliquer sur **Ethernet**, puis **Modifier les options d'adaptateur**.
+   - Clique-droit sur l'icône réseau dans la barre des tâches (1).
+   - Sélectionner **Paramètres réseau et Internet** (2).
+   - Cliquer sur **Ethernet** (3)
+   - Puis **Modifier l'attribution d'adresse IP** (4).
+
+![Configuration IP Win 11 - Capture 1](https://github.com/WildCodeSchool/TSSR-PARIS-2503-P2-G2/blob/main/Ressources/Configuration%20IP%20Client%20Win%2011%20-%20Capture%201.png)
+
+![Configuration IP Win 11 - Capture 2](https://github.com/WildCodeSchool/TSSR-PARIS-2503-P2-G2/blob/main/Ressources/Configuration%20IP%20Client%20Win%2011%20-%20Capture%202.png)
 
 2. Désactivez le **DHCP** et entrer l'adresse IP manuellement :
-   - Clique droit sur la connexion Ethernet, puis sélectionner **Propriétés**.
-   - Sélectionner **Protocole Internet version 4 (TCP/IPv4)** et cliquer sur **Propriétés**.
-   - Choisir **Utiliser l'adresse IP suivante** et entrer l'IP requise manuellement dans le champ approprié.
+   - Modifier Automatique en **Manuel** (5).
+   - Activer **IPv4** (6).
+   - Entrer l'IP, le masque et éventuellement le DSN manuellement dans les champs appropriés (7).
+
+![Configuration IP Win 11 - Capture 3](https://github.com/WildCodeSchool/TSSR-PARIS-2503-P2-G2/blob/main/Ressources/Configuration%20IP%20Client%20Win%2011%20-%20Capture%203.png)
 
 3. Après avoir configuré les adresses IP et résolu le problème de connexion Internet, la machine Windows est capable d'accéder au réseau.
 
@@ -148,18 +155,18 @@ ping (adresse IP Ubuntu Client)
 ping (adresse IP Debian Server) 
 ```
 
-### Ping entre Debian Server et Google 
+### Ping entre Debian Server et Google
 
 ```bash
 ping google.com
 ```
 
-### Ping entre Windows Server et Windows 11 
+### Ping entre Windows Server et Windows 11
 
 ```powershell 
 ping (adresse IP Windows 11) 
 ```
-### Ping entre Windows 11 et Windows Server
+### Ping entre Windows 11 et Windows Server
 
 ```powershell 
 ping (adresse IP Windows Server) 
@@ -168,7 +175,7 @@ ping (adresse IP Windows Server)
 ### Ping entre Windows Server et Google
 
 ```powershell 
-ping google 
+ping google.com
 ```
 
 ## 4. Conclusion
