@@ -1,7 +1,8 @@
 ####################################################################################
-Autor : Pauline 
-Version : 1.0 
-Description : Script Powershell Gestion_Groupe.ps1
+# Autor : Pauline 
+# Version : 1.0 
+# Description : Script Gestion_Groupe.ps1
+# Etat : 
 ####################################################################################
 
 
