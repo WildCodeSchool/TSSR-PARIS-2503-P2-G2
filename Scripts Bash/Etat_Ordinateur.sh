@@ -2,7 +2,7 @@
 #!/bin/bash
 #   version 0.0 
 #   Auteur : Sadek SABIRI
-#   description  : script ordianteur client utilsation des options
+#   description  : script etat ordinateur
 ###################################
 
 # Affichage du menu
