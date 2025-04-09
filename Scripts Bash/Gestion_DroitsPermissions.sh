@@ -5,62 +5,61 @@
 # Description : script projet 2 
 ######################################################################
 
-# vérification du nombre d'argument # vérification du nombre d'argument 
 
+#demande chemin + utilisateur 
+read -p "Veuillez indiquer le chemin du fichier/dossier dont vous voulez changer les droits/permissions" chemin 
+read -p "Veuillez indiquer l'utilisateur concerné" user 
 
-# demander utilisateur concerné  
-        read -p "Veuillez indiquer pour quel utilisateur souhaitez vous modifier les droits " user 
+#vérification existence chemin fichier et utilisateur 
+if [ -e "$chemin" ] && id "$user" &>/dev/null; 
+then
+    read -p "Pour ajouter un droit" add 
+    read -p "Pour supprimer un droit" del  
 
-# vérification existence de l'utilisateur 
-    if [ $user -e $(echo /etc/password) ]; 
-    then;
-        echo "1 => Ajouter un droit pour $user"
+                case choice in
 
-        echo "2 => Supprimer un droit pour $user"
-        echo "x => Quitter"
-    else; 
-        echo "Cet utilisateur n'existe pas"
-        exit 
-    fi
+                    add)
+                        read -p "Pour ajouter un droit en lecture " +r
+                        read -p "Pour ajouter un droit en écriture " +w
+                        read -p "Pour ajouter un droit en exécution " +x
 
+                                        case choix in
+                                            +r)
+                                                chmod +r $chemin
+                                                ;;
+                                            +w)
+                                                chmod +w $chemin
+                                                ;;
+                                            +x)
+                                                chmod +x $chemin
+                                                ;;
+                                        esac
+                        ;;
 
+                    del)
+                        read -p "Pour supprimer un droit en lecture " -r
+                        read -p "Pour supprimer un droit en écriture " -w
+                        read -p "Pour supprimer un droit en exécution " -x 
 
-# ajouter un droit 
-#  Pour utilisateur ?
-      Ajouter R? chmod 400 $fichier
-      Ajouter W? 200
-      Ajouter X? 100
-      Retour ? 
-      
-  pour groupe ? 
-      Ajouter R? 040
-      Ajouter W? 020
-      Ajouter X? 010
-      Retour ? 
-      
-  pour autre ? 
-      Ajouter R? 004  
-      Ajouter W? 002 
-      Ajouter X? 001 
-      Retour ? 
+                                        case choix in
+                                            -r)
+                                                chmod -r $chemin
+                                                ;;
+                                            -w)
+                                                chmod -w $chemin
+                                                ;;
+                                            -x)
+                                                chmod -x $chemin
+                                                ;;
+                                        esac
+                        ;;
 
-# supprimer un droit ? 
-#  pour utilisateur ?
-      Supprimer R?
-      Supprimer W?
-      Supprimer X? 
-      Retour ?
-      
-  pour groupe ? 
-      Supprimer R?
-      Supprimer W?
-      Supprimer X? 
-      Retour ? 
-      
-  pour autre ? 
-      Supprimer R?
-      Supprimer W?
-      Supprimer X?   
-      Retour ?
+                    default) 
+                        #command menu précédent 
+                esac
 
-# Retour au menu ?
+else 
+echo "Le fichier/dossier n'existe pas ou l'utilisateur n'existe pas"
+#commande retour menu précédent 
+
+fi 
