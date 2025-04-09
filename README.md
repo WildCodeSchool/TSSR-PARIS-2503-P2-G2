@@ -15,10 +15,6 @@ Enfin, nous enverrons ce script depuis les machines virtuels server vers les mac
 L'objectif est de savoir créer des scripts bash/powershell et savoir configurer un réseaux via Proxmox.  
 
 
-## **Sujet choisi**
-N/A 
-
-
 ## **Présentation des outils**  
 
 Pour la conception des scripts, nous collaberons ensemble sur GitHub (pour le distant) et Visual Code Studio (pour le local).  
@@ -62,11 +58,6 @@ Sprint 4
 | Sadek  | Scrummaster | Responsable de la communication et organisation du travail |
 | Chahine  | Product Owner | Définition des besoins et priorisation des tâches |
 | Pauline    | Dev              | Développement des scripts |
-
-
-# ⚙️ Choix Techniques
-
-### Pourquoi choisir ...
 
 
 
