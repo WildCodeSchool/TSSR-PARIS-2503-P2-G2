@@ -3,9 +3,10 @@
 # Auteur : Pauline 
 # version : 1.0 
 # Description : script Informations User 
+# A VERIFIER 
 ######################################################################
 
-read -p "merci de bien vouloir spécifier l'utilisateur concerné" user 
+read -p "merci de bien vouloir spécifier l'utilisateur concerné : " user     
 
 # verification si $user fait parti de la liste des utilisateurs de l'ordinateur 
     if      cat /etc/passwd | grep -q "^$user:" ;
@@ -18,15 +19,13 @@ read -p "merci de bien vouloir spécifier l'utilisateur concerné" user
 
                     case $choix in
                         1) # Date de dernière connexion d'user 
-                            # format date à retravailler
-                            last -n1 $user
+                            last -n 1 $user | awk 'NR==1{print "La dernière connexion de $user est le :", $4, $5, $6, $7}'
                             ;;
                         2) # Date dernière modification mdp d'un user 
-                            chage -l $user | awk 'NR==1'
+                            chage -l $user | awk 'NR==1 {print}'
                             ;;
                         3) # Liste des sessions ouvertes par l'utilisateur 
-                            # commande à chercher 
-                            ;;
+                            who | grep ^$user | awk '{print $5}' | sort | uniq                            ;;
                         4) # Retour menu précédent  
                             # commande à chercher 
                             ;;

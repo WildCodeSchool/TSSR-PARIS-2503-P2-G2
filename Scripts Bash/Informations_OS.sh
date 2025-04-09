@@ -7,5 +7,6 @@
 
 # Version de l'OS : 
 hostnamectl | awk 'NR==6'
-# ou 
-# cat /etc/os-release | awk 'NR==4'
+# Commande retour menu précédent 
+
+# OU : cat /etc/os-release | awk 'NR==4'

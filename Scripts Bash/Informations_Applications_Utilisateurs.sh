@@ -10,13 +10,13 @@ echo "2 pour voir la liste des utilisateurs locaux"
 
 read choix 
 
-    case $choix in
-        1) #Liste des applications/paquets installées
-            dpkg --list
-            # ajouter retour menu précédent
+    case "$choix" in
+        1)
+            dpkg --list 
+            #Ajouter commande retour menu précédent 
             ;;
-        2) # Liste des utilisateurs locaux 
-            awk -F: '{ print $1 }' /etc/passwd
-            # ajouter retour menu précédent
+        2)
+            awk -F: '{ print $1}' /etc/passwd 
+            # Ajouter commande retour menu précédent 
             ;;
     esac
