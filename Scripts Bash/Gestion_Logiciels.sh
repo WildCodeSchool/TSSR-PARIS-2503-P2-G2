@@ -3,12 +3,15 @@
 # Auteur : Chahine MARZOUK
 # version : 1.0 
 # Description : Gestion Logiciels
+# VERIFIE
 ######################################################################
 
 #!/bin/bash
 
 # Vérifie que l'utilisateur est root pour les opérations d'installation/désinstallation
-if [ "$EUID" -ne 0 ]; then
+
+if [ "$(id -u)" -ne 0 ]; 
+then
   echo "Veuillez exécuter ce script en tant que root (sudo)."
   exit 1
 fi

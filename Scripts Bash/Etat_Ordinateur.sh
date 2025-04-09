@@ -3,6 +3,7 @@
 #   version 0.0 
 #   Auteur : Sadek SABIRI
 #   description  : script etat ordinateur
+# VERIFIE 
 ###################################
 #!/bin/bash
 

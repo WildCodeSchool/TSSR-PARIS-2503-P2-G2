@@ -3,6 +3,7 @@
 # Auteur : Pauline 
 # version : 1.0 
 # Description : script Gestion Droits Permissions projet 2 
+# VERIFIE
 ######################################################################
 
 

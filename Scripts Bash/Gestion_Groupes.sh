@@ -2,7 +2,8 @@
 #! /bin/bash
 # Auteur : Pauline 
 # version : 1.0 
-# Description : script projet 2 
+# Description : script Gestion_DroitsPermission projet 2 
+# VERIFIE
 ######################################################################
 
 # demande nom utilisateur 
@@ -17,14 +18,18 @@ read -p "Veuillez indiquer le nom d'utilisateur concerné : " user
         echo "2) Ajouter l'utilisateur à un groupe local" 
         echo "3) Supprimer l'utilisateur d'un groupe local" 
         echo "4) Retour au menu précédent" 
-                case "choix" in
+
+        read -p "choisissez une option " choix 
+
+                case "$choix" in
                     1) 
-                        sudo usermod -aG administrateurs $user
+                        sudo usermod -aG adm $user
+                        echo "$user" a bien été ajouté au groupe administrateur
                         #ajouter commande retour menu précédent
                         ;;
                     2)  
-                        read -p "Dans quel groupe local voulez vous ajouter $user?" groupadd #demande groupe
-                            if  cat /etc/group | grep -q "^$group:" ; #vérification existence groupe
+                        read -p "Dans quel groupe local voulez vous ajouter $user? " groupadd #demande groupe
+                            if  cat /etc/group | grep -qw "$groupadd" ; #vérification existence groupe
                             then #Ajout groupe local 
                                 sudo usermod -aG $groupadd $user
                             else echo "ce groupe n'existe pas" #si le groupe indiqué n'existe pas
@@ -33,15 +38,14 @@ read -p "Veuillez indiquer le nom d'utilisateur concerné : " user
                         ;;
                     3) 
                         # Sortie groupe local 
-                        sudo gpasswd -d utilisateur groupe_local
 
-                        read -p "Dans quel groupe local voulez vous supprimer $user?" groupdel #demande groupe
-                            if  cat /etc/group | grep -q "^$group:" ; #vérification existence groupe
-                            then #Suppression de $user dans $groupedel 
-                                sudo usermod -aG $groupdel $user
-                            else echo "ce groupe n'existe pas" #si le groupe indiqué n'existe pas
+                        read -p "Dans quel groupe local voulez vous supprimer $user? " groupdel #demande groupe
+                            if  cat /etc/group | grep -qw "$groupadd" ; #vérification existence groupe
+                            then #Suppression groupe local 
+                                sudo gpasswd -d $user $groupdel
+                            else echo "ce groupe n'existe pas " #si le groupe indiqué n'existe pas
                             #ajouter commande retour menu précédent
-                            fi 
+                            fi             
                         ;;
                     4)  
                         # Ajouter commande Retour menu précédent 
