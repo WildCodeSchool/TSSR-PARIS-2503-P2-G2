@@ -13,10 +13,10 @@ read choix
     case $choix in
         1) #Liste des applications/paquets installées
             dpkg --list
-            #retour menu précédent
+            # ajouter retour menu précédent
             ;;
         2) # Liste des utilisateurs locaux 
             awk -F: '{ print $1 }' /etc/passwd
-            # retour menu précédent
+            # ajouter retour menu précédent
             ;;
     esac

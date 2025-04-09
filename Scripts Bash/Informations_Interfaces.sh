@@ -14,11 +14,11 @@ read choix
 case $choix in 
     # nombre d'interfaces
     1)  echo "Il y a $(ip -brief address show | awk '{print $1, $3}' | wc -l) interfaces actuellement" ;
-        # retour menu précédent 
+        # ajouter commande retour menu précédent 
         ;;
     # Adresse IP de chaque interface
     2)  ip addr show | grep 'inet ' | awk '{print $2}' | cut -d/ -f1
-        #Retour menu précédent
+        # ajouter Retour menu précédent
         ;;
     # Adresse Mac
     3)  ip link show | grep 'link/ether' | awk '{print $2}'
