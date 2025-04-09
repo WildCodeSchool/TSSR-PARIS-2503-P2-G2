@@ -14,11 +14,12 @@ echo "4) Quitter"
 
 # Lecture de l'option choisie
 read -p "Votre choix : " choix
+echo "vous avez entré :$choix"
 
-case $choix in
+case "$choix" in
     1)
         echo "Arrêt de l'ordinateur..."
-        shutdown -h now
+        shutdown now
         ;;
     2)
         echo "Redémarrage de l'ordinateur..."
