@@ -2,60 +2,52 @@
 #! /bin/bash
 # Auteur : Pauline 
 # version : 1.0 
-# Description : script projet 2 
+# Description : script Gestion Droits Permissions projet 2 
 ######################################################################
 
 
 #demande chemin + utilisateur 
-read -p "Veuillez indiquer le chemin du fichier/dossier dont vous voulez changer les droits/permissions" chemin 
-read -p "Veuillez indiquer l'utilisateur concerné" user 
+read -p "Veuillez indiquer le chemin du fichier/dossier dont vous voulez changer les droits/permissions " chemin 
+read -p "Veuillez indiquer l'utilisateur concerné " user 
 
 #vérification existence chemin fichier et utilisateur 
 if [ -e "$chemin" ] && id "$user" &>/dev/null; 
 then
-    read -p "Pour ajouter un droit" add 
-    read -p "Pour supprimer un droit" del  
+    read -p "Pour ajouter un droit entrez : add. Pour supprimer un droit entrez : del " choice   
 
-                case choice in
+                case "$choice" in
 
                     add)
-                        read -p "Pour ajouter un droit en lecture " +r
-                        read -p "Pour ajouter un droit en écriture " +w
-                        read -p "Pour ajouter un droit en exécution " +x
+                        read -p "Pour ajouter un droit en lecture entrez : +r . Pour ajouter un droit en écriture entrez : +w . Pour ajouter un droit en exécution entrez : +x " choixAdd
 
-                                        case choix in
+                                        case "$choixAdd" in
                                             +r)
-                                                chmod +r $chemin
+                                                chmod u+r "$chemin"
                                                 ;;
                                             +w)
-                                                chmod +w $chemin
+                                                chmod u+w "$chemin"
                                                 ;;
                                             +x)
-                                                chmod +x $chemin
+                                                chmod u+x "$chemin"
                                                 ;;
                                         esac
                         ;;
 
                     del)
-                        read -p "Pour supprimer un droit en lecture " -r
-                        read -p "Pour supprimer un droit en écriture " -w
-                        read -p "Pour supprimer un droit en exécution " -x 
+                        read -p "Pour supprimer un droit en lecture entrez : -r . Pour supprimer un droit en écriture entrez : -w . Pour supprimer un droit en exécution entrez : -x " choixDel
 
-                                        case choix in
+                                        case "$choixDel" in
                                             -r)
-                                                chmod -r $chemin
+                                                chmod u-r "$chemin"
                                                 ;;
                                             -w)
-                                                chmod -w $chemin
+                                                chmod u-w "$chemin"
                                                 ;;
                                             -x)
-                                                chmod -x $chemin
+                                                chmod u-x "$chemin"
                                                 ;;
                                         esac
                         ;;
-
-                    default) 
-                        #command menu précédent 
                 esac
 
 else 
