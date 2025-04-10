@@ -3,56 +3,61 @@
 # Auteur : Pauline 
 # version : 1.0 
 # Description : script Gestion Droits Permissions projet 2 
-# VERIFIE
+# OK SSH
 ######################################################################
 
 
-#demande chemin + utilisateur 
-read -p "Veuillez indiquer le chemin du fichier/dossier dont vous voulez changer les droits/permissions " chemin 
-read -p "Veuillez indiquer l'utilisateur concerné " user 
+# Infos SSH
+read -p "Adresse IP de la machine distante : " ip
+read -p "Nom d'utilisateur SSH : " ssh_user
 
-#vérification existence chemin fichier et utilisateur 
-if [ -e "$chemin" ] && id "$user" &>/dev/null; 
-then
-    read -p "Pour ajouter un droit entrez : add. Pour supprimer un droit entrez : del " choice   
+# Données à envoyer
+read -p "Veuillez indiquer le chemin du fichier/dossier dont vous voulez changer les droits/permissions : " chemin 
+read -p "Veuillez indiquer l'utilisateur concerné : " user 
 
-                case "$choice" in
+# Vérification de l'existence du fichier/dossier et utilisateur à distance
+echo "Vérification du fichier/dossier et de l'utilisateur sur la machine distante..."
 
-                    add)
-                        read -p "Pour ajouter un droit en lecture entrez : +r . Pour ajouter un droit en écriture entrez : +w . Pour ajouter un droit en exécution entrez : +x " choixAdd
+# Note : on doit bien échapper les guillemets à l'intérieur de la commande SSH
+ssh ${ssh_user}@${ip} "if [ -e \"$chemin\" ] && id \"$user\" &>/dev/null; then echo 'Tout est OK.'; else echo 'Erreur: Le fichier/dossier ou l'utilisateur n'existe pas.'; fi"
 
-                                        case "$choixAdd" in
-                                            +r)
-                                                chmod u+r "$chemin"
-                                                ;;
-                                            +w)
-                                                chmod u+w "$chemin"
-                                                ;;
-                                            +x)
-                                                chmod u+x "$chemin"
-                                                ;;
-                                        esac
-                        ;;
+# Vérifier le code de sortie de la commande SSH
+if [ $? -ne 0 ]; then
+    echo "Erreur : Le fichier/dossier n'existe pas ou l'utilisateur n'existe pas sur la machine distante."
+else
+    echo "Vérification réussie."
+    # Tu peux rajouter ici un autre appel à SSH pour d'autres actions ou afficher un menu pour continuer
+    
+fi
 
-                    del)
-                        read -p "Pour supprimer un droit en lecture entrez : -r . Pour supprimer un droit en écriture entrez : -w . Pour supprimer un droit en exécution entrez : -x " choixDel
+# Type de modification
+read -p "Pour ajouter un droit, tapez : add. Pour supprimer un droit, tapez : del : " choice   
 
-                                        case "$choixDel" in
-                                            -r)
-                                                chmod u-r "$chemin"
-                                                ;;
-                                            -w)
-                                                chmod u-w "$chemin"
-                                                ;;
-                                            -x)
-                                                chmod u-x "$chemin"
-                                                ;;
-                                        esac
-                        ;;
-                esac
-
-else 
-echo "Le fichier/dossier n'existe pas ou l'utilisateur n'existe pas"
-#commande retour menu précédent 
-
-fi 
+case "$choice" in
+    add)
+        read -p "Ajouter droit lecture (+r), écriture (+w), exécution (+x) : " choixAdd
+        case "$choixAdd" in
+            +r | +w | +x)
+                ssh -t ${ssh_user}@${ip} "sudo chmod u${choixAdd:1} '$chemin' && echo 'Droit ${choixAdd} ajouté avec succès.'"
+                ;;
+            *)
+                echo "Choix invalide pour l'ajout."
+                ;;
+        esac
+        ;;
+    del)
+        read -p "Supprimer droit lecture (-r), écriture (-w), exécution (-x) : " choixDel
+        case "$choixDel" in
+            -r | -w | -x)
+            	echo "le choix est" ${choixDel:1}
+                ssh -t ${ssh_user}@${ip} "sudo chmod u${choixDel} '$chemin' && echo 'Droit ${choixDel} supprimé avec succès.'"
+                ;;
+            *)
+                echo "Choix invalide pour la suppression."
+                ;;
+        esac
+        ;;
+    *)
+        echo "Choix d'action invalide."
+        ;;
+esac
