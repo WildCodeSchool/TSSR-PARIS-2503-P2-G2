@@ -8,6 +8,8 @@ Nous utiliserons Proxmox pour la virtualisation des machines.
 
 # PREREQUIS
 
+## 1. Matériel  
+
 Voici les prérequis concernant le matériel:
 - L'hyperviseur Proxmox configuré avec 4 machines virtuelles : 
       - Debian 12 - Server 
@@ -20,22 +22,41 @@ Assurez-vous d'avoir accès aux comptes root sur Debian/Ubuntu et administrateur
 Assurez-vous également d'avoir installé la commande `sudo`. Sinon suivez les étapes suivantes : 
 
 
+## 2. Installation `sudo`   
+
+
 1. **Passer en root** :
    ```bash
    su
    ```
-
 
 2. **Installer sudo avec la commande suivante** :
    ```bash
    apt update && apt install sudo -y 
    ```
 
-
 3. **Ajouter un utilisateur au groupe `sudo`** pour lui permettre d'utiliser `sudo` :
    ```bash
    sudo usermod -aG sudo nom_utilisateur # Remplacez `nom_utilisateur` par le nom de l'utilisateur.
 
+
+## 3. Installation ssh   
+
+
+1. **Faire mise à jour et installer openssh-server** :
+   ```bash
+   sudo apt update && apt install openssh-server -y 
+   ```
+
+2. **Vérifier statut de SSH** :
+   ```bash
+   sudo systemctl status ssh`
+   ```
+
+   S'il n'est pas actif
+    ```bash
+   sudo systemctl start ssh`
+   ```
 
 
 # CONFIGURATION RESEAUX    
