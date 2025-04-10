@@ -3,7 +3,7 @@
 # Auteur : Pauline 
 # version : 1.0 
 # Description : script Gestion_DroitsPermission projet 2 
-# VERIFIE
+# OK SSH
 ######################################################################
 
 
