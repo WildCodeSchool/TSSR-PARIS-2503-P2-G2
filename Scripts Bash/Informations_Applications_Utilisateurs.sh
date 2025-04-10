@@ -4,6 +4,7 @@
 # Auteur : Pauline 
 # version : 1.0 
 # Description : script Informations Application Utilisateurs projet 2 
+# A verifier SSH 
 ######################################################################
 
 echo "Entrez l'adresse IP de la machine Ubuntu client :"
