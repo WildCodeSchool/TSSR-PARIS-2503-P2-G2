@@ -1,22 +1,15 @@
-######################################################################
 #! /bin/bash
 # Auteur : Chahine MARZOUK
-# version : 1.0 
-# Description : Gestion Logiciels
+# version : 1.1 
+# Description : Gestion Logiciels à distance via SSH
 # VERIFIE
 ######################################################################
 
-#!/bin/bash
+# Demande des informations de connexion SSH avant l'exécution des choix
+read -p "Adresse IP ou nom d'hôte de la machine distante : " hote
+read -p "Nom d'utilisateur SSH distant : " utilisateur
 
-# Vérifie que l'utilisateur est root pour les opérations d'installation/désinstallation
-
-if [ "$(id -u)" -ne 0 ]; 
-then
-  echo "Veuillez exécuter ce script en tant que root (sudo)."
-  exit 1
-fi
-
-# Affiche le menu
+# Affiche le menu des options
 echo "Que souhaitez-vous faire ?"
 echo "1. Installer un logiciel"
 echo "2. Désinstaller un logiciel"
@@ -25,18 +18,22 @@ read -p "Entrez le numéro de l'option : " choix
 
 case $choix in
   1)
+    # Demande du logiciel à installer
     read -p "Nom du logiciel à installer : " logiciel
-    apt update && apt install -y "$logiciel"
+    # Envoie la commande à la machine distante via SSH
+    ssh -t "${utilisateur}@${hote}" "sudo apt install -y $logiciel"
     ;;
   2)
+    # Demande du logiciel à désinstaller
     read -p "Nom du logiciel à désinstaller : " logiciel
-    apt remove -y "$logiciel"
+    # Envoie la commande à la machine distante via SSH
+    ssh -t "${utilisateur}@${hote}" "sudo apt remove -y $logiciel"
     ;;
   3)
-    read -p "Adresse IP ou nom d'hôte de la machine distante : " hote
-    read -p "Nom d'utilisateur distant : " utilisateur
+    # Demande du chemin du script à exécuter à distance
     read -p "Chemin absolu du script à exécuter sur la machine distante : " chemin_script
-    ssh "${utilisateur}@${hote}" "bash $chemin_script"
+    # Envoie la commande à la machine distante via SSH
+    ssh -t "${utilisateur}@${hote}" "bash $chemin_script"
     ;;
   *)
     echo "Option invalide."
