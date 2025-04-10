@@ -2,7 +2,7 @@
 # Auteur : Chahine MARZOUK
 # version : 1.1 
 # Description : Gestion Logiciels à distance via SSH
-# VERIFIE
+# OK SSH
 ######################################################################
 
 # Demande des informations de connexion SSH avant l'exécution des choix
