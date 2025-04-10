@@ -2,27 +2,41 @@
 #! /bin/bash
 # Auteur : Pauline 
 # version : 1.0 
-# Description : script projet 2 
+# Description : script informations interfaces projet 2 
 ######################################################################
 
-echo "1 - Connaitre le nombre d'interface réseaux"
-echo "2 - Connaitre les adresses IP"
-echo "3 - Connaitre les adresses MAC"
-echo "4 - Retour au menu précédent"
-read choix
+echo "Entrez l'adresse IP ou le nom d'hôte de la machine Ubuntu client :"
+read client
 
-case $choix in 
-    # nombre d'interfaces
-    1)  echo "Il y a $(ip -brief address show | awk '{print $1, $3}' | wc -l) interfaces actuellement" ;
-        # ajouter commande retour menu précédent 
-        ;;
-    # Adresse IP de chaque interface
-    2)  ip addr show | grep 'inet ' | awk '{print $2}' | cut -d/ -f1
-        # ajouter Retour menu précédent
-        ;;
-    # Adresse Mac
-    3)  ip link show | grep 'link/ether' | awk '{print $2}'
-        #Retour menu précédent
-        ;;
-    #4)  Retour menu précédent
-esac
+while true; do
+    echo "===================================="
+    echo "1 - Connaitre le nombre d'interfaces réseau"
+    echo "2 - Connaitre les adresses IP"
+    echo "3 - Connaitre les adresses MAC"
+    echo "4 - Retour au menu précédent"
+    echo "===================================="
+    read -p "Votre choix : " choix
+
+    case $choix in
+        1)
+            ssh "$client" "echo \"Il y a \$(ip -brief address show | awk '{print \$1, \$3}' | wc -l) interfaces actuellement\""
+            ;;
+        2)
+            ssh "$client" "ip addr show | grep 'inet ' | awk '{print \$2}' | cut -d/ -f1"
+            ;;
+        3)
+            ssh "$client" "ip link show | grep 'link/ether' | awk '{print \$2}'"
+            ;;
+        4)
+            echo "Retour au menu principal."
+            break
+            ;;
+        *)
+            echo "Choix invalide. Veuillez réessayer."
+            ;;
+    esac
+
+    echo ""
+    read -p "Appuyez sur Entrée pour revenir au menu..."
+    clear
+done
