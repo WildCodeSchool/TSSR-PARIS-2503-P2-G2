@@ -3,6 +3,7 @@
 # Auteur : Pauline 
 # version : 1.0 
 # Description : script informations interfaces projet 2 
+# A verifier SSH
 ######################################################################
 
 echo "Entrez l'adresse IP ou le nom d'hôte de la machine Ubuntu client :"
