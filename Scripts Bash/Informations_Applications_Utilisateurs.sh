@@ -1,9 +1,8 @@
-
 ######################################################################
 #! /bin/bash
-# Auteur : Pauline 
+# Auteur : Pauline PRAK
 # version : 1.0 
-# Description : script Informations Application Utilisateurs projet 2 
+# Description : script Informations Application Utilisateurs 
 # A verifier SSH 
 ######################################################################
 

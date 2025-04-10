@@ -1,8 +1,8 @@
 ######################################################################
 #! /bin/bash
-# Auteur : Pauline 
+# Auteur : Pauline PRAK
 # version : 1.0 
-# Description : script informations utilisateurs projet 2 
+# Description : script informations utilisateurs 
 # REVOIR formatage date 1) et 3) et commande du 2) 
 ######################################################################
 

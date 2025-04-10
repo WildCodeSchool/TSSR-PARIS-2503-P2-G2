@@ -1,8 +1,8 @@
 ######################################################################
 #! /bin/bash
-# Auteur : Pauline 
+# Auteur : Pauline PRAK
 # version : 1.0 
-# Description : script informations interfaces projet 2 
+# Description : script informations interfaces  
 # A verifier SSH
 ######################################################################
 

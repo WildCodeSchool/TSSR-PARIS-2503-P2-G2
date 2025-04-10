@@ -1,11 +1,10 @@
 ######################################################################
 #! /bin/bash
-# Auteur : Pauline 
+# Auteur : Pauline PRAK
 # version : 1.0 
-# Description : script Gestion_DroitsPermission projet 2 
+# Description : script Gestion Droits Permission 
 # OK SSH
 ######################################################################
-
 
 read -p "Adresse IP de la machine distante : " ip
 read -p "Nom d'utilisateur SSH : " ssh_user

@@ -1,10 +1,10 @@
-###################################
-#!/bin/bash
-#   version 0.0 
-#   Auteur : Sadek SABIRI
-#   description  : script etat ordinateur
+######################################################################
+#! /bin/bash
+# Auteur : Sadek SABIRI 
+# version : 1.0 
+# Description : script Gestion Droits Permissions
 # OK SSH
-###################################
+######################################################################
 
 # === Demande les infos de connexion SSH ===
 read -p "Adresse IP de la machine distante : " ip

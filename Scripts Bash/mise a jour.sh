@@ -1,4 +1,9 @@
-#!/bin/bash
+######################################################################
+#! /bin/bash
+# Auteur : Sadek SABIRI 
+# version : 1.0 
+# Description : script MàJ 
+######################################################################
 
 # Détecter la distribution
 if [ -f /etc/debian_version ]; then

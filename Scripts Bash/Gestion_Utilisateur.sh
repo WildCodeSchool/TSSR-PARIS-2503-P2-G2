@@ -1,9 +1,9 @@
-#####################################################################
+######################################################################
 #! /bin/bash
-# Auteur : Chahine Marzouk 
+# Auteur : Chahine MARZOUK 
 # version : 1.0 
-# Description : Gestion des Utilisateurs
-#####################################################################
+# Description : script Gestion des Utilisateurs
+######################################################################
 
 # Vérifier si l'utilisateur a les droits sudo
 if [[ $EUID -ne 0 ]]; then

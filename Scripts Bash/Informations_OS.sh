@@ -1,11 +1,10 @@
 ######################################################################
 #! /bin/bash
-# Auteur : Pauline 
+# Auteur : Pauline PRAK
 # version : 1.0 
 # Description : script informations OS projet 2 
 # A verifier ssh
 ######################################################################
-
 
 echo "Entrez l'adresse IP ou le nom d'hôte de la machine Ubuntu client :"
 read client

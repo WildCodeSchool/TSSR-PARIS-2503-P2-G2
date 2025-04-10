@@ -1,8 +1,8 @@
 ######################################################################
 #! /bin/bash
-# Auteur : Pauline 
+# Auteur : Pauline PRAK
 # version : 1.0 
-# Description : script Gestion Droits Permissions projet 2 
+# Description : script Gestion Droits Permissions
 # OK SSH
 ######################################################################
 

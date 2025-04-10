@@ -1,9 +1,9 @@
-#####################################################################
+######################################################################
 #! /bin/bash
-# Auteur : Chahine Marzouk 
+# Auteur : Chahine MARZOUK 
 # version : 1.0 
-# Description : Informations Port Parefeu
-#####################################################################
+# Description : Script Informations Port Parefeu
+######################################################################
 
 echo "----- 🔍 Liste des ports ouverts (TCP/UDP) -----"
 

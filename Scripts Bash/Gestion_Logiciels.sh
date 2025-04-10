@@ -1,7 +1,8 @@
+######################################################################
 #! /bin/bash
-# Auteur : Chahine MARZOUK
-# version : 1.1 
-# Description : Gestion Logiciels à distance via SSH
+# Auteur : Chahine MARZOUK 
+# version : 1.0 
+# Description : script Gestion Logiciels
 # OK SSH
 ######################################################################
 

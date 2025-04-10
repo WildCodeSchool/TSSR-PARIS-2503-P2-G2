@@ -1,9 +1,9 @@
-#####################################################################
+######################################################################
 #! /bin/bash
-# Auteur : Chahine Marzouk 
+# Auteur : Chahine MARZOUK 
 # version : 1.0 
-# Description : script projet 2 
-#####################################################################
+# Description : script Informations Materiel 
+######################################################################
 
 while true; do
     echo "=== Informations Système ==="
