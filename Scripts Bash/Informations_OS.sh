@@ -3,6 +3,7 @@
 # Auteur : Pauline 
 # version : 1.0 
 # Description : script informations OS projet 2 
+# A verifier ssh
 ######################################################################
 
 
