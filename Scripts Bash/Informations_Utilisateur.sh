@@ -2,36 +2,51 @@
 #! /bin/bash
 # Auteur : Pauline 
 # version : 1.0 
-# Description : script Informations User 
-# A VERIFIER 
+# Description : script informations utilisateurs projet 2 
+# REVOIR formatage date 1) et 3) et commande du 2) 
 ######################################################################
 
-read -p "merci de bien vouloir spécifier l'utilisateur concerné : " user     
+# Demander IP/hostname de la machine cliente
+read -p "Adresse IP ou nom d'hôte de la machine Ubuntu client : " client
 
-# verification si $user fait parti de la liste des utilisateurs de l'ordinateur 
-    if      cat /etc/passwd | grep -q "^$user:" ;
-    then 
-            echo "1 => Date dernière connexion de l'utilisateur " 
-            echo "2 => Date dernière modification du mot de passe de l'utilisateur " 
-            echo "3 => Liste des sessions ouvertes par l'utilisateur "  
-            echo "x => Retour menu précédent "  
-            read choix
+# Demander l'utilisateur à auditer
+read -p "Nom de l'utilisateur à auditer : " utilisateur
 
-                    case $choix in
-                        1) # Date de dernière connexion d'user 
-                            last -n 1 $user | awk 'NR==1{print "La dernière connexion de $user est le :", $4, $5, $6, $7}'
-                            ;;
-                        2) # Date dernière modification mdp d'un user 
-                            chage -l $user | awk 'NR==1 {print}'
-                            ;;
-                        3) # Liste des sessions ouvertes par l'utilisateur 
-                            who | grep ^$user | awk '{print $5}' | sort | uniq                            ;;
-                        4) # Retour menu précédent  
-                            # commande à chercher 
-                            ;;
-    
-                    esac
+# Menu
+while true; do
+    echo "========================================"
+    echo "Audit utilisateur : $utilisateur @ $client"
+    echo "1 - Date de dernière connexion"
+    echo "2 - Date de dernière modification du mot de passe"
+    echo "3 - Liste des sessions actives de l'utilisateur"
+    echo "4 - Quitter"
+    echo "========================================"
+    read -p "Votre choix : " choix
 
-    else    echo "$user ne fait pas parti de la liste des utilisateurs de l'ordinateur"
-            # Ajouter retour menu précédent 
-    fi 
+    case "$choix" in
+        1)
+            echo -e "Dernière connexion de $utilisateur :"
+            ssh "$client" "lastlog -u $utilisateur | awk 'NR==2 {print}'"
+
+            ;;
+        2)
+            echo -e "Dernière modification du mot de passe :"
+            ssh "$client" "chage -l $user | awk 'NR==1 {print}'"
+            ;;
+        3)
+            echo -e "Sessions ouvertes pour $utilisateur :"
+            ssh "$client" "who | grep '^$utilisateur'"
+            ;;
+        4)
+            echo "Fin de l'audit."
+            break
+            ;;
+        *)
+            echo "Choix invalide, réessayez."
+            ;;
+    esac
+
+    echo ""
+    read -p "Appuyez sur Entrée pour revenir au menu..."
+    clear
+done
