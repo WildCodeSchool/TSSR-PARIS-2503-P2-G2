@@ -2,11 +2,35 @@
 #! /bin/bash
 # Auteur : Pauline 
 # version : 1.0 
-# Description : script projet 2 - Information version OS  
+# Description : script projet 2 
 ######################################################################
 
-# Version de l'OS : 
-hostnamectl | awk 'NR==6'
-# Commande retour menu précédent 
 
-# OU : cat /etc/os-release | awk 'NR==4'
+echo "Entrez l'adresse IP ou le nom d'hôte de la machine Ubuntu client :"
+read client
+
+while true; do
+    echo "==============================="
+    echo "1 - Afficher la version de l'OS du client"
+    echo "2 - Retour au menu précédent"
+    echo "==============================="
+    read -p "Votre choix : " choix
+
+    case "$choix" in
+        1)
+            echo "Connexion à $client..."
+            ssh "$client" "hostnamectl | awk 'NR==6'"
+            ;;
+        2)
+            echo "Retour au menu précédent."
+            break
+            ;;
+        *)
+            echo "Choix invalide. Veuillez réessayer."
+            ;;
+    esac
+
+    echo ""
+    read -p "Appuyez sur Entrée pour revenir au menu..."
+    clear
+done
