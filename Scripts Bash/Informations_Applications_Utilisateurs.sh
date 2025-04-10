@@ -1,22 +1,41 @@
+
 ######################################################################
 #! /bin/bash
 # Auteur : Pauline 
 # version : 1.0 
-# Description : script projet 2 
+# Description : script Informations Application Utilisateurs projet 2 
 ######################################################################
 
-echo "1 pour connaitre la liste des applications/paquets installées"
-echo "2 pour voir la liste des utilisateurs locaux"
+echo "Entrez l'adresse IP de la machine Ubuntu client :"
+read client
 
-read choix 
+while true; do
+    echo "=============================="
+    echo "1 - Voir la liste des paquets installés"
+    echo "2 - Voir la liste des utilisateurs locaux"
+    echo "3 - Quitter"
+    echo "=============================="
+    read -p "Votre choix : " choix
 
     case "$choix" in
         1)
-            dpkg --list 
-            #Ajouter commande retour menu précédent 
+            echo "Connexion à $client..."
+            ssh "$client" 'dpkg --list | less'
             ;;
         2)
-            awk -F: '{ print $1}' /etc/passwd 
-            # Ajouter commande retour menu précédent 
+            echo "Connexion à $client..."
+            ssh "$client" "awk -F: '{ print \$1}' /etc/passwd"
+            ;;
+        3)
+            echo "Au revoir !"
+            break
+            ;;
+        *)
+            echo "Choix invalide, veuillez réessayer."
             ;;
     esac
+
+    echo ""
+    read -p "Appuyez sur Entrée pour revenir au menu..."
+    clear
+done
