@@ -3,7 +3,7 @@
 # Auteur : Sadek SABIRI 
 # version : 1.0 
 # Description : script Gestion parefeu
-# OK SSH ATTENTION A PAS ACTIVER LE PAREFEU POUR TESTER OU CA TUE LA CO SSH - Commande pour débugger : sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+# OK SSH
 ######################################################################
 
 # Variables configurables
