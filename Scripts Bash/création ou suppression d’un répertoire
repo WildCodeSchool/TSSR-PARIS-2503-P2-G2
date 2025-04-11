@@ -1,37 +1,34 @@
-###################################
 #!/bin/bash
-#   version     : 0.0 
+###################################
+#   version     : 1.1 
 #   Auteur      : Sadek SABIRI
-#   Description : Script de création ou suppression d’un répertoire
-#                 selon son existence.
+#   Description : Script de création ou suppression d’un répertoire à distance via SSH
+# OK SSH
 ###################################
 
-#!/bin/bash
+# Demander l'adresse IP ou le nom d'hôte de la machine distante
+read -p "Adresse IP ou nom d'hôte de la machine distante : " client
 
-# Fonction pour créer un répertoire
+# Demander le nom d'utilisateur SSH
+read -p "Nom de l'utilisateur SSH : " remote_user
+
+# Fonction pour créer un répertoire à distance
 creer_repertoire() {
     local repertoire=$1
-    if [ ! -d "$repertoire" ]; then
-        mkdir -p "$repertoire"
-        echo "Le répertoire $repertoire a été créé."
-    else
-        echo "Le répertoire $repertoire existe déjà."
-    fi
+    ssh -t "$remote_user@$client" "if [ ! -d \"$repertoire\" ]; then mkdir -p \"$repertoire\"; echo \"Le répertoire $repertoire a été créé.\"; else echo \"Le répertoire $repertoire existe déjà.\"; fi"
 }
 
-# Fonction pour supprimer un répertoire
+# Fonction pour supprimer un répertoire à distance
 supprimer_repertoire() {
     local repertoire=$1
-    if [ -d "$repertoire" ]; then
-        read -p "Voulez-vous vraiment supprimer $repertoire ? (o/n) " confirmation
-        if [ "$confirmation" = "o" ] || [ "$confirmation" = "O" ]; then
-            rm -rf "$repertoire"
-            echo "Le répertoire $repertoire a été supprimé."
-        else
-            echo "Suppression annulée."
-        fi
+
+    # Demander la confirmation localement avant d'exécuter la suppression à distance
+    read -p "Voulez-vous vraiment supprimer $repertoire ? (o/n) " confirmation
+    if [ "$confirmation" = "o" ] || [ "$confirmation" = "O" ]; then
+        # Exécuter la suppression du répertoire à distance
+        ssh -t "$remote_user@$client" "if [ -d \"$repertoire\" ]; then rm -rf \"$repertoire\"; echo \"Le répertoire $repertoire a été supprimé.\"; else echo \"Le répertoire $repertoire n'existe pas.\"; fi"
     else
-        echo "Le répertoire $repertoire n'existe pas."
+        echo "Suppression annulée."
     fi
 }
 
