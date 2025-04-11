@@ -1,8 +1,8 @@
-#!/bin/bash
 ######################################################################
+#! /bin/bash
 # Auteur : Chahine MARZOUK
-# Version : 1.1
-# Description : Script Informations Système - exécuté à distance via SSH
+# version : 1.0 
+# Description : Script Informations Système   
 # OK SSH
 ######################################################################
 
