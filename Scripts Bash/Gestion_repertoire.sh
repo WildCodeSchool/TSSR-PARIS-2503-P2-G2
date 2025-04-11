@@ -1,10 +1,10 @@
-#!/bin/bash
-###################################
-#   version     : 1.1 
-#   Auteur      : Sadek SABIRI
-#   Description : Script de création ou suppression d’un répertoire à distance via SSH
-# OK SSH
-###################################
+######################################################################
+#! /bin/bash
+# Auteur : Sadek SABIRI 
+# version : 1.0 
+# Description : Script de création ou suppression d’un répertoire à distance via SSH 
+# OK ssh
+######################################################################
 
 # Demander l'adresse IP ou le nom d'hôte de la machine distante
 read -p "Adresse IP ou nom d'hôte de la machine distante : " client
