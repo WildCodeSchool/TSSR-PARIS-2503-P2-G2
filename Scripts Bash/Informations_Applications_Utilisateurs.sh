@@ -3,7 +3,7 @@
 # Auteur : Pauline PRAK
 # version : 1.0 
 # Description : script Informations Application Utilisateurs 
-# A verifier SSH 
+# OK SSH 
 ######################################################################
 
 echo "Entrez l'adresse IP de la machine Ubuntu client :"
