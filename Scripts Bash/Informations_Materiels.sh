@@ -3,6 +3,7 @@
 # Auteur : Chahine MARZOUK
 # Version : 1.1
 # Description : Script Informations Système - exécuté à distance via SSH
+# OK SSH - option 1 bug
 ######################################################################
 
 # Demander l'adresse IP ou le nom d'hôte de la machine distante
