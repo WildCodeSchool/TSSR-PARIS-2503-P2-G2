@@ -3,7 +3,7 @@
 # Auteur : Pauline PRAK
 # version : 1.0 
 # Description : script informations OS projet 2 
-# A verifier ssh
+# OK SSH
 ######################################################################
 
 echo "Entrez l'adresse IP ou le nom d'hôte de la machine Ubuntu client :"
