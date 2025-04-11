@@ -1,12 +1,10 @@
-#!/bin/bash
-# ======================================================
-# Script: Gestion_Parefeu.sh
-# Description: Gestionnaire de pare-feu iptables simple via SSH
-# Author: Sadek
-# Date: $(date +%Y-%m-%d)
-# Version: 1.1
+######################################################################
+#! /bin/bash
+# Auteur : Sadek SABIRI 
+# version : 1.0 
+# Description : script Gestion parefeu
 # OK SSH ATTENTION A PAS ACTIVER LE PAREFEU POUR TESTER OU CA TUE LA CO SSH - Commande pour débugger : sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-# ======================================================
+######################################################################
 
 # Variables configurables
 IPTABLES="/sbin/iptables"
