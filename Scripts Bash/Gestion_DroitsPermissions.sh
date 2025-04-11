@@ -61,10 +61,10 @@ EOF
                 sudo chmod u+x '$chemin'
                 echo 'Droit exécution ajouté avec succès. '
 EOF
-                ;;
+        ;;
             *)
                 echo "Choix invalide pour l'ajout. "
-                ;;
+        ;;
         esac
         ;;
     del)
@@ -89,14 +89,14 @@ EOF
                 sudo chmod u-x '$chemin'
                 echo 'Droit exécution supprimé avec succès. '
 EOF
-                ;;
+        ;;
             *)
                 echo "Choix invalide pour la suppression. "
-                ;;
+        ;;
         esac
         ;;
-        
     *)
         echo "Choix d'action invalide. "
         ;;
 esac
+;;
