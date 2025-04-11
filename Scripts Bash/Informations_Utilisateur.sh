@@ -5,7 +5,6 @@
 # Description : script informations utilisateurs 
 # REVOIR formatage date 1) et 3) et commande du 2) 
 ######################################################################
-
 # Demander IP/hostname de la machine cliente
 read -p "Adresse IP ou nom d'hôte de la machine Ubuntu client : " client
 
