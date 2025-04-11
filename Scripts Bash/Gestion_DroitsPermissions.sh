@@ -19,7 +19,15 @@ read -p "Veuillez indiquer l'utilisateur concerné : " user
 echo "Vérification du fichier/dossier et de l'utilisateur sur la machine distante..."
 
 # Note : on doit bien échapper les guillemets à l'intérieur de la commande SSH
-ssh ${ssh_user}@${ip} "if [ -e \"$chemin\" ] && id \"$user\" &>/dev/null; then echo 'Tout est OK.'; else echo 'Erreur: Le fichier/dossier ou l'utilisateur n'existe pas.'; fi"
+
+ssh ${ssh_user}@${ip} << EOF 
+    if [ -e \"$chemin\" ] && id \"$user\" &>/dev/null; 
+    then 
+        echo 'Tout est OK.'; 
+    else 
+        echo 'Erreur: Le fichier/dossier ou l'utilisateur n'existe pas.'; 
+    fi
+    EOF
 
 # Vérifier le code de sortie de la commande SSH
 if [ $? -ne 0 ]; then
