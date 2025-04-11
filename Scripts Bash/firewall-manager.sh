@@ -1,12 +1,11 @@
-======================================================
-# Script: firewall-manager.sh
-# Description: Gestionnaire de pare-feu iptables simple
-#              Permet d'activer/désactiver le pare-feu
-#              avec un ensemble de règles prédéfinies
-# Author: sadek 
+#!/bin/bash
+# ======================================================
+# Script: Gestion_Parefeu.sh
+# Description: Gestionnaire de pare-feu iptables simple via SSH
+# Author: Sadek
 # Date: $(date +%Y-%m-%d)
-# Version: 1.0
-# Usage: ./firewall-manager.sh [start|stop|status]
+# Version: 1.1
+# OK SSH ATTENTION A PAS ACTIVER LE PAREFEU POUR TESTER OU CA TUE LA CO SSH
 # ======================================================
 
 # Variables configurables
@@ -17,98 +16,101 @@ HTTPS_PORT="443"
 ALLOWED_PORTS=("$SSH_PORT" "$HTTP_PORT" "$HTTPS_PORT" "53") # SSH, HTTP, HTTPS, DNS
 INTERFACE="eth0"
 
+# Demander les informations d'accès à la machine distante
+read -p "Adresse IP ou nom d'hôte de la machine distante : " client
+read -p "Nom d'utilisateur SSH : " remote_user
+
 # Fonction pour activer le pare-feu
 enable_firewall() {
     echo "[+] Activation du pare-feu avec les règles de base..."
-    
-    # Réinitialiser les règles
-    $IPTABLES -F
-    $IPTABLES -X
-    $IPTABLES -t nat -F
-    $IPTABLES -t nat -X
-    $IPTABLES -t mangle -F
-    $IPTABLES -t mangle -X
-    
-    # Politiques par défaut (DROP tout le trafic)
-    $IPTABLES -P INPUT DROP
-    $IPTABLES -P FORWARD DROP
-    $IPTABLES -P OUTPUT ACCEPT
-    
-    # Autoriser le trafic localhost
-    $IPTABLES -A INPUT -i lo -j ACCEPT
-    $IPTABLES -A OUTPUT -o lo -j ACCEPT
-    
-    # Autoriser les connexions établies
-    $IPTABLES -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-    
-    # Règles pour les ports autorisés
-    for port in "${ALLOWED_PORTS[@]}"; do
-        $IPTABLES -A INPUT -p tcp --dport "$port" -j ACCEPT
-        echo "[+] Port TCP $port ouvert"
+
+    ssh -t "$remote_user@$client" "
+    sudo $IPTABLES -F
+    sudo $IPTABLES -X
+    sudo $IPTABLES -t nat -F
+    sudo $IPTABLES -t nat -X
+    sudo $IPTABLES -t mangle -F
+    sudo $IPTABLES -t mangle -X
+
+    sudo $IPTABLES -P INPUT DROP
+    sudo $IPTABLES -P FORWARD DROP
+    sudo $IPTABLES -P OUTPUT ACCEPT
+
+    sudo $IPTABLES -A INPUT -i lo -j ACCEPT
+    sudo $IPTABLES -A OUTPUT -o lo -j ACCEPT
+
+    sudo $IPTABLES -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+    for port in \"${ALLOWED_PORTS[@]}\"; do
+        sudo $IPTABLES -A INPUT -p tcp --dport \"\$port\" -j ACCEPT
+        echo \"[+] Port TCP \$port ouvert\"
     done
-    
-    # Autoriser le ping (ICMP) - optionnel
-    $IPTABLES -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
-    
-    # Journalisation des paquets rejetés (optionnel)
-    $IPTABLES -A INPUT -j LOG --log-prefix "IPTABLES-DROPPED: " --log-level 4
-    
-    echo "[+] Pare-feu activé avec succès"
+
+    sudo $IPTABLES -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
+    sudo $IPTABLES -A INPUT -j LOG --log-prefix \"IPTABLES-DROPPED: \" --log-level 4
+
+    echo \"[+] Pare-feu activé avec succès\"
+    "
 }
 
 # Fonction pour désactiver le pare-feu
 disable_firewall() {
     echo "[+] Désactivation du pare-feu..."
-    
-    # Réinitialiser toutes les règles et accepter tout le trafic
-    $IPTABLES -F
-    $IPTABLES -X
-    $IPTABLES -t nat -F
-    $IPTABLES -t nat -X
-    $IPTABLES -t mangle -F
-    $IPTABLES -t mangle -X
-    
-    $IPTABLES -P INPUT ACCEPT
-    $IPTABLES -P FORWARD ACCEPT
-    $IPTABLES -P OUTPUT ACCEPT
-    
-    echo "[+] Pare-feu désactivé - TOUT LE TRAFIC EST AUTORISÉ"
+
+    ssh -t "$remote_user@$client" "
+    sudo $IPTABLES -F
+    sudo $IPTABLES -X
+    sudo $IPTABLES -t nat -F
+    sudo $IPTABLES -t nat -X
+    sudo $IPTABLES -t mangle -F
+    sudo $IPTABLES -t mangle -X
+
+    sudo $IPTABLES -P INPUT ACCEPT
+    sudo $IPTABLES -P FORWARD ACCEPT
+    sudo $IPTABLES -P OUTPUT ACCEPT
+
+    echo \"[+] Pare-feu désactivé - TOUT LE TRAFIC EST AUTORISÉ\"
+    "
 }
 
 # Fonction pour afficher le statut
 show_status() {
-    echo "[+] Statut actuel des règles iptables:"
-    $IPTABLES -L -n -v --line-numbers
-    echo ""
-    $IPTABLES -t nat -L -n -v --line-numbers
-    echo ""
-    $IPTABLES -t mangle -L -n -v --line-numbers
+    echo "[+] Statut actuel des règles iptables :"
+
+    ssh -t "$remote_user@$client" "
+    sudo $IPTABLES -L -n -v --line-numbers
+    echo ''
+    sudo $IPTABLES -t nat -L -n -v --line-numbers
+    echo ''
+    sudo $IPTABLES -t mangle -L -n -v --line-numbers
+    "
 }
 
-# Vérification des privilèges root
-if [ "$(id -u)" -ne 0 ]; then
-    echo "Erreur: Ce script doit être exécuté en tant que root" >&2
-    exit 1
-fi
+# Boucle pour rester dans le menu après exécution
+while true; do
+    echo ""
+    echo "1. Activer le pare-feu avec les règles"
+    echo "2. Désactiver le pare-feu"
+    echo "3. Afficher le statut des règles"
+    echo "4. Quitter"
+    read -p "Choisissez une option (1-4): " option
 
-# Gestion des arguments
-case "$1" in
-    start|enable)
-        enable_firewall
-        ;;
-    stop|disable)
-        disable_firewall
-        ;;
-    status)
-        show_status
-        ;;
-    *)
-        echo "Usage: $0 {start|stop|status}"
-        echo "Options:"
-        echo "  start, enable   - Active le pare-feu avec les règles"
-        echo "  stop, disable   - Désactive complètement le pare-feu"
-        echo "  status          - Affiche les règles actuelles"
-        exit 1
-esac
-
-exit 0
+    case $option in
+        1)
+            enable_firewall
+            ;;
+        2)
+            disable_firewall
+            ;;
+        3)
+            show_status
+            ;;
+        4)
+            echo "Au revoir!"
+            exit 0
+            ;;
+        *)
+            echo "Option invalide. Veuillez choisir entre 1 et 4."
+            ;;
+    esac
+done
