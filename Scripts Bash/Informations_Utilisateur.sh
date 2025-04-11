@@ -3,7 +3,7 @@
 # Auteur : Pauline PRAK
 # version : 1.0 
 # Description : script informations utilisateurs 
-# REVOIR formatage date 1) et 3) et commande du 2) 
+# OK SSH 
 ######################################################################
 # Demander IP/hostname de la machine cliente
 read -p "Adresse IP ou nom d'hôte de la machine Ubuntu client : " client
@@ -25,12 +25,12 @@ while true; do
     case "$choix" in
         1)
             echo -e "Dernière connexion de $utilisateur :"
-            ssh "$client" "lastlog -u $utilisateur | awk 'NR==2 {print}'"
+            ssh "$client" "lastlog -u $utilisateur" 
 
             ;;
         2)
             echo -e "Dernière modification du mot de passe :"
-            ssh "$client" "chage -l $user | awk 'NR==1 {print}'"
+            ssh "$client" "chage -l $utilisateur | awk 'NR==1 {print}'"
             ;;
         3)
             echo -e "Sessions ouvertes pour $utilisateur :"
