@@ -3,6 +3,7 @@
 # Auteur : Sadek SABIRI 
 # version : 1.0 
 # Description : script MàJ 
+# A REVOIR TROP DUR
 ######################################################################
 
 # Détecter la distribution
