@@ -6,31 +6,20 @@
 # OK SSH
 ######################################################################
 
-echo "Entrez l'adresse IP ou le nom d'hôte de la machine Ubuntu client :"
-read client
+# Demande de l'adresse IP de la machine distante
+read -p "Adresse IP de la machine distante : " ip
 
-while true; do
-    echo "==============================="
-    echo "1 - Afficher la version de l'OS du client"
-    echo "2 - Retour au menu précédent"
-    echo "==============================="
-    read -p "Votre choix : " choix
+# Demande du nom d'utilisateur SSH sur la machine Ubuntu
+read -p "Nom d'utilisateur SSH sur la machine Ubuntu : " ssh_user
 
-    case "$choix" in
-        1)
-            echo "Connexion à $client..."
-            ssh "$client" "hostnamectl | awk 'NR==6'"
-            ;;
-        2)
-            echo "Retour au menu précédent."
-            break
-            ;;
-        *)
-            echo "Choix invalide. Veuillez réessayer."
-            ;;
-    esac
+# Connexion SSH à la machine distante et récupération de la version de l'OS
+ssh ${ssh_user}@${ip} << EOF
+lsb_release -a
+EOF
 
-    echo ""
-    read -p "Appuyez sur Entrée pour revenir au menu..."
-    clear
-done
+# Vérification du code de sortie de la commande SSH
+if [ $? -eq 0 ]; then
+    echo "La commande a réussi."
+else
+    echo "Erreur : Impossible de se connecter à la machine Ubuntu ou récupérer la version de l'OS."
+fi
