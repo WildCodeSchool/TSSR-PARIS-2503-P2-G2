@@ -5,7 +5,7 @@
 # Author: Sadek
 # Date: $(date +%Y-%m-%d)
 # Version: 1.1
-# OK SSH ATTENTION A PAS ACTIVER LE PAREFEU POUR TESTER OU CA TUE LA CO SSH
+# OK SSH ATTENTION A PAS ACTIVER LE PAREFEU POUR TESTER OU CA TUE LA CO SSH - Commande pour débugger : sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 # ======================================================
 
 # Variables configurables
