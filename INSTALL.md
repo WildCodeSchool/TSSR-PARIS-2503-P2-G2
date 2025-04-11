@@ -45,17 +45,17 @@ Assurez-vous également d'avoir installé la commande `sudo`. Sinon suivez les �
 
 1. **Faire mise à jour et installer openssh-server** :
    ```bash
-   sudo apt update && apt install openssh-server -y 
+   sudo apt update && sudo apt install openssh-server -y 
    ```
 
 2. **Vérifier statut de SSH** :
    ```bash
-   sudo systemctl status ssh`
+   sudo systemctl status ssh
    ```
 
    S'il n'est pas actif
     ```bash
-   sudo systemctl start ssh`
+   sudo systemctl start ssh
    ```
 
 
