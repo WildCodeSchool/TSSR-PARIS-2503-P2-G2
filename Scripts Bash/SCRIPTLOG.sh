@@ -6,6 +6,14 @@
 # Utilisable en SSH
 ######################################################################
 
+ORDINATEUR=$(hostname)
+DATE=$(date +"%d-%m-%Y")
+HEURE=$(date +"%H:%M:%S")
+
+# Création du fichier log
+FICHIERDUJOUR="Info_${ORDINATEUR}_${DATE}.log"
+LOGFILE="/var/log/$FICHIERDUJOUR"
+
 # === Fonction ENTREE ===
 function ENTREE() {
     ORDINATEUR=$(hostname)
@@ -21,7 +29,7 @@ function ENTREE() {
     sudo chmod 600 "$LOGFILE"
 
     # Entrée dans le fichier log
-    echo "$DATE $HEURE === Script lancé ===" | sudo tee -a "$LOGFILE" > /dev/null
+    
     echo "$1 $2" | sudo tee -a "$LOGFILE" > /dev/null
 
     # Export pour usage global
@@ -37,6 +45,7 @@ function SORTIE() {
     echo "$DATE $HEURE $ORDINATEUR === Script terminé ===" | sudo tee -a "$LOGFILE" > /dev/null
 }
 
+echo "$DATE $HEURE === Script lancé ===" | sudo tee -a "$LOGFILE" > /dev/null
 # === Appel initial (optionnel ou exemple) ===
 ENTREE "Lancement" "manuel"
 echo "FICHIERDUJOUR : $FICHIERDUJOUR"
