@@ -24,14 +24,17 @@ echo "Vous avez entré : $choix"
 case "$choix" in
     1)
         echo "Arrêt de l'ordinateur distant..."
+        sleep 3
         ssh -t ${ssh_user}@${ip} "sudo shutdown now"
         ;;
     2)
         echo "Redémarrage de l'ordinateur distant..."
+        sleep 3
         ssh -t ${ssh_user}@${ip} "sudo reboot"
         ;;
     3)
         echo "Verrouillage de la session distante..."
+        sleep 3
         ssh -t ${ssh_user}@${ip} '
             SESSION_ID=$(loginctl | grep "$(whoami)" | awk "{print \$1}")
             if [[ -n "$SESSION_ID" ]]; then
