@@ -1,8 +1,10 @@
+######################################################################
 #!/bin/bash
 # Auteur : Chahine MARZOUK (adapté pour SSH)
 # Version : 2.0
 # Description : Script de gestion des utilisateurs via SSH
 # OK SSH
+######################################################################
 
 # Demander l'IP ou le nom d'hôte de la machine distante
 read -p "Adresse IP ou nom d'hôte de la machine distante (Ubuntu) : " cible
