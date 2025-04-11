@@ -95,7 +95,7 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
    [MATCH]
    Name=id  # Remplacer "id" par le nom de la première carte (type ens18)
    [Network]
-   Address=192.168.X.X  # Remplacer avec l'adresse IP du réseau local
+   Address=X.X.X.X/24  # Remplacer "x.x.x.x"avec l'adresse IP du réseau local
 
    # Données de configuration de la deuxième carte réseau pour internet 
    [MATCH]
@@ -133,7 +133,7 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
    [MATCH]
    Name=id  # Remplacer "id" par le nom de la première carte (type ens18)
    [Network]
-   Address=192.168.X.X  # Remplacer avec l'adresse IP du réseau local
+   Address=X.X.X.X/24  # Remplacer "x.x.x.x"avec l'adresse IP du réseau local
    ```
 
 4. Enregistrer les modifications et quittez avec `Ctrl + X`, puis `Y` pour sauvegarder.
