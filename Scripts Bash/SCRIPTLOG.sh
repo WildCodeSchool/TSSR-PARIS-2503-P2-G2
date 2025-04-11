@@ -1,22 +1,16 @@
 #!/bin/bash
 
-Function LOGENTREE ()
+Function ENTREE ()
 {
-# Variable nom de l'ordinateur 
 ORDINATEUR=hostname 
 
-#Variable date jour 
 DATE=(date +"%d %m %Y")
+HEURE=echo $(%H:%M:%S)
+LOGFILE=/var/log/$FICHIERDUJOUR
 
-#Variable Date jour + heure 
-DATEHEURE=echo "$(date +'%Y-%m-%d %H:%M:%S')"
-
-#Créer le fichier avec le nom généré
+#Création du fichier avec le nom généré
 FICHIERDUJOUR=touch "Info_$ORDINATEUR_$DATE.log"
-echo "$DATEHEURE === Script lancé ===" >> $LOGFILE
-
-# Variable chemin fichier log 
-LOGFILE="/var/log/$FICHIERDUJOUR"      
+echo "$DATE $HEURE === Script lancé ===" >> $LOGFILE
 
 # Fichier log avec date du jour
 chmod 600 "$LOGFILE"
@@ -25,8 +19,8 @@ chmod 600 "$LOGFILE"
 echo "$1 $2" >> $LOGFILE
 }
 
-Function DIRSOR ()
+Function SORTIE ()
 {
 Sortie 
-> $LOGFILE 2>&1
+echo $DATE $HEURE $ORDINATEUR 2>&1 >> $LOGFILE
 }
