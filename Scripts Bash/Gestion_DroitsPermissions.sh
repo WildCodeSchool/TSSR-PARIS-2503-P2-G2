@@ -1,102 +1,83 @@
+#!/bin/bash
 ######################################################################
-#! /bin/bash
 # Auteur : Pauline PRAK
-# version : 1.0 
-# Description : script Gestion Droits Permissions
-# OK SSH
+# Version : 1.2 
+# Description : Script de gestion des droits/permissions avec sudo sécurisé et boucle interactive
+# Test SSH OK
+# boucle while true OK  
 ######################################################################
 
-# info ssh distance à attaquer 
+# Infos SSH
 read -p "Adresse IP de la machine distante : " ip
 read -p "Nom d'utilisateur SSH : " ssh_user
 
-# Variable fichier et user 
-read -p "Veuillez indiquer le chemin du fichier/dossier dont vous voulez changer les droits/permissions : " chemin 
+# Fichier/dossier et utilisateur cible
+read -p "Veuillez indiquer le chemin du fichier/dossier : " chemin 
 read -p "Veuillez indiquer l'utilisateur concerné : " user 
 
-ssh ${ssh_user}@${ip} << EOF
+# Mot de passe sudo (caché à l'affichage)
+read -s -p "Mot de passe sudo du user distant : " sudo_pass
+echo
 
-if [ -e \"$chemin\" ] && id \"$user\" &>/dev/null; 
-then
-    echo 'Tout est OK.'; 
+# Vérification du fichier et de l'utilisateur sur la machine distante
+ssh ${ssh_user}@${ip} "[ -e \"$chemin\" ] && id \"$user\" &>/dev/null"
+if [ $? -ne 0 ]; then
+    echo "Erreur : Le fichier/dossier ou l'utilisateur n'existe pas sur la machine distante."
+    exit 1
 else
-    echo 'Erreur: Le fichier/dossier ou l'utilisateur n'existe pas.'; 
+    echo "Vérification réussie."
 fi
 
-EOF
+# Boucle interactive
+while true; do
+    echo -e "\n--- Menu Gestion des Droits ---"
+    echo -e "Tapez :\n  add     → pour ajouter un droit\n  del     → pour supprimer un droit\n  retour  → pour quitter le script"
+    read -p "Votre choix : " choice
 
-# Vérifier le code de sortie de la commande SSH
-if [ $? -ne 0 ]; 
-then
-    echo "Erreur : Le fichier/dossier n'existe pas ou l'utilisateur n'existe pas sur la machine distante. "
-else
-    echo "Vérification réussie. "
-    
-fi
-
-# Modification droits 
-echo -e "Pour ajouter un droit, tapez : add\nPour supprimer un droit, tapez : del "    
-read choice
-
-case "$choice" in
-    add)
-        echo -e "Ajouter droit lecture : +r\nAjouter droit écriture : +w\nAjouter droit exécution : +x \nMerci d'indiquer votre choix. "        
-        read choixAdd
-
-        case "$choixAdd" in
-            +r)
-                ssh -t ${ssh_user}@${ip} << EOF
-                sudo chmod u+r '$chemin'
-                echo 'Droit lecture ajouté avec succès. '
-EOF
-		;;
-           +w)
-             ssh -t ${ssh_user}@${ip} << EOF
-                sudo chmod u+w '$chemin'
-                echo 'Droit écriture ajouté avec succès. '
-EOF
-		;;
-            +x)
-             ssh -t ${ssh_user}@${ip} << EOF
-                sudo chmod u+x '$chemin'
-                echo 'Droit exécution ajouté avec succès. '
-EOF
-        ;;
-            *)
-                echo "Choix invalide pour l'ajout. "
-        ;;
-        esac
-        ;;
-    del)
-        echo -e "Supprimer droit lecture : -r\nSupprimer droit écriture : -w\nSupprimer droit exécution : -x \nMerci d'indiquer votre choix. "
-        read choixDel
-        
-        case "$choixDel" in
-            -r)
-                ssh -t ${ssh_user}@${ip} << EOF
-                sudo chmod u-r '$chemin'
-                echo 'Droit lecture supprimé avec succès. '
-EOF
-		;;
-           -w)
-             ssh -t ${ssh_user}@${ip} << EOF
-                sudo chmod u-w '$chemin'
-                echo 'Droit écriture supprimé avec succès. '
-EOF
-		;;
-            -x)
-             ssh -t ${ssh_user}@${ip} << EOF
-                sudo chmod u-x '$chemin'
-                echo 'Droit exécution supprimé avec succès. '
-EOF
-        ;;
-            *)
-                echo "Choix invalide pour la suppression. "
-        ;;
-        esac
-        ;;
-    *)
-        echo "Choix d'action invalide. "
-        ;;
-esac
-;;
+    case "$choice" in
+        add)
+            echo -e "Ajouter :\n  +r → lecture\n  +w → écriture\n  +x → exécution"
+            read -p "Votre choix : " choixAdd
+            case "$choixAdd" in
+                +r)
+                    ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u+r '$chemin' && echo 'Lecture ajoutée avec succès.'"
+                    ;;
+                +w)
+                    ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u+w '$chemin' && echo 'Écriture ajoutée avec succès.'"
+                    ;;
+                +x)
+                    ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u+x '$chemin' && echo 'Exécution ajoutée avec succès.'"
+                    ;;
+                *)
+                    echo "Choix invalide."
+                    ;;
+            esac
+            ;;
+        del)
+            echo -e "Supprimer :\n  -r → lecture\n  -w → écriture\n  -x → exécution"
+            read -p "Votre choix : " choixDel
+            case "$choixDel" in
+                -r)
+                    ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-r '$chemin' && echo 'Lecture supprimée avec succès.'"
+                    ;;
+                -w)
+                    ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-w '$chemin' && echo 'Écriture supprimée avec succès.'"
+                    ;;
+                -x)
+                    ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-x '$chemin' && echo 'Exécution supprimée avec succès.'"
+                    ;;
+                *)
+                    echo "Choix invalide."
+                    ;;
+            esac
+            ;;
+        retour)
+            echo "Fin du script."
+            sleep 3
+            break
+            ;;
+        *)
+            echo "Choix non reconnu, veuillez réessayer."
+            ;;
+    esac
+done
