@@ -4,6 +4,7 @@
 # version : 1.0 
 # Description : script Informations Application Utilisateurs 
 # OK SSH 
+# boucle while true OK  
 ######################################################################
 
 echo "Entrez l'adresse IP de la machine Ubuntu client :"
