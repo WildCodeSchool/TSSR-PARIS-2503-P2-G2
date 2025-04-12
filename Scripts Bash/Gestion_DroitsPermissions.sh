@@ -30,7 +30,7 @@ fi
 
 # Boucle interactive
 while true; do
-    echo -e "\n--- Menu Gestion des Droits ---"
+    echo -e "\n---------- Menu Gestion des Droits ----------"
     echo -e "Tapez :\n  add     → pour ajouter un droit\n  del     → pour supprimer un droit\n  retour  → pour quitter le script"
     read -p "Votre choix : " choice
 

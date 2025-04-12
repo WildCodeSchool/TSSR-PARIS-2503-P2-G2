@@ -3,6 +3,7 @@
 # Auteur : Pauline PRAK
 # Version : 1.1 
 # Description : Script de gestion des droits et permissions via SSH
+# boucle while true OK  
 ######################################################################
 
 read -p "Adresse IP de la machine distante : " ip
