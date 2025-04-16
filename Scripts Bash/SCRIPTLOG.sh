@@ -21,15 +21,14 @@ function ENTREE() {
     HEURE=$(date +"%H:%M:%S")
 
     # Création du fichier log
-    FICHIERDUJOUR="Info_${ORDINATEUR}_${DATE}.log"
-    LOGFILE="/var/log/$FICHIERDUJOUR"
+#    FICHIERDUJOUR="Info_${ORDINATEUR}_${DATE}.log"
+#    LOGFILE="/var/log/$FICHIERDUJOUR"
 
     # Création du fichier log avec droits root
-    sudo touch "$LOGFILE"
-    sudo chmod 600 "$LOGFILE"
+#    sudo touch "$LOGFILE"
+#    sudo chmod 600 "$LOGFILE"
 
-    # Entrée dans le fichier log
-    
+    # Entrée dans le fichier log   
     echo "$1 $2" | sudo tee -a "$LOGFILE" > /dev/null
 
     # Export pour usage global
