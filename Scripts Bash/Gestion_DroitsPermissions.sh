@@ -3,8 +3,7 @@
 # Auteur : Pauline PRAK
 # Version : 1.2 
 # Description : Script de gestion des droits/permissions avec sudo sécurisé et boucle interactive
-# Test SSH OK
-# boucle while true OK  
+# a revoir 
 ######################################################################
 
 # Infos SSH
@@ -28,56 +27,61 @@ else
     echo "Vérification réussie."
 fi
 
-# Boucle interactive
-while true; do
-    echo -e "\n---------- Menu Gestion des Droits ----------"
-    echo -e "Tapez :\n  add     → pour ajouter un droit\n  del     → pour supprimer un droit\n  retour  → pour quitter le script"
-    read -p "Votre choix : " choice
 
-    case "$choice" in
+# Boucle interactive
+    echo "---------- Menu Gestion des Droits ----------"
+    echo "→ pour ajouter un droit : add "
+    echo "→ pour supprimer un droit : del "
+    echo "→ pour retourner dans le menu précédent : retour "
+    read -p "Votre choix : " choix
+
+
+while [ "$choix" != "retour" ]; do
         add)
-            echo -e "Ajouter :\n  +r → lecture\n  +w → écriture\n  +x → exécution"
-            read -p "Votre choix : " choixAdd
-            case "$choixAdd" in
-                +r)
-                    ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u+r '$chemin' && echo 'Lecture ajoutée avec succès.'"
-                    ;;
-                +w)
-                    ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u+w '$chemin' && echo 'Écriture ajoutée avec succès.'"
-                    ;;
-                +x)
-                    ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u+x '$chemin' && echo 'Exécution ajoutée avec succès.'"
-                    ;;
-                *)
-                    echo "Choix invalide."
-                    ;;
-            esac
-            ;;
+                echo "→ pour ajouter "lecture" : +r "
+                echo "→ pour ajouter "écriture" : +w "            
+                echo "→ pour ajouter "execution" : +x "
+                echo "→ pour retourner au menu précédent : retour "
+                read -p "Votre choix : " choix_add
+
+                while [ "$choix_add" != "retour" ]; do
+                        +r)
+                            ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u+r '$chemin' && echo 'Lecture ajoutée avec succès.'"
+                            ;;
+                        +w)
+                            ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u+w '$chemin' && echo 'Écriture ajoutée avec succès.'"
+                            ;;
+                        +x)
+                            ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u+x '$chemin' && echo 'Exécution ajoutée avec succès.'"
+                            ;;
+                        retour)
+                            #ajout fonction
+                            ;;
+                done
         del)
-            echo -e "Supprimer :\n  -r → lecture\n  -w → écriture\n  -x → exécution"
-            read -p "Votre choix : " choixDel
-            case "$choixDel" in
-                -r)
-                    ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-r '$chemin' && echo 'Lecture supprimée avec succès.'"
-                    ;;
-                -w)
-                    ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-w '$chemin' && echo 'Écriture supprimée avec succès.'"
-                    ;;
-                -x)
-                    ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-x '$chemin' && echo 'Exécution supprimée avec succès.'"
-                    ;;
-                *)
-                    echo "Choix invalide."
-                    ;;
-            esac
-            ;;
+                echo "→ pour supprimer "lecture" : -r "
+                echo "→ pour supprimer "écriture" : -w "            
+                echo "→ pour supprimer "execution" : -x "
+                echo "→ pour retourner au menu précédent : retour "
+                read -p "Votre choix : " choix_del
+                
+                while [ "$choix_del" != "retour" ]; do
+                        -r)
+                            ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-r '$chemin' && echo 'Lecture supprimée avec succès.'"
+                            ;;
+                        -w)
+                            ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-w '$chemin' && echo 'Écriture supprimée avec succès.'"
+                            ;;
+                        -x)
+                            ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-x '$chemin' && echo 'Exécution supprimée avec succès.'"
+                            ;;
+                        *)
+                            echo "Choix invalide."
+                            ;;
+                done
         retour)
-            echo "Fin du script."
+            echo "Retour menu précédent."
             sleep 3
-            break
+            # Ajout fonction retour 
             ;;
-        *)
-            echo "Choix non reconnu, veuillez réessayer."
-            ;;
-    esac
 done
