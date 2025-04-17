@@ -35,7 +35,6 @@ while [ "$choix" != "retour" ]; do
             ;;
         retour)
             echo "Retour menu précédent."
-            source ./menu1_gestion_utilisateursetdossier.sh
             ;;
     esac
 done
