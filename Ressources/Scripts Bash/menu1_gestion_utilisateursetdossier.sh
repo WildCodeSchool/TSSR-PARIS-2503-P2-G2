@@ -13,9 +13,9 @@ echo "Informations des utilisateurs : 3"
 echo "Gestion répertoire : 4"
 echo "Gestion droits et permissions : 5"
 echo "Retour menu précédent : 6"
-read -p "Votre choix : " choix_gestion_utilisateurs_dossier
+read -p "Votre choix : " choix
 
-while [ "$choix_gestion_utilisateurs_dossier" != "6" ]; do
+while [ "$choix" != "6" ]; do
         case "$choix" in
                 1) 
                 #Gestion des utilisateurs
