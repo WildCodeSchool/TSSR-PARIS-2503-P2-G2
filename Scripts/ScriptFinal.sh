@@ -37,9 +37,9 @@ echo "Gestion utilisateur : 1"
 echo "Informations du système : 2"
 echo "Maintenance du système : 3"
 echo "Quitter le script : 4"
-read -p "Votre choix : " choix_menu_principal
+read -p "Votre choix : " choix
 
-while [ "$choix_menu_principal" != "4" ]; do 
+while [ "$choix" != "4" ]; do 
         
         case "$choix" in
         1) 
