@@ -8,8 +8,8 @@
 # Demande des informations d'identification via Get-Credential
 $creds = Get-Credential
 
-# Définir l'IP fixe de la machine distante
-$client = "172.16.20.20"  # Remplace ceci par l'IP fixe que tu utilises
+# Nom de l'ordinateur distant (nom NetBIOS ou IP)
+$client = Read-Host "Nom ou IP de la machine distante"
 
 # Boucle menu
 while ($true) {
