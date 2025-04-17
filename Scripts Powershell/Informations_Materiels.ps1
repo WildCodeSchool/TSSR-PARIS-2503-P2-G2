@@ -1,14 +1,15 @@
 # Auteur : Chahine MARZOUK
-# Version : 1.0
+# Version : 1.1
 # Description : Script Informations Système en PowerShell via WinRM
 
-# Nom de l'ordinateur distant (nom NetBIOS ou IP)
-$client = Read-Host "Nom ou IP de la machine distante"
+# Forcer l'encodage UTF-8 pour corriger les accents/symboles
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
-# Nom d'utilisateur au format Domaine\NomUtilisateur ou NomMachine\NomUtilisateur
-$remote_user = Read-Host "Nom d'utilisateur (ex: MACHINE\Administrateur)"
-$securePassword = Read-Host "Mot de passe" -AsSecureString
-$creds = New-Object System.Management.Automation.PSCredential($remote_user, $securePassword)
+# Demande des informations d'identification via Get-Credential
+$creds = Get-Credential
+
+# Définir l'IP fixe de la machine distante
+$client = "172.16.20.20"  # Remplace ceci par l'IP fixe que tu utilises
 
 # Boucle menu
 while ($true) {
@@ -31,14 +32,14 @@ while ($true) {
         "2" {
             Invoke-Command -ComputerName $client -Credential $creds -ScriptBlock {
                 $mem = Get-CimInstance Win32_ComputerSystem
-                "Mémoire RAM Totale : {0} Go" -f [math]::Round($mem.TotalPhysicalMemory / 1GB, 2)
+                Write-Output ("Mémoire RAM Totale : {0} Go" -f [math]::Round($mem.TotalPhysicalMemory / 1GB, 2))
             }
         }
         "3" {
             Invoke-Command -ComputerName $client -Credential $creds -ScriptBlock {
                 Get-CimInstance Win32_OperatingSystem | ForEach-Object {
-                    "RAM utilisée : {0} Go" -f [math]::Round(($_.TotalVisibleMemorySize - $_.FreePhysicalMemory)/1MB, 2)
-                    "RAM disponible : {0} Go" -f [math]::Round($_.FreePhysicalMemory/1MB, 2)
+                    Write-Output ("RAM utilisée : {0} Go" -f [math]::Round(($_.TotalVisibleMemorySize - $_.FreePhysicalMemory)/1MB, 2))
+                    Write-Output ("RAM disponible : {0} Go" -f [math]::Round($_.FreePhysicalMemory/1MB, 2))
                 }
             }
         }
@@ -50,7 +51,7 @@ while ($true) {
         "5" {
             Invoke-Command -ComputerName $client -Credential $creds -ScriptBlock {
                 $cpuLoad = Get-CimInstance Win32_Processor | Select-Object -ExpandProperty LoadPercentage
-                "Utilisation CPU : $cpuLoad %"
+                Write-Output ("Utilisation CPU : $cpuLoad %")
             }
         }
         "6" {
