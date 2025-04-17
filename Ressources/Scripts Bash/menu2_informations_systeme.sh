@@ -36,7 +36,6 @@ case "$choix" in
         #retour menu précédent 
         echo "Retour au menu principal"
         sleep 3
-        source ./ScriptFinal.sh 
         ;;
 esac
 done
