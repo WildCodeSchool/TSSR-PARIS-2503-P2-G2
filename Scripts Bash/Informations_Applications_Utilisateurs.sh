@@ -17,6 +17,7 @@ read client
     read -p "Votre choix : " choix
 
 while [ "$choix" != "retour" ]; do
+    case "choix" in
         1)
             echo "Connexion à $client..."
             ssh "$client" 'dpkg --list | less'
@@ -30,4 +31,5 @@ while [ "$choix" != "retour" ]; do
             sleep 3 
             source ./menu2_informations_systeme.sh
             ;;
+    esac
 done

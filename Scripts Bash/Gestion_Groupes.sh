@@ -21,13 +21,15 @@ read -p "Choix : " choix
 
 while [ "$choix" != "retour" ]; do
     case "choix" in
-        1) # Ajouter au groupe admin
+        1) 
+        # Ajouter au groupe admin
             ssh -t "${ssh_user}@${ip}" << EOF
             sudo usermod -aG adm "$user"
             echo "$user ajouté au groupe adm"
 EOF
         ;;
-        2) # Ajouter au groupe local
+        2) 
+        # Ajouter au groupe local
         	cat /etc/group
             read -p "Groupe local dans lequel ajouter $user : " group
             ssh -t "${ssh_user}@${ip}" << EOF 
@@ -39,7 +41,8 @@ EOF
             fi 
 EOF
         ;;
-        3) # Suppression du groupe local
+        3) 
+        # Suppression du groupe local
         	cat /etc/group
             read -p "Groupe local dans lequel supprimer $user : " group
             ssh -t "${ssh_user}@${ip}" << EOF

@@ -42,19 +42,24 @@ read -p "Votre choix : " choix_menu_principal
 while [ "$choix_menu_principal" != "4" ]; do 
         
         case "choix" in
-        1) #Gestion utilisateurs et dossier
+        1) 
+        #Gestion utilisateurs et dossier
         source ./menu1_gestion_utilisateursetdossier.sh
         ;;
-        2) #Information système
+        2) 
+        #Information système
         source ./menu2_informations_systeme.sh
         ;;
-        3) #maintenance systeme
+        3) 
+        #maintenance systeme
         source ./menu3_maintenance_systeme.sh
         ;;
-        4) #Quitter 
+        4) 
+        #Quitter 
             echo "Fin du script"
             sleep 3 
             exit        
         ;;
+        esac
 done
         
