@@ -32,7 +32,6 @@ while [ "$choix" != "retour" ]; do
         retour)
             echo "Retour au menu principal."
             sleep 3 
-            source ./menu2_informations_systeme.sh
             ;;
     esac
 done

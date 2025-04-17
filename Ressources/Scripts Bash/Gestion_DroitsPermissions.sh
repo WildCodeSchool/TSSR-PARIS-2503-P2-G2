@@ -2,8 +2,7 @@
 ######################################################################
 # Auteur : Pauline PRAK
 # Version : 1.2 
-# Description : Script de gestion des droits/permissions avec sudo sécurisé et boucle interactive
-# a revoir 
+# Description : Script de gestion des droits/permissions
 ######################################################################
 
 # Infos SSH
@@ -55,7 +54,8 @@ case "$choix" in
                     ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u+x '$chemin' && echo 'Exécution ajouté avec succès.'"
                     ;;
                     retour)
-                    source ./Gestion_DroitsPermissions.sh
+                    Echo "Retour menu précédent."
+                    sleep 3
                     ;;
             esac
             done
@@ -67,7 +67,7 @@ case "$choix" in
                 echo "→ pour retourner au menu précédent : retour "
                 read -p "Votre choix : " choix_del
                 
-            while [ "$choix_add" != "retour" ]; do
+            while [ "$choix_del" != "retour" ]; do
             case "$choix" in
                     -r)
                     ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-r '$chemin' && echo 'Lecture supprimé avec succès.'"
@@ -79,7 +79,8 @@ case "$choix" in
                     ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-x '$chemin' && echo 'Exécution supprimé avec succès.'"
                     ;;
                     retour)
-                    source ./Gestion_DroitsPermissions.sh
+                    echo "Retour menu précédent."
+                    sleep 3
                     ;;
             esac
             done
@@ -88,7 +89,6 @@ case "$choix" in
     retour)
             echo "Retour menu précédent."
             sleep 3
-            source ./menu1_gestion_utilisateursetdossier.sh
     ;;
     
 esac
