@@ -15,7 +15,7 @@ echo "Retour menu précédent : 5"
 read -p "Votre choix : " choix_information_systeme
 
 while [ "$choix_information_systeme" != "5" ]; do
-case "choix" in
+case "$choix" in
         1) 
         #Informations Interfaces
         source ./Informations_Interfaces.sh
