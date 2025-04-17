@@ -29,7 +29,6 @@ while [ "$choix" != "retour" ]; do
         3)
             echo "Au revoir !"
             sleep 3 
-            source ./menu2_informations_systeme.sh
             ;;
     esac
 done
