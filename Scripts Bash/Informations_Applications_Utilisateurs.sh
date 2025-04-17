@@ -17,7 +17,7 @@ read client
     read -p "Votre choix : " choix
 
 while [ "$choix" != "retour" ]; do
-    case "choix" in
+    case "$choix" in
         1)
             echo "Connexion à $client..."
             ssh "$client" 'dpkg --list | less'
