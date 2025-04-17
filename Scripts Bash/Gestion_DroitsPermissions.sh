@@ -35,7 +35,7 @@ read -p "Votre choix : " choix
 
 while [ "$choix" != "retour" ]; do
 
-case "choix" in
+case "$choix" in
     add)
                 echo "→ pour ajouter "lecture" : +r "
                 echo "→ pour ajouter "écriture" : +w "            
@@ -68,7 +68,7 @@ case "choix" in
                 read -p "Votre choix : " choix_del
                 
             while [ "$choix_add" != "retour" ]; do
-            case "choix" in
+            case "$choix" in
                     -r)
                     ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-r '$chemin' && echo 'Lecture supprimé avec succès.'"
                     ;;
