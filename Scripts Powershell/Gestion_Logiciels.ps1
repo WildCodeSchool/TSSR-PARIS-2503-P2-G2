@@ -1,10 +1,10 @@
 ######################################################################
 # Auteur : Chahine MARZOUK 
-# Version : 1.0
+# Version : 2.0
 # Description : Script de gestion de logiciels via WinRM (PowerShell)
 ######################################################################
 
-# Configuration de la cible (fixée ici à 172.16.20.20)
+# Configuration de la cible
 $hote = "172.16.20.20"
 
 # Demande des informations d'identification
@@ -21,31 +21,34 @@ switch ($choix) {
     "1" {
         $logiciel = Read-Host "Nom du logiciel à installer (ex: nom du package avec winget ou MSI)"
         Invoke-Command -ComputerName $hote -Credential $cred -ScriptBlock {
-            param($logiciel)
-            Write-Host "Tentative d'installation de $logiciel..."
-            winget install --accept-source-agreements --accept-package-agreements $using:logiciel
-        }
+            param($pkg)
+            Write-Host "Tentative d'installation de $pkg..."
+            winget install --accept-source-agreements --accept-package-agreements $pkg
+        } -ArgumentList $logiciel
     }
+
     "2" {
         $logiciel = Read-Host "Nom du logiciel à désinstaller (ex: nom du package ou affichage exact)"
         Invoke-Command -ComputerName $hote -Credential $cred -ScriptBlock {
-            param($logiciel)
-            Write-Host "Tentative de désinstallation de $logiciel..."
-            winget uninstall --accept-source-agreements $using:logiciel
-        }
+            param($pkg)
+            Write-Host "Tentative de désinstallation de $pkg..."
+            winget uninstall --accept-source-agreements $pkg
+        } -ArgumentList $logiciel
     }
+
     "3" {
         $chemin_script = Read-Host "Chemin absolu du script PowerShell (sur la machine distante, ex: C:\Scripts\test.ps1)"
         Invoke-Command -ComputerName $hote -Credential $cred -ScriptBlock {
             param($scriptPath)
-            if (Test-Path $using:scriptPath) {
+            if (Test-Path $scriptPath) {
                 Write-Host "Exécution de $scriptPath..."
-                & $using:scriptPath
+                & $scriptPath
             } else {
-                Write-Host "Fichier introuvable : $using:scriptPath"
+                Write-Host "Fichier introuvable : $scriptPath"
             }
-        }
+        } -ArgumentList $chemin_script
     }
+
     default {
         Write-Host "Option invalide." -ForegroundColor Red
         exit
