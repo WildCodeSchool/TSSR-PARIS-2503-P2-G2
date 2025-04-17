@@ -19,7 +19,7 @@ read -p "Votre choix : " choix_maintenance_systeme
 
 while [ "$choix_maintenance_systeme" != "8" ]; do
 
-        case "expression" in
+        case "$expression" in
                 1) 
                 #Information OS
                         source ./Informations_OS.sh
