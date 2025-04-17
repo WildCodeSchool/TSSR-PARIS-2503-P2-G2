@@ -20,7 +20,7 @@ echo "------------------------------------------------------------"
 read -p "Choix : " choix
 
 while [ "$choix" != "retour" ]; do
-    case "choix" in
+    case "$choix" in
         1) 
         # Ajouter au groupe admin
             ssh -t "${ssh_user}@${ip}" << EOF
