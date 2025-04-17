@@ -15,11 +15,11 @@ echo "Gestion logiciels : 5"
 echo "Arret, redémarrage et verrouillage : 6"
 echo "Gestion à distance : 7"
 echo "Retour menu précédent : 8"
-read -p "Votre choix : " choix_maintenance_systeme
+read -p "Votre choix : " choix
 
-while [ "$choix_maintenance_systeme" != "8" ]; do
+while [ "$choix" != "8" ]; do
 
-        case "$expression" in
+        case "$choix" in
                 1) 
                 #Information OS
                         source ./Informations_OS.sh
@@ -52,7 +52,6 @@ while [ "$choix_maintenance_systeme" != "8" ]; do
                 #retour menu précédent
                         echo "Retour au menu principal"
                         sleep 3
-                        source ./ScriptFinal.sh 
                         exit
         esac
 done
