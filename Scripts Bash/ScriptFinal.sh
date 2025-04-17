@@ -41,7 +41,7 @@ read -p "Votre choix : " choix_menu_principal
 
 while [ "$choix_menu_principal" != "4" ]; do 
         
-        case "choix" in
+        case "$choix" in
         1) 
         #Gestion utilisateurs et dossier
         source ./menu1_gestion_utilisateursetdossier.sh
