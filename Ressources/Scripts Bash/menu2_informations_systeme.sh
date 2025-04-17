@@ -12,9 +12,9 @@ echo "Informations Matériel : 2"
 echo "Informations Logs : 3"
 echo "Informations Applications et Utilisateurs Locaux : 4"
 echo "Retour menu précédent : 5"
-read -p "Votre choix : " choix_information_systeme
+read -p "Votre choix : " choix
 
-while [ "$choix_information_systeme" != "5" ]; do
+while [ "$choix" != "5" ]; do
 case "$choix" in
         1) 
         #Informations Interfaces
