@@ -67,7 +67,7 @@ case "$choix" in
                 echo "→ pour retourner au menu précédent : retour "
                 read -p "Votre choix : " choix_del
                 
-            while [ "$choix_add" != "retour" ]; do
+            while [ "$choix_del" != "retour" ]; do
             case "$choix" in
                     -r)
                     ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-r '$chemin' && echo 'Lecture supprimé avec succès.'"
