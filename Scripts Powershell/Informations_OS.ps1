@@ -1,9 +1,9 @@
-#########################################################
-# Autor : Pauline PRAK 
+####################################################################################
+# Autor : Pauline 
 # Version : 1.0 
-# Description : Script Informations OS 
-# Etat : A verifier 
-#########################################################
+# Description : information os.ps1
+# Etat : 
+####################################################################################
 
 Get-ComputerInfo | Select-Object WindowsProductName, WindowsVersion, OsBuildNumber
 #Commande retour menu précédent 

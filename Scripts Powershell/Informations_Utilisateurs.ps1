@@ -1,3 +1,11 @@
+####################################################################################
+# Autor : Pauline 
+# Version : 1.0 
+# Description : Script information utilisateur.ps1
+# Etat : 
+####################################################################################
+
+
 # Date de dernière connexion d’un utilisateur
 $User = Read-Host "Veuillez entrer le nom d'utilisateur"    #Initialisation utilisateur via read-host 
 $lastLogonEvent = Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4624; Data=$user} -MaxEvents 1  # Rechercher les événements de connexion pour $User

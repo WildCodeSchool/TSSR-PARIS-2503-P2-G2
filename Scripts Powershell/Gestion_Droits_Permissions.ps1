@@ -1,3 +1,10 @@
+####################################################################################
+# Autor : Pauline 
+# Version : 1.0 
+# Description : Script droit et permission.ps1
+# Etat : 
+####################################################################################
+
 Droits/permissions de l’utilisateur sur un dossier
 Droits/permissions de l’utilisateur sur un fichier
 

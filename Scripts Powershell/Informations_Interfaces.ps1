@@ -1,3 +1,10 @@
+####################################################################################
+# Autor : Pauline 
+# Version : 1.0 
+# Description : Script information interface.ps1
+# Etat : 
+####################################################################################
+
 # Nombre d'interface
 Get-NetAdapter | Select-Object Name, Status, InterfaceDescription
 
