@@ -11,17 +11,14 @@ read -p "Adresse IP ou nom d'hôte de la machine Ubuntu client : " client
 # Demander l'utilisateur à auditer
 read -p "Nom de l'utilisateur à auditer : " utilisateur
 
-# Menu
-while true; do
-    echo "========================================"
     echo "Audit utilisateur : $utilisateur @ $client"
-    echo "1 - Date de dernière connexion"
-    echo "2 - Date de dernière modification du mot de passe"
-    echo "3 - Liste des sessions actives de l'utilisateur"
-    echo "4 - Quitter"
-    echo "========================================"
+    echo "Pour voir la date de dernière connexion : 1"
+    echo "Pour voir la date de dernière modification du mot de passe : 1"
+    echo "Pour voir la liste des sessions actives de l'utilisateur : 3"
+    echo "Pour retourner au menu précédent : retour "
     read -p "Votre choix : " choix
 
+while [ "$choix" != "retour" ]; do
     case "$choix" in
         1)
             echo -e "Dernière connexion de $utilisateur :"
@@ -36,16 +33,9 @@ while true; do
             echo -e "Sessions ouvertes pour $utilisateur :"
             ssh "$client" "who | grep '^$utilisateur'"
             ;;
-        4)
-            echo "Fin de l'audit."
-            break
-            ;;
-        *)
-            echo "Choix invalide, réessayez."
+        retour)
+            echo "Retour menu précédent."
+            source ./menu1_gestion_utilisateursetdossier.sh
             ;;
     esac
-
-    echo ""
-    read -p "Appuyez sur Entrée pour revenir au menu..."
-    clear
 done

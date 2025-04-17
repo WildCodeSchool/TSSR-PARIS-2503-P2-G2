@@ -7,13 +7,13 @@
 ######################################################################
 
 echo "______________________ GESTION UTILISATEURS ET DOSSIER ______________________"
-                        echo "Gestion des utilisateurs : 1"
-                        echo "Gestion des groupes : 2"
-                        echo "Informations des utilisateurs : 3"
-                        echo "Gestion répertoire : 4"
-                        echo "Gestion droits et permissions : 5"
-                        echo "Retour menu précédent : 6"
-                        read -p "Votre choix : " choix_gestion_utilisateurs_dossier
+echo "Gestion des utilisateurs : 1"
+echo "Gestion des groupes : 2"
+echo "Informations des utilisateurs : 3"
+echo "Gestion répertoire : 4"
+echo "Gestion droits et permissions : 5"
+echo "Retour menu précédent : 6"
+read -p "Votre choix : " choix_gestion_utilisateurs_dossier
 
                         while [ "$choix_gestion_utilisateurs_dossier" != "6" ]; do
                                 1) #Gestion des utilisateurs

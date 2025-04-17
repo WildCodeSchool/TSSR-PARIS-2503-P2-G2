@@ -4,21 +4,19 @@
 # version : 1.0 
 # Description : script Informations Application Utilisateurs 
 # OK SSH 
-# boucle while true OK  
 ######################################################################
 
 echo "Entrez l'adresse IP de la machine Ubuntu client :"
 read client
 
-while true; do
     echo "=============================="
-    echo "1 - Voir la liste des paquets installés"
-    echo "2 - Voir la liste des utilisateurs locaux"
-    echo "3 - Quitter"
+    echo "Pour voir la liste des paquets installés : 1"
+    echo "Pour voir la liste des utilisateurs locaux : 2"
+    echo "Pour quitter : retour"
     echo "=============================="
     read -p "Votre choix : " choix
 
-    case "$choix" in
+while [ "$choix" != "retour" ]; do
         1)
             echo "Connexion à $client..."
             ssh "$client" 'dpkg --list | less'
@@ -29,14 +27,7 @@ while true; do
             ;;
         3)
             echo "Au revoir !"
-            break
+            sleep 3 
+            source ./menu2_informations_systeme.sh
             ;;
-        *)
-            echo "Choix invalide, veuillez réessayer."
-            ;;
-    esac
-
-    echo ""
-    read -p "Appuyez sur Entrée pour revenir au menu..."
-    clear
 done

@@ -7,14 +7,15 @@
 ######################################################################
 
 echo "______________________ INFORMATIONS SYSTEME ______________________"
-                        echo "Informations Interfaces : 1"
-                        echo "Informations Matériel : 2"
-                        echo "Informations Logs : 3"
-                        echo "Informations Applications et Utilisateurs Locaux : 4"
-                        echo "Retour menu précédent : 5"
-                        read -p "Votre choix : " choix_information_systeme
+echo "Informations Interfaces : 1"
+echo "Informations Matériel : 2"
+echo "Informations Logs : 3"
+echo "Informations Applications et Utilisateurs Locaux : 4"
+echo "Retour menu précédent : 5"
+read -p "Votre choix : " choix_information_systeme
 
                         while [ "$choix_information_systeme" != "5" ]; do
+                        case "choix" in
                                 1) #Informations Interfaces
                                         source ./Informations_Interfaces.sh
                                         ;;
@@ -32,5 +33,5 @@ echo "______________________ INFORMATIONS SYSTEME ______________________"
                                         sleep 3
                                         source ./ScriptFinal.sh 
                                         ;;
+                        esac
                         done
-        ;;

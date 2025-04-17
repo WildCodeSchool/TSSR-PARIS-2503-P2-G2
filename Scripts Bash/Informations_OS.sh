@@ -23,3 +23,5 @@ if [ $? -eq 0 ]; then
 else
     echo "Erreur : Impossible de se connecter à la machine Ubuntu ou récupérer la version de l'OS."
 fi
+sleep 3 
+source ./menu3_maintenance_systeme.sh 

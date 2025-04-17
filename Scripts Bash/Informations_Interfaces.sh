@@ -10,7 +10,6 @@
 echo "Entrez l'adresse IP ou le nom d'hôte de la machine Ubuntu client :"
 read client
 
-while true; do
     echo "===================================="
     echo "1 - Connaitre le nombre d'interfaces réseau"
     echo "2 - Connaitre les adresses IP"
@@ -19,7 +18,8 @@ while true; do
     echo "===================================="
     read -p "Votre choix : " choix
 
-    case $choix in
+while [ "$choix" != "retour" ]; do
+    case "choix" in
         1)
             ssh "$client" "echo \"Il y a \$(ip -brief address show | awk '{print \$1, \$3}' | wc -l) interfaces actuellement\""
             ;;
@@ -29,16 +29,10 @@ while true; do
         3)
             ssh "$client" "ip link show | grep 'link/ether' | awk '{print \$2}'"
             ;;
-        4)
+        retour)
             echo "Retour au menu principal."
-            break
-            ;;
-        *)
-            echo "Choix invalide. Veuillez réessayer."
+            sleep 3 
+            source ./menu2_informations_systeme.sh
             ;;
     esac
-
-    echo ""
-    read -p "Appuyez sur Entrée pour revenir au menu..."
-    clear
 done

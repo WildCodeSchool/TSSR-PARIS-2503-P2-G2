@@ -28,7 +28,6 @@ else
 fi
 
 
-# Boucle interactive
     echo "---------- Menu Gestion des Droits ----------"
     echo "→ pour ajouter un droit : add "
     echo "→ pour supprimer un droit : del "
@@ -37,6 +36,7 @@ fi
 
 
 while [ "$choix" != "retour" ]; do
+        case "choix" in
         add)
                 echo "→ pour ajouter "lecture" : +r "
                 echo "→ pour ajouter "écriture" : +w "            
@@ -55,9 +55,10 @@ while [ "$choix" != "retour" ]; do
                             ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u+x '$chemin' && echo 'Exécution ajoutée avec succès.'"
                             ;;
                         retour)
-                            #ajout fonction
+                            source ./Gestion_DroitsPermissions.sh
                             ;;
                 done
+        ;;
         del)
                 echo "→ pour supprimer "lecture" : -r "
                 echo "→ pour supprimer "écriture" : -w "            
@@ -75,13 +76,15 @@ while [ "$choix" != "retour" ]; do
                         -x)
                             ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-x '$chemin' && echo 'Exécution supprimée avec succès.'"
                             ;;
-                        *)
-                            echo "Choix invalide."
+                        retour)
+                            source ./Gestion_DroitsPermissions.sh
                             ;;
                 done
+        ;;
         retour)
             echo "Retour menu précédent."
             sleep 3
-            # Ajout fonction retour 
-            ;;
+            source ./menu1_gestion_utilisateursetdossier.sh
+        ;;
+        esac
 done
