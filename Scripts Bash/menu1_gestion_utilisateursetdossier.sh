@@ -16,7 +16,7 @@ echo "Retour menu précédent : 6"
 read -p "Votre choix : " choix_gestion_utilisateurs_dossier
 
 while [ "$choix_gestion_utilisateurs_dossier" != "6" ]; do
-        case "choix" in
+        case "$choix" in
                 1) 
                 #Gestion des utilisateurs
                 source ./Gestion_Utilisateur.sh
