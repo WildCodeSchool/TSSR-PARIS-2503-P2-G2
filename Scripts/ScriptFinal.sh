@@ -32,16 +32,15 @@ creation_fichier_log
 fi 
 
 
-echo "______________________ MENU PRINCIPAL ______________________"
-echo "Gestion utilisateur : 1"
-echo "Informations du système : 2"
-echo "Maintenance du système : 3"
-echo "Quitter le script : 4"
-read -p "Votre choix : " choix_menu_principal
-
-while [ "$choix_menu_principal" != "4" ]; do 
-        
-        case "$choix" in
+while [ "$choix_menu_principal" != "4" ]; do
+    
+        echo "______________________ MENU PRINCIPAL ______________________"
+        echo "Gestion utilisateur : 1"
+        echo "Informations du système : 2"
+        echo "Maintenance du système : 3"
+        echo "Quitter le script : 4"
+        read -p "Votre choix : " choix_menu_principal        
+        case "$choix_menu_principal" in
         1) 
         #Gestion utilisateurs et dossier
         source ./menu1_gestion_utilisateursetdossier.sh

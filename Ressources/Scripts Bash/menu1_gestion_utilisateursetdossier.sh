@@ -41,7 +41,6 @@ while [ "$choix_gestion_utilisateurs_dossier" != "6" ]; do
                 #retour menu précédent
                 echo "Retour au menu principal"
                 sleep 3
-                source ./ScriptFinal.sh
                 ;;
         esac
 done
