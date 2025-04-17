@@ -19,7 +19,7 @@ read client
     read -p "Votre choix : " choix
 
 while [ "$choix" != "retour" ]; do
-    case "choix" in
+    case "$choix" in
         1)
             ssh "$client" "echo \"Il y a \$(ip -brief address show | awk '{print \$1, \$3}' | wc -l) interfaces actuellement\""
             ;;
