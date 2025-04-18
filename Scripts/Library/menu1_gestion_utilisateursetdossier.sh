@@ -10,9 +10,9 @@ echo "______________________ GESTION UTILISATEURS ET DOSSIER ___________________
 echo "Gestion des utilisateurs : 1"
 echo "Gestion des groupes : 2"
 echo "Informations des utilisateurs : 3"
-echo "Gestion répertoire : 4"
+echo "Gestion repertoire : 4"
 echo "Gestion droits et permissions : 5"
-echo "Retour menu précédent : 6"
+echo "Retour menu precedent : 6"
 echo "Quitter le script : 7"
 read -p "Votre choix : " choix
 

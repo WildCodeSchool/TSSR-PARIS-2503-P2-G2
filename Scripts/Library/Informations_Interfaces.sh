@@ -10,12 +10,12 @@
 echo "Entrez l'adresse IP ou le nom d'hôte de la machine Ubuntu client :"
 read client
 
-    echo "===================================="
-    echo "1 - Connaitre le nombre d'interfaces réseau"
-    echo "2 - Connaitre les adresses IP"
-    echo "3 - Connaitre les adresses MAC"
-    echo "4 - Retour au menu précédent"
-    echo "===================================="
+    echo "Pour connaitre le nombre d'interfaces réseau : 1 "
+    echo "Pour connaitre les adresses IP : 2 "
+    echo "Pour connaitre les adresses MAC : 3 "
+    echo "Pour revenir au menu précédent : retour "
+    echo "Pour quitter le script : quitter "
+
     read -p "Votre choix : " choix
 
 while [ "$choix" != "retour" ]; do
@@ -33,5 +33,7 @@ while [ "$choix" != "retour" ]; do
             echo "Retour au menu principal."
             sleep 3 
             ;;
+        quitter)
+            exit 0
     esac
 done

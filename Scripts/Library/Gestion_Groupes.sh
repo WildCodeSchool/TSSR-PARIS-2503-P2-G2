@@ -3,20 +3,19 @@
 # Auteur : Pauline PRAK
 # Version : 1.1 
 # Description : Script de gestion des droits et permissions via SSH
-# boucle while true OK  
 ######################################################################
 
 read -p "Adresse IP de la machine distante : " ip
 read -p "Nom d'utilisateur SSH : " ssh_user
 read -p "Nom de l'utilisateur à modifier : " user
 
-echo
-echo "------------------------------------------------------------"
-echo "Pour ajouter au groupe admin      : 1"
-echo "Pour ajouter à un groupe local    : 2"
-echo "Pour supprimer d'un groupe local  : 3"
-echo "Pour quitter                      : retour"
-echo "------------------------------------------------------------"
+
+echo "Pour ajouter au groupe admin : 1"
+echo "Pour ajouter à un groupe local : 2"
+echo "Pour supprimer d'un groupe local : 3"
+echo "Pour revenir au menu precedent : retour"
+echo "Pour quitter : quitter"
+
 read -p "Choix : " choix
 
 while [ "$choix" != "retour" ]; do
@@ -57,6 +56,9 @@ EOF
         retour)
             echo "Retour menu précedent. "
             sleep 3
+        ;;
+        quitter) 
+                exit 0
         ;;
     esac
 done

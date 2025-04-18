@@ -24,4 +24,4 @@ else
     echo "Erreur : Impossible de se connecter à la machine Ubuntu ou récupérer la version de l'OS."
 fi
 sleep 3 
-source ./menu3_maintenance_systeme.sh 
+source /home/pauline/Bureau/"PROJET 2"/TSSR-PARIS-2503-P2-G2/Scripts/Library/menu3_maintenance_systeme.sh 

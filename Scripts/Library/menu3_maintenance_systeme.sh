@@ -8,13 +8,13 @@
 
 echo "______________________ MAINTENANCE SYSTEME ______________________"
 echo "Information sur OS : 1"
-echo "Mise à jour de l'OS : 2"
+echo "Mise a jour de l'OS : 2"
 echo "Informations pare-feu : 3"
 echo "Gestion pare-feu : 4"
 echo "Gestion logiciels : 5"
-echo "Arret, redémarrage et verrouillage : 6"
+echo "Arret, redemarrage et verrouillage : 6"
 echo "Gestion à distance : 7"
-echo "Retour menu précédent : 8"
+echo "Retour menu precedent : 8"
 echo "Quitter le script : 9"
 read -p "Votre choix : " choix
 

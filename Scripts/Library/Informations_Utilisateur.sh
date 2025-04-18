@@ -13,9 +13,11 @@ read -p "Nom de l'utilisateur à auditer : " utilisateur
 
     echo "Audit utilisateur : $utilisateur @ $client"
     echo "Pour voir la date de dernière connexion : 1"
-    echo "Pour voir la date de dernière modification du mot de passe : 1"
+    echo "Pour voir la date de dernière modification du mot de passe : 2"
     echo "Pour voir la liste des sessions actives de l'utilisateur : 3"
     echo "Pour retourner au menu précédent : retour "
+    echo "Pour quitter le script : quitter "
+
     read -p "Votre choix : " choix
 
 while [ "$choix" != "retour" ]; do
@@ -35,6 +37,9 @@ while [ "$choix" != "retour" ]; do
             ;;
         retour)
             echo "Retour menu précédent."
+            ;;
+        quitter)
+            exit 0
             ;;
     esac
 done

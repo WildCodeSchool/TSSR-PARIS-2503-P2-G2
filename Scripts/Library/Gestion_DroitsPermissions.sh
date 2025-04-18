@@ -30,19 +30,22 @@ echo "---------- Menu Gestion des Droits ----------"
 echo "→ pour ajouter un droit : add "
 echo "→ pour supprimer un droit : del "
 echo "→ pour retourner dans le menu précédent : retour "
+echo "→ pour quitter le script : quitter "
 read -p "Votre choix : " choix
 
 while [ "$choix" != "retour" ]; do
 
 case "$choix" in
+    
     add)
                 echo "→ pour ajouter "lecture" : +r "
-                echo "→ pour ajouter "écriture" : +w "            
+                echo "→ pour ajouter "ecriture" : +w "            
                 echo "→ pour ajouter "execution" : +x "
                 echo "→ pour retourner au menu précédent : retour "
                 read -p "Votre choix : " choix_add
 
             while [ "$choix_add" != "retour" ]; do
+            
             case "choix" in
                     +r)
                     ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u+r '$chemin' && echo 'Lecture ajouté avec succès.'"
@@ -68,6 +71,7 @@ case "$choix" in
                 read -p "Votre choix : " choix_del
                 
             while [ "$choix_del" != "retour" ]; do
+            
             case "$choix" in
                     -r)
                     ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-r '$chemin' && echo 'Lecture supprimé avec succès.'"
@@ -90,6 +94,9 @@ case "$choix" in
             echo "Retour menu précédent."
             sleep 3
     ;;
-    
+    quitter)
+            exit 0
+    ;;
+
 esac
 done

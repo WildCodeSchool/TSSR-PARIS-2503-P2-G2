@@ -8,10 +8,10 @@
 
 echo "______________________ INFORMATIONS SYSTEME ______________________"
 echo "Informations Interfaces : 1"
-echo "Informations Matériel : 2"
+echo "Informations Materiel : 2"
 echo "Informations Logs : 3"
 echo "Informations Applications et Utilisateurs Locaux : 4"
-echo "Retour menu précédent : 5"
+echo "Retour menu precedent : 5"
 echo "Quitter : 6"
 read -p "Votre choix : " choix
 
