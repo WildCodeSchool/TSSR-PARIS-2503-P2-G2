@@ -18,13 +18,15 @@ if ! ssh -q "${ssh_user}@${cible}" exit; then
     exit 1
 fi
 
-while true; do
-    echo "=== Gestion des Utilisateurs sur $cible ==="
+while [ "$choix" != "5" ]; do
+echo "=== Gestion des Utilisateurs sur $cible ==="
     echo "1) Création de compte utilisateur local"
     echo "2) Changement de mot de passe"
     echo "3) Suppression de compte utilisateur local"
     echo "4) Désactivation de compte utilisateur local"
-    echo "5) Quitter"
+    echo "5) Menu précédent"
+    echo "6) Quitter"
+
     read -p "Choisissez une option (1-5) : " choix
 
     case $choix in
@@ -45,9 +47,13 @@ while true; do
             ssh -t "${ssh_user}@${cible}" "sudo usermod -L '$disable_user' && echo 'Utilisateur $disable_user désactivé.'"
             ;;
         5)
-            echo "Fin du script."
+            echo "Retour au menu precedent."
+            sleep 3
+            ;;
+        6) 
             exit 0
             ;;
+            
         *)
             echo "Option invalide. Veuillez choisir un nombre entre 1 et 5."
             ;;
