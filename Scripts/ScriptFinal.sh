@@ -1,5 +1,5 @@
-######################################################################
 #! /bin/bash
+######################################################################
 # Auteur : Pauline PRAK 
 # version : 1.0 
 # Description : Script Global
@@ -26,13 +26,12 @@ sudo chmod 600 "$LOGFILE"
 
 
 # vérification existence fichier log journalier + sinon appel de la fonction création de fichier 
-if [ !"LOGFILE -f" ] 
+if [ ! -f "$LOGFILE" ] 
 then 
 creation_fichier_log 
 fi 
 
 
-<<<<<<< HEAD
 while [ "$choix_menu_principal" != "4" ]; do
     
         echo "______________________ MENU PRINCIPAL ______________________"
@@ -42,18 +41,6 @@ while [ "$choix_menu_principal" != "4" ]; do
         echo "Quitter le script : 4"
         read -p "Votre choix : " choix_menu_principal        
         case "$choix_menu_principal" in
-=======
-echo "______________________ MENU PRINCIPAL ______________________"
-echo "Gestion utilisateur : 1"
-echo "Informations du système : 2"
-echo "Maintenance du système : 3"
-echo "Quitter le script : 4"
-read -p "Votre choix : " choix
-
-while [ "$choix" != "4" ]; do 
-        
-        case "$choix" in
->>>>>>> f60af812e0854649197b012bb7466945357b7e77
         1) 
         #Gestion utilisateurs et dossier
         source ./menu1_gestion_utilisateursetdossier.sh
