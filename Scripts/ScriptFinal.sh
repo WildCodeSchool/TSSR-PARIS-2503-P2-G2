@@ -34,17 +34,17 @@ fi
 
 while [ "$choix_menu_principal" != "4" ]; do
     
-        echo -e "\n______________________ MENU PRINCIPAL ______________________\n"
-        echo "Gestion utilisateur                                           : 1"
-        echo "Informations du système                                       : 2"
-        echo "Maintenance du système                                        : 3"
-        echo -e "Quitter le script                                             : 4\n"
+        echo -e "\n________________________ MENU PRINCIPAL ________________________\n"
+        echo "Gestion utilisateur___________________________________________: 1"
+        echo "Informations du système_______________________________________: 2"
+        echo "Maintenance du système________________________________________: 3"
+        echo -e "Quitter le script_____________________________________________: 4\n"
         read -p "Votre choix svp : " choix_menu_principal    
 
         case "$choix_menu_principal" in
         1) 
         #Gestion utilisateurs et dossier
-        source $(pwd)/Library/menu1_gestion_utilisateursetdossier.sh
+        source $(pwd)/Library/menu1_gestion_utilisateursetdossier.sh        
         ;;
         2) 
         #Information système
