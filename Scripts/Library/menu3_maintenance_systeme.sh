@@ -15,6 +15,7 @@ echo "Gestion logiciels : 5"
 echo "Arret, redémarrage et verrouillage : 6"
 echo "Gestion à distance : 7"
 echo "Retour menu précédent : 8"
+echo "Quitter le script : 9"
 read -p "Votre choix : " choix
 
 while [ "$choix" != "8" ]; do
@@ -53,5 +54,10 @@ while [ "$choix" != "8" ]; do
                         echo "Retour au menu principal"
                         sleep 3
                         exit
+                        ;;
+                9) 
+                #quitter le script
+                        exit 0
+                        ;;
         esac
 done

@@ -39,19 +39,20 @@ while [ "$choix_menu_principal" != "4" ]; do
         echo "Informations du système : 2"
         echo "Maintenance du système : 3"
         echo "Quitter le script : 4"
-        read -p "Votre choix : " choix_menu_principal        
+        read -p "Votre choix : " choix_menu_principal    
+
         case "$choix_menu_principal" in
         1) 
         #Gestion utilisateurs et dossier
-        source ./menu1_gestion_utilisateursetdossier.sh
+        source /home/pauline/Bureau/"PROJET 2"/TSSR-PARIS-2503-P2-G2/Scripts/Library/menu1_gestion_utilisateursetdossier.sh
         ;;
         2) 
         #Information système
-        source ./menu2_informations_systeme.sh
+        source /home/pauline/Bureau/"PROJET 2"/TSSR-PARIS-2503-P2-G2/Scripts/Library/menu2_informations_systeme.sh
         ;;
         3) 
         #maintenance systeme
-        source ./menu3_maintenance_systeme.sh
+        source /home/pauline/Bureau/"PROJET 2"/TSSR-PARIS-2503-P2-G2/Scripts/Library/menu3_maintenance_systeme.sh
         ;;
         4) 
         #Quitter 
@@ -61,4 +62,3 @@ while [ "$choix_menu_principal" != "4" ]; do
         ;;
         esac
 done
-        

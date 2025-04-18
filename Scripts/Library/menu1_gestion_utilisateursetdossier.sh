@@ -13,34 +13,38 @@ echo "Informations des utilisateurs : 3"
 echo "Gestion répertoire : 4"
 echo "Gestion droits et permissions : 5"
 echo "Retour menu précédent : 6"
+echo "Quitter le script : 7"
 read -p "Votre choix : " choix
 
 while [ "$choix" != "6" ]; do
         case "$choix" in
                 1) 
                 #Gestion des utilisateurs
-                source ./Gestion_Utilisateur.sh
+                source /home/pauline/Bureau/"PROJET 2"/TSSR-PARIS-2503-P2-G2/Scripts/Library/Gestion_Utilisateur.sh
                 ;;
                 2) 
                 #Gestion des groupes
-                source ./Gestion_Groupe.sh
+                source /home/pauline/Bureau/"PROJET 2"/TSSR-PARIS-2503-P2-G2/Scripts/Library/Gestion_Groupe.sh
                 ;;
                 3) 
                 #Informations des utilisateurs
-                source ./Informations_Utilisateur.sh
+                source /home/pauline/Bureau/"PROJET 2"/TSSR-PARIS-2503-P2-G2/Scripts/Library/Informations_Utilisateur.sh
                 ;;
                 4) 
                 #Gestion des répertoires
-                source ./Gestion_repertoire.sh
+                source /home/pauline/Bureau/"PROJET 2"/TSSR-PARIS-2503-P2-G2/Scripts/Library/Gestion_repertoire.sh
                 ;;
                 5) 
                 #Gestion droits et permissions
-                source ./Gestion_DroitsPermission.sh
+                source /home/pauline/Bureau/"PROJET 2"/TSSR-PARIS-2503-P2-G2/Scripts/Library/Gestion_DroitsPermission.sh
                 ;;
                 6) 
                 #retour menu précédent
                 echo "Retour au menu principal"
                 sleep 3
+                ;;
+                7)
+                exit 0
                 ;;
         esac
 done
