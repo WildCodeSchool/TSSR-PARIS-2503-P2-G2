@@ -6,6 +6,7 @@
 # LOGS a finir  
 ######################################################################
 
+USER=$(whoami)
 ORDINATEUR=$(hostname)
 DATE=$(date +"%d-%m-%Y")
 FICHIERDUJOUR="Info_${ORDINATEUR}_${DATE}.log"
