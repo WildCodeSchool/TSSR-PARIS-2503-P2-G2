@@ -19,19 +19,19 @@ while [ "$choix" != "5" ]; do
 case "$choix" in
         1) 
         #Informations Interfaces
-        source $(pwd)/Library/Informations_Interfaces.sh
+        source $(pwd)/Informations_Interfaces.sh
         ;;
         2) 
         #Informations Matériel
-        source source $(pwd)/Library/Informations_Materiels.sh
+        source source $(pwd)/Informations_Materiels.sh
         ;;
         3) 
         #Informations Logs
-        source $(pwd)/Library/Informations_Logs.sh
+        source $(pwd)/Informations_Logs.sh
         ;; 
         4) 
         #Informations Applications et Utilisateurs Locaux
-        source $(pwd)/Library/Informations_Applications_Utilisateurs.sh
+        source $(pwd)/Informations_Applications_Utilisateurs.sh
         ;;
         5) 
         #retour menu précédent 

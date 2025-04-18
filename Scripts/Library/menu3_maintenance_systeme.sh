@@ -23,31 +23,31 @@ while [ "$choix" != "8" ]; do
         case "$choix" in
                 1) 
                 #Information OS
-                        source $(pwd)/Library/Informations_OS.sh
+                        source $(pwd)/Informations_OS.sh
                         ;;
                 2) 
                 #Mise à jour de l'OS
-                        source $(pwd)/Library/MAJ.sh
+                        source $(pwd)/MAJ.sh
                         ;;
                 3) 
                 #Informations pare-feu
-                        source $(pwd)/Library/Informations_Port_Parefeu.sh
+                        source $(pwd)/Informations_Port_Parefeu.sh
                         ;; 
                 4) 
                 #Gestion pare-feu
-                        source $(pwd)/Library/Gestion_Parefeu.sh
+                        source $(pwd)/Gestion_Parefeu.sh
                         ;;
                 5) 
                 #Gestion logiciels
-                        source $(pwd)/Library/Gestion_Logiciels.sh
+                        source $(pwd)/Gestion_Logiciels.sh
                         ;;
                 6) 
                 #Arret, redémarrage et verrouillage
-                        source $(pwd)/Library/Etat_Ordinateur.sh
+                        source $(pwd)/Etat_Ordinateur.sh
                         ;;
                 7) 
                 #Gestion à distance
-                        source $(pwd)/Library/Gestion_Distance.sh
+                        source $(pwd)/Gestion_Distance.sh
                         ;; 
                 8) 
                 #retour menu précédent

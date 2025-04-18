@@ -34,31 +34,31 @@ fi
 
 while [ "$choix_menu_principal" != "4" ]; do
     
-        echo "______________________ MENU PRINCIPAL ______________________"
-        echo "Gestion utilisateur : 1"
-        echo "Informations du système : 2"
-        echo "Maintenance du système : 3"
-        echo "Quitter le script : 4"
-        read -p "Votre choix : " choix_menu_principal    
+        echo -e "\n______________________ MENU PRINCIPAL ______________________\n"
+        echo "Gestion utilisateur                                           : 1"
+        echo "Informations du système                                       : 2"
+        echo "Maintenance du système                                        : 3"
+        echo -e "Quitter le script                                             : 4\n"
+        read -p "Votre choix svp : " choix_menu_principal    
 
         case "$choix_menu_principal" in
         1) 
         #Gestion utilisateurs et dossier
-        source /home/pauline/Bureau/"PROJET 2"/TSSR-PARIS-2503-P2-G2/Scripts/Library/menu1_gestion_utilisateursetdossier.sh
+        source $(pwd)/Library/menu1_gestion_utilisateursetdossier.sh
         ;;
         2) 
         #Information système
-        source /home/pauline/Bureau/"PROJET 2"/TSSR-PARIS-2503-P2-G2/Scripts/Library/menu2_informations_systeme.sh
+        source $(pwd)/Library/menu2_informations_systeme.sh
         ;;
         3) 
         #maintenance systeme
-        source /home/pauline/Bureau/"PROJET 2"/TSSR-PARIS-2503-P2-G2/Scripts/Library/menu3_maintenance_systeme.sh
+        source $(pwd)/Library/menu3_maintenance_systeme.sh
         ;;
         4) 
         #Quitter 
             echo "Fin du script"
-            sleep 3 
-            exit        
+            sleep 1
+            exit 0       
         ;;
         esac
 done
