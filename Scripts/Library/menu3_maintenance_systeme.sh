@@ -6,16 +6,16 @@
 # LOGS a finir  
 ######################################################################
 
-echo "______________________ MAINTENANCE SYSTEME ______________________"
-echo "Information sur OS : 1"
-echo "Mise a jour de l'OS : 2"
-echo "Informations pare-feu : 3"
-echo "Gestion pare-feu : 4"
-echo "Gestion logiciels : 5"
-echo "Arret, redemarrage et verrouillage : 6"
-echo "Gestion à distance : 7"
-echo "Retour menu precedent : 8"
-echo "Quitter le script : 9"
+echo -e "\n______________________ MAINTENANCE SYSTEME ______________________\n"
+echo "Information sur OS                                            : 1"
+echo "Mise a jour de l'OS                                           : 2"
+echo "Informations pare-feu                                         : 3"
+echo "Gestion pare-feu                                              : 4"
+echo "Gestion logiciels                                             : 5"
+echo "Arret, redemarrage et verrouillage                            : 6"
+echo "Gestion à distance                                            : 7"
+echo "Retour menu precedent                                         : 8"
+echo -e "Quitter le script                                             : 9\n"
 read -p "Votre choix : " choix
 
 while [ "$choix" != "8" ]; do
@@ -23,31 +23,31 @@ while [ "$choix" != "8" ]; do
         case "$choix" in
                 1) 
                 #Information OS
-                        source ./Informations_OS.sh
+                        source $(pwd)/Library/Informations_OS.sh
                         ;;
                 2) 
                 #Mise à jour de l'OS
-                        source ./MAJ.sh
+                        source $(pwd)/Library/MAJ.sh
                         ;;
                 3) 
                 #Informations pare-feu
-                        source ./Informations_Port_Parefeu.sh
+                        source $(pwd)/Library/Informations_Port_Parefeu.sh
                         ;; 
                 4) 
                 #Gestion pare-feu
-                        source ./Gestion_Parefeu.sh
+                        source $(pwd)/Library/Gestion_Parefeu.sh
                         ;;
                 5) 
                 #Gestion logiciels
-                        source ./Gestion_Logiciels.sh
+                        source $(pwd)/Library/Gestion_Logiciels.sh
                         ;;
                 6) 
                 #Arret, redémarrage et verrouillage
-                        source ./Etat_Ordinateur.sh
+                        source $(pwd)/Library/Etat_Ordinateur.sh
                         ;;
                 7) 
                 #Gestion à distance
-                        source ./Gestion_Distance.sh
+                        source $(pwd)/Library/Gestion_Distance.sh
                         ;; 
                 8) 
                 #retour menu précédent
