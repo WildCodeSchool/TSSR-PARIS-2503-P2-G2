@@ -1,5 +1,4 @@
 ######################################################################
-# Auteur : Pauline PRAK 
 # version : 1.0 
 # Description : Menu 2 : informations systeme
 # LOGS a finir  
