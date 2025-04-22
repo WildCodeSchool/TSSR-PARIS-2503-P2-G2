@@ -1,5 +1,4 @@
 ######################################################################
-# Auteur : Pauline PRAK 
 # version : 1.0 
 # Description : Menu 1 : gestion utilisateur et dossier
 # LOGS a finir  
