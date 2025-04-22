@@ -1,56 +1,72 @@
+######################################################################
 # Auteur : Chahine MARZOUK
-# Version : 1.0
-# Description : Script Informations Port Pare-feu via WinRM
+# Version : 2.0 (WinRM)
+# Description : Script d'informations sur les ports ouverts et le pare-feu via PowerShell/WinRM
+######################################################################
 
-# Récupérer l'IP ou le nom d'hôte distant
-$cible = Read-Host "Adresse IP ou nom de la machine distante"
+# Forcer l'encodage UTF-8
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
-# Récupérer les identifiants pour WinRM
-$remote_user = Read-Host "Nom d'utilisateur (ex: MACHINE\Administrateur)"
-$securePassword = Read-Host "Mot de passe" -AsSecureString
-$creds = New-Object System.Management.Automation.PSCredential($remote_user, $securePassword)
+# Cible distante
+$cible = Read-Host "Nom ou IP de la machine distante"
 
-# Tester la connexion avec une commande basique
+# Authentification
+$utilisateur = Read-Host "Nom d'utilisateur (ex: MACHINE\Administrateur)"
+$mdp = Read-Host "Mot de passe" -AsSecureString
+$creds = New-Object System.Management.Automation.PSCredential($utilisateur, $mdp)
+
+# Vérifier la connexion
 try {
     Invoke-Command -ComputerName $cible -Credential $creds -ScriptBlock { hostname } -ErrorAction Stop | Out-Null
 } catch {
-    Write-Host "Erreur : impossible de se connecter à $cible avec l'utilisateur $remote_user."
+    Write-Host "Erreur : impossible de se connecter à $cible avec l'utilisateur $utilisateur."
     exit 1
 }
 
-# Boucle de menu
-while ($true) {
-    Write-Host ""
-    Write-Host "===== Menu Informations Pare-feu ====="
+# Fonction menu
+function Show-Menu {
+    Clear-Host
+    Write-Host "===== Informations Pare-feu & Ports sur ($cible) ====="
     Write-Host "1) Liste des ports ouverts (TCP/UDP)"
     Write-Host "2) Statut du pare-feu Windows"
     Write-Host "3) Quitter"
+}
+
+do {
+    Show-Menu
     $choix = Read-Host "Choisissez une option (1-3)"
 
     switch ($choix) {
         "1" {
-            Write-Host "----- 🔍 Liste des ports ouverts (TCP/UDP) -----"
             Invoke-Command -ComputerName $cible -Credential $creds -ScriptBlock {
+                Write-Output ">>> Ports TCP ouverts :"
                 Get-NetTCPConnection | Select-Object LocalAddress, LocalPort, State, OwningProcess
+
+                Write-Output ""
+                Write-Output ">>> Ports UDP ouverts :"
                 Get-NetUDPEndpoint | Select-Object LocalAddress, LocalPort, OwningProcess
             }
         }
+
         "2" {
-            Write-Host "----- 🔐 Statut du pare-feu Windows -----"
             Invoke-Command -ComputerName $cible -Credential $creds -ScriptBlock {
+                Write-Output ">>> Statut du pare-feu par profil :"
                 Get-NetFirewallProfile | Select-Object Name, Enabled, DefaultInboundAction, DefaultOutboundAction
             }
         }
+
         "3" {
             Write-Host "Fin du script."
             break
         }
-        Default {
+
+        default {
             Write-Host "Option invalide. Veuillez choisir un nombre entre 1 et 3."
         }
     }
 
-    Write-Host ""
-    Read-Host "Appuyez sur Entrée pour revenir au menu..."
-    Clear-Host
-}
+    if ($choix -ne "3") {
+        Write-Host ""
+        Read-Host "Appuyez sur Entrée pour revenir au menu..."
+    }
+} while ($choix -ne "3")
