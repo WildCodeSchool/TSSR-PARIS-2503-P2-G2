@@ -35,5 +35,5 @@ while ("$choix_menu_principal" != "4"){
             Write-Host "Fin du script"
             exit 0       
         }
-        esac
-done
+    }
+}
