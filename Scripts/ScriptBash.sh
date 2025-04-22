@@ -32,6 +32,8 @@ then
 creation_fichier_log 
 fi 
 
+#ajout premiere ligne 
+echo "************************StartScript************************" >> $LOGFILE 
 
 while [ "$choix_menu_principal" != "4" ]; do
     
@@ -58,6 +60,8 @@ while [ "$choix_menu_principal" != "4" ]; do
         4) 
         #Quitter 
             echo "Fin du script"
+#ajout premiere ligne 
+echo "************************EndScript************************" >> $LOGFILE 
             sleep 1
             exit 0       
         ;;
