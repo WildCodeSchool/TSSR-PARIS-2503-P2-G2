@@ -35,7 +35,7 @@ while ($choix -ne "2") {
         }
 
         "2" {
-            Write-Host "`nRetour au menu précédent..." -ForegroundColor Yellow
+            Write-Host "Retour au menu précédent..." -ForegroundColor Yellow
         }
 
         default {
