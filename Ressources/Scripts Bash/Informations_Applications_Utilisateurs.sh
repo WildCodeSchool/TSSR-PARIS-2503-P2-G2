@@ -3,7 +3,7 @@
 # Auteur : Pauline PRAK
 # version : 1.0 
 # Description : script Informations Application Utilisateurs 
-# OK SSH 
+# manque logs
 ######################################################################
 
 echo "Entrez l'adresse IP de la machine Ubuntu client :"
