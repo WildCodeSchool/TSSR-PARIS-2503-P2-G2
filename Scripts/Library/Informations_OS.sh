@@ -3,7 +3,7 @@
 # Auteur : Pauline PRAK
 # version : 1.0 
 # Description : script informations OS projet 2 
-# OK SSH
+# manque logs
 ######################################################################
 
 # Demande de l'adresse IP de la machine distante
