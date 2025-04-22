@@ -4,52 +4,52 @@
 # LOGS a finir  
 ######################################################################
 
-echo "______________________ MAINTENANCE SYSTEME ______________________"
-echo "Information sur OS                                             : 1"
-echo "Mise à jour de l'OS                                            : 2"
-echo "Informations pare-feu                                          : 3"
-echo "Gestion pare-feu                                               : 4"
-echo "Gestion logiciels                                              : 5"
-echo "Arret, redémarrage et verrouillage                             : 6"
-echo "Gestion à distance                                             : 7"
-echo "Retour menu précédent                                          : 8"
-read -p "Votre choix : " choix
+Write-Host "______________________ MAINTENANCE SYSTEME ______________________"
+Write-Host "Information sur OS                                             : 1"
+Write-Host "Mise à jour de l'OS                                            : 2"
+Write-Host "Informations pare-feu                                          : 3"
+Write-Host "Gestion pare-feu                                               : 4"
+Write-Host "Gestion logiciels                                              : 5"
+Write-Host "Arret, redémarrage et verrouillage                             : 6"
+Write-Host "Gestion à distance                                             : 7"
+Write-Host "Retour menu précédent                                          : 8"
+Read-Host "Votre choix : " choix
 
-while [ "$choix" != "8" ]; do
+while ("$choix" != "8"){
 
-        case "$choix" in
-                1) 
+        switch ("$choix"){
+                "1"{ 
                 #Information OS
-                        source $(pwd)/Library/Informations_OS.sh
-                        ;;
-                2) 
+                        source $(pwd)/Library/Informations_OS.ps1
+                }
+                "2"{ 
                 #Mise à jour de l'OS
-                        source $(pwd)/Library/MAJ.sh
-                        ;;
-                3) 
+                        source $(pwd)/Library/MAJ.ps1
+                }
+                "3"{ 
                 #Informations pare-feu
-                        source $(pwd)/Library/Informations_Port_Parefeu.sh
-                        ;; 
-                4) 
+                        source $(pwd)/Library/Informations_Port_Parefeu.ps1
+                } 
+                "4"{ 
                 #Gestion pare-feu
-                        source $(pwd)/Library/Gestion_Parefeu.sh
-                        ;;
-                5) 
+                        source $(pwd)/Library/Gestion_Parefeu.ps1
+                }
+                "5"{ 
                 #Gestion logiciels
-                        source $(pwd)/Library/Gestion_Logiciels.sh
-                        ;;
-                6) 
+                        source $(pwd)/Library/Gestion_Logiciels.ps1
+                }
+                "6"{ 
                 #Arret, redémarrage et verrouillage
-                        source $(pwd)/Library/Etat_Ordinateur.sh
-                        ;;
-                7) 
+                        source $(pwd)/Library/Etat_Ordinateur.ps1
+                }
+                "7"{ 
                 #Gestion à distance
-                        source $(pwd)/Library/Gestion_Distance.sh
-                        ;; 
-                8) 
+                        source $(pwd)/Library/Gestion_Distance.ps1
+                } 
+                "8"{ 
                 #retour menu précédent
-                        echo "Retour au menu principal"
-                        sleep 3
-                        exit
-        esac
-done
+                        Write-Host "Retour au menu principal"
+                        exit 0
+                }
+        }
+}
