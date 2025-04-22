@@ -3,11 +3,7 @@
 # Version : 1.0 
 # Description : Script droit et permission.ps1
 # Etat : a tester
-####################################################################################
-
-# Auteur : Pauline PRAK
-# Version : 1.2 (PowerShell, sans sudo, avec while)
-# Description : Script de gestion des droits/permissions sur machine distante via SSH
+#########################################################
 
 # --- Infos SSH ---
 $ip = Read-Host "Adresse IP de la machine distante"
