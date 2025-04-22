@@ -18,12 +18,17 @@ read -s -p "Mot de passe sudo du user distant : " sudo_pass
 echo
 
 # Vérification du fichier et de l'utilisateur sur la machine distante
+
+echo "$DATE-$HEURE-$USER-$1 : test existence fichier dans le systeme" >> $LOGFILE
 ssh ${ssh_user}@${ip} "[ -e \"$chemin\" ] && id \"$user\" &>/dev/null"
 if [ $? -ne 0 ]; then
     echo "Erreur : Le fichier/dossier ou l'utilisateur n'existe pas sur la machine distante."
+    echo "$DATE-$HEURE-$USER-$1 : Erreur, le fichier/dossier ou l'utilisateur n'existe pas sur la machine" >> $LOGFILE
     exit 1
 else
-    echo "Vérification réussie."
+    echo "Vérification reussie."
+    echo "$DATE-$HEURE-$USER-$1 : Verification existence fichier/dossier reussie" >> $LOGFILE
+
 fi
 
 echo "---------- Menu Gestion des Droits ----------"
@@ -46,15 +51,19 @@ case "$choix" in
             case "choix" in
                     +r)
                     ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u+r '$chemin' && echo 'Lecture ajouté avec succès.'"
+                    echo "$DATE-$HEURE-$USER-$1 : ajout droit lecture réussis" >> $LOGFILE
                     ;;
                     +w)
                     ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u+w '$chemin' && echo 'Écriture ajouté avec succès.'"
+                    echo "$DATE-$HEURE-$USER-$1 : ajout droit ecriture réussis" >> $LOGFILE
                     ;;
                     +x)
                     ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u+x '$chemin' && echo 'Exécution ajouté avec succès.'"
+                    echo "$DATE-$HEURE-$USER-$1 : ajout droit execution réussis" >> $LOGFILE
                     ;;
                     retour)
                     Echo "Retour menu précédent."
+                    echo "$DATE-$HEURE-$USER-$1 : retour menu precedent" >> $LOGFILE
                     sleep 3
                     ;;
             esac
@@ -70,16 +79,20 @@ case "$choix" in
             while [ "$choix_del" != "retour" ]; do
             case "$choix" in
                     -r)
-                    ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-r '$chemin' && echo 'Lecture supprimé avec succès.'"
+                    ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-r '$chemin' && echo 'Lecture supprimé avec succès.'"                    
+                    echo "$DATE-$HEURE-$USER-$1 : suppression droit lecture réussis" >> $LOGFILE
                     ;;
                     -w)
                     ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-w '$chemin' && echo 'Écriture supprimé avec succès.'"
+                    echo "$DATE-$HEURE-$USER-$1 : suppression droit ecriture réussis" >> $LOGFILE
                     ;;
                     -x)
                     ssh ${ssh_user}@${ip} "echo '$sudo_pass' | sudo -S chmod u-x '$chemin' && echo 'Exécution supprimé avec succès.'"
+                    echo "$DATE-$HEURE-$USER-$1 : suppression droit execution réussis" >> $LOGFILE
                     ;;
                     retour)
                     echo "Retour menu précédent."
+                    echo "$DATE-$HEURE-$USER-$1 : retour menu precedent" >> $LOGFILE
                     sleep 3
                     ;;
             esac
@@ -88,6 +101,7 @@ case "$choix" in
     ;;
     retour)
             echo "Retour menu précédent."
+            echo "$DATE-$HEURE-$USER-$1 : retour menu principale" >> $LOGFILE
             sleep 3
     ;;
     
