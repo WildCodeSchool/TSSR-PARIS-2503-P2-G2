@@ -54,10 +54,10 @@ do {
 
         "4" {
             Invoke-Command -ComputerName $client -Credential $creds -ScriptBlock {
-                Get-CimInstance Win32_LogicalDisk -Filter "DriveType=3" |
-                Select-Object DeviceID, 
-                              @{Name='Espace total (Go)';Expression={[math]::Round($_.Size/1GB,2)}},
-                              @{Name='Espace libre (Go)';Expression={[math]::Round($_.FreeSpace/1GB,2)}}
+                Get-CimInstance Win32_LogicalDisk -Filter "DriveType=3" | Select-Object `
+                    DeviceID, `
+                    @{Name='Espace total (Go)';Expression={[math]::Round($_.Size/1GB,2)}}, `
+                    @{Name='Espace libre (Go)';Expression={[math]::Round($_.FreeSpace/1GB,2)}}
             }
         }
 
