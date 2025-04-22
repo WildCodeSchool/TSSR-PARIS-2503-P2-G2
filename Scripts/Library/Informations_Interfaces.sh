@@ -3,8 +3,7 @@
 # Auteur : Pauline PRAK
 # version : 1.0 
 # Description : script informations interfaces  
-# OK SSH
-# boucle while true OK 
+# manque logs
 ######################################################################
 
 echo "Entrez l'adresse IP ou le nom d'hôte de la machine Ubuntu client :"
