@@ -1,0 +1,38 @@
+PS C:\Users\Administrator\Downloads\TSSR-PARIS-2503-P2-G2-main\TSSR-PARIS-2503-P2-G2-main\scripts powershell> ./Informations_Materiels
+At C:\Users\Administrator\Downloads\TSSR-PARIS-2503-P2-G2-main\TSSR-PARIS-2503-P2-G2-main\scripts
+powershell\Informations_Materiels.ps1:17 char:20
++ function Show-Menu {
++                    ~
+Missing closing '}' in statement block or type definition.
+At C:\Users\Administrator\Downloads\TSSR-PARIS-2503-P2-G2-main\TSSR-PARIS-2503-P2-G2-main\scripts
+powershell\Informations_Materiels.ps1:21 char:18
++     Write-Host "2) MÃ©moire RAM totale"
++                  ~
+Unexpected token ')' in expression or statement.
+At C:\Users\Administrator\Downloads\TSSR-PARIS-2503-P2-G2-main\TSSR-PARIS-2503-P2-G2-main\scripts
+powershell\Informations_Materiels.ps1:22 char:18
++     Write-Host "3) Utilisation de la RAM"
++                  ~
+Unexpected token ')' in expression or statement.
+At C:\Users\Administrator\Downloads\TSSR-PARIS-2503-P2-G2-main\TSSR-PARIS-2503-P2-G2-main\scripts
+powershell\Informations_Materiels.ps1:23 char:18
++     Write-Host "4) Utilisation du disque"
++                  ~
+Unexpected token ')' in expression or statement.
+At C:\Users\Administrator\Downloads\TSSR-PARIS-2503-P2-G2-main\TSSR-PARIS-2503-P2-G2-main\scripts
+powershell\Informations_Materiels.ps1:24 char:18
++     Write-Host "5) Utilisation du processeur"
++                  ~
+Unexpected token ')' in expression or statement.
+At C:\Users\Administrator\Downloads\TSSR-PARIS-2503-P2-G2-main\TSSR-PARIS-2503-P2-G2-main\scripts
+powershell\Informations_Materiels.ps1:25 char:18
++     Write-Host "6) Quitter"
++                  ~
+Unexpected token ')' in expression or statement.
+At C:\Users\Administrator\Downloads\TSSR-PARIS-2503-P2-G2-main\TSSR-PARIS-2503-P2-G2-main\scripts
+powershell\Informations_Materiels.ps1:85 char:23
++ } while ($choix -ne "6")
++                       ~~
+The string is missing the terminator: ".
+    + CategoryInfo          : ParserError: (:) [], ParseException
+    + FullyQualifiedErrorId : MissingEndCurlyBrace
