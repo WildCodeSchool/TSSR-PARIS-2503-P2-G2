@@ -41,4 +41,5 @@ while ("$choix" != "6"){
                 #retour menu précédent
                 Write-Host "Retour au menu principal"
                 }
+        }
 }
