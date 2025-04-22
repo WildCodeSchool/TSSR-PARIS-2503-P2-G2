@@ -53,5 +53,6 @@ while [ "$choix" != "8" ]; do
                         echo "Retour au menu principal"
                         sleep 3
                         exit
+                        ;;
         esac
 done
