@@ -6,6 +6,18 @@
 # LOGS a ajouter  
 ######################################################################
 
+#initialisation variables 
+DATE=Get-Date -Format "dd-MM-yyyy"
+HEURE=Get-Date -Format "HH:mm:ss"
+UTILISATEUR=$env:USERNAME
+FICHIERDUJOUR="Info_$UTILISATEUR_$DATE.log"
+LOGFILE="C:\Windows\System32\LogFiles\$FICHIERDUJOUR"
+
+#Vérification et Création fichier de log 
+if (-not (Test-Path $LOGFILE)) {
+    New-Item -path $LOGFILE -ItemType File -Force
+}
+
 
 
 while ("$choix_menu_principal" != "4"){
