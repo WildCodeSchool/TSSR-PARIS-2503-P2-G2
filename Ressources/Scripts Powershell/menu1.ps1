@@ -13,7 +13,7 @@ Write-Host "Informations des utilisateurs                                       
 Write-Host "Gestion répertoire                                                        : 4"
 Write-Host "Gestion droits et permissions                                             : 5"
 Write-Host "Retour menu précédent                                                     : 6"
-read -p "Votre choix : " choix
+Read-Host "Votre choix : " choix
 
 while ("$choix" != "6"){
         switch ($choix){
