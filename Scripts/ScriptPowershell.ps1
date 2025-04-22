@@ -1,4 +1,3 @@
-#! /bin/bash
 ######################################################################
 # Auteur : Pauline PRAK 
 # version : 1.0 
@@ -18,7 +17,8 @@ if (-not (Test-Path $LOGFILE)) {
     New-Item -path $LOGFILE -ItemType File -Force
 }
 
-
+#ajout premiere ligne 
+Add-Content -path $LOGFILE -Value "********************StartScript********************" 
 
 while ("$choix_menu_principal" != "4"){
     
@@ -45,6 +45,8 @@ while ("$choix_menu_principal" != "4"){
         "4" { 
         #Quitter 
             Write-Host "Fin du script"
+#ajout derniere ligne 
+Add-Content -path $LOGFILE -Value "********************EndScript********************" 
             exit 0       
         }
     }
