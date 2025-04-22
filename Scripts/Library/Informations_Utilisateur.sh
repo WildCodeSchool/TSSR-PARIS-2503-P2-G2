@@ -3,7 +3,7 @@
 # Auteur : Pauline PRAK
 # version : 1.0 
 # Description : script informations utilisateurs 
-# OK SSH 
+# manque logs
 ######################################################################
 # Demander IP/hostname de la machine cliente
 read -p "Adresse IP ou nom d'hôte de la machine Ubuntu client : " client
