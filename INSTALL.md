@@ -1,4 +1,3 @@
-
 # DOCUMENTATION POUR LA MISE EN PLACE DU PROJET 
 
 Cette documentation explique les étapes à suivre pour configurer un réseau entre un serveur Debian/client Ubuntu et un serveur Windows/client Windows.
@@ -65,7 +64,7 @@ Assurez-vous également d'avoir installé la commande `sudo`. Sinon suivez les �
 ## 1. Configuration du réseau interne entre Debian Server et Ubuntu Client
 
 
-### Etape 1 : Installation des carte réseaux
+### - Etape 1 : Installation des carte réseaux
 
 Sur **Debian Server**, ajouter deux cartes réseaux :
    - Une pour le réseau interne avec le client
@@ -113,7 +112,7 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
    ```
 
 
-### Étape 2 : Configuration de la carte réseau sur Ubuntu Client
+### - Étape 3 : Configuration de la carte réseau sur Ubuntu Client
 
 1. Ouvrir un terminal 
 
@@ -147,7 +146,7 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
 ## 2. Configuration du réseau sur Windows Server et Windows 11 Client
 
 
-### Étape 1 : Modifier les paramètres réseau sur Windows
+### - Étape 1 : Modifier les paramètres réseau sur Windows
 
 1. Aller dans les **Paramètres Ethernet** :
    - Clique-droit sur l'icône réseau dans la barre des tâches (1).
@@ -230,8 +229,18 @@ Ce projet peut être dupliqué en suivant les étapes ci-dessus et en ajustant l
 Si vous rencontrez des problèmes de connexion, vérifiez la configuration IP sur chaque machine et assurez-vous que les interfaces réseaux sont correctement configurées.
 
 
-# LANCEMENT DES SCRIPTS SUR MACHINE CLIENT  
+# LANCEMENT DES SCRIPTS DEPUIS SERVER   
+Les scripts, leurs annexes ainsi que les livrables sont disponible ici : https://github.com/WildCodeSchool/TSSR-PARIS-2503-P2-G2
 
-Under construction ... 
-#WinRM machine a distance win
-#SSH debian/ubuntu 
+### - Depuis Windows Server  
+- Pour récuperer le contenu du repository avec wget
+``` powershell
+cmd
+```
+
+### - Depuis Debian Server  
+- Pour récupérer le contenu du repository
+``` bash
+git clone https://github.com/WildCodeSchool/TSSR-PARIS-2503-P2-G2
+```
+
