@@ -16,11 +16,16 @@ Le script principal propose un menu permettant d'accéder à différentes foncti
 
 ### Menu Principal
 ```text
-1 - Gestion utilisateur
-2 - Informations du systeme
-3 - Maintenance du systeme
+1 - Gestion utilisateur ![Screenshot from 2025-04-23 14-45-36](https://github.com/user-attachments/assets/655fd5e5-45f3-4f6f-99aa-688d67854b09)
+
+2 - Informations du systeme ![Screenshot from 2025-04-23 14-46-03](https://github.com/user-attachments/assets/8b3a4977-02f5-4d8b-b8e0-7176a95e30b2)
+
+3 - Maintenance du systeme ![Screenshot from 2025-04-23 14-46-35](https://github.com/user-attachments/assets/c1bd625e-f3e9-48b3-adb2-b2d07e107aab)
+
 4 - Quitter le script
 ```
+
+
 
 ## Fonctionnalites
 
@@ -67,6 +72,7 @@ Puis lancez :
 ```bash
 ./ScriptBash.sh
 ```
+![Screenshot from 2025-04-23 14-45-08](https://github.com/user-attachments/assets/6c18c60c-609c-417d-8032-f093a55d4903)
 
 Pour lancer le script sur Powershell, il suffit de remplacer Bash par Powershell et l'extension .sh par .ps1
 
