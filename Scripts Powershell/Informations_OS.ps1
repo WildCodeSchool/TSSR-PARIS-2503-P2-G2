@@ -1,8 +1,8 @@
 ####################################################################################
-# Autor : Pauline 
-# Version : 1.0 
-# Description : information os.ps1
-# Etat : a tester
+# Auteur : Pauline 
+# Version : 1.1 
+# Description : information os.ps1
+# État : à tester
 ####################################################################################
 
 Write-Host "1 - Voir la version de l'OS d'une machine distante"
@@ -21,17 +21,20 @@ while ($choix -ne "2") {
 
             # Essayer d’exécuter la commande distante
             try {
-                Invoke-Command -ComputerName $remotePC -Credential $credential -ScriptBlock {
+                $osInfo = Invoke-Command -ComputerName $remotePC -Credential $credential -ScriptBlock {
                     $os = Get-CimInstance Win32_OperatingSystem
-                    Write-Host "Nom de l'OS      : $($os.Caption)"
-                    Write-Host "Version          : $($os.Version)"
+                    return $os
                 }
+
+                Write-Host "Nom de l'OS      : $($osInfo.Caption)"
+                Write-Host "Version          : $($osInfo.Version)"
             }
             catch {
                 Write-Host "Erreur lors de la connexion ou de l’exécution : $_" -ForegroundColor Red
             }
 
-            Read-Host "Appuyez sur Entrée pour revenir au menu"
+            # Revenir au menu après un délai de pause
+            Read-Host "Appuyez sur Entrée pour revenir au menu..."
         }
 
         "2" {
@@ -43,4 +46,7 @@ while ($choix -ne "2") {
             Start-Sleep -Seconds 3
         }
     }
+
+    # Reprendre le choix après une pause
+    $choix = Read-Host "Faites un choix (1 ou 2)"
 }
