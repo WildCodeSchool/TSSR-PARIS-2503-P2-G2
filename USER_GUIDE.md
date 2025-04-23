@@ -26,7 +26,7 @@ Le script principal propose un menu permettant d'accéder à différentes foncti
 ```
 
 
-## Fonctionnalites
+## Fonctionnalités
 
 ### 1. Gestion utilisateur
 Ce menu permet de :
