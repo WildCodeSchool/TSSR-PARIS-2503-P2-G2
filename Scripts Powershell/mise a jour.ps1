@@ -15,19 +15,22 @@ Write-Host "${Green}➡ Connexion à $clientUser@$clientIP...${Reset}"
 
 # === Bloc de commandes à exécuter sur le client ===
 $remoteCommands = @"
-echo ' Client distant : $(hostname)'
-echo ' Mise à jour du système...'
+echo 'Client distant : \$(hostname)'
+echo 'Mise à jour du système...'
 sudo apt-get update && sudo apt-get upgrade -y
-echo ' Mise à jour terminée.'
+echo 'Mise à jour terminée.'
 "@
 
-# === Connexion SSH et exécution ===
-$sshCommand = "ssh $clientUser@$clientIP `"$remoteCommands`""
-Invoke-Expression $sshCommand
+# === Préparer la commande SSH ===
+$sshFullCommand = "bash -c '$remoteCommands'"
+sshCommand = @("ssh", "$clientUser@$clientIP", $sshFullCommand)
+
+# === Exécution SSH sécurisée ===
+$proc = Start-Process -FilePath $sshCommand[0] -ArgumentList $sshCommand[1..2] -NoNewWindow -Wait -PassThru
 
 # === Résultat ===
-if ($LASTEXITCODE -eq 0) {
-    Write-Host "${Green} Mise à jour réussie sur $clientIP${Reset}"
+if ($proc.ExitCode -eq 0) {
+    Write-Host "${Green}✔ Mise à jour réussie sur $clientIP${Reset}"
 } else {
-    Write-Host "${Red} Échec de la mise à jour sur $clientIP${Reset}"
+    Write-Host "${Red}✖ Échec de la mise à jour sur $clientIP${Reset}"
 }
