@@ -21,16 +21,17 @@ switch ($choix) {
     '1' {
         Write-Host "Arrêt de l'ordinateur distant..."
         Start-Sleep -Seconds 3
-        ssh "$ssh_user@$ip" "sudo shutdown now"
+        ssh "$ssh_user@$ip" 'sudo shutdown now'
     }
     '2' {
         Write-Host "Redémarrage de l'ordinateur distant..."
         Start-Sleep -Seconds 3
-        ssh "$ssh_user@$ip" "sudo reboot"
+        ssh "$ssh_user@$ip" 'sudo reboot'
     }
     '3' {
         Write-Host "Verrouillage de la session distante..."
         Start-Sleep -Seconds 3
+
         $lockCommand = @"
 SESSION_ID=\$(loginctl | grep \$(whoami) | awk '{print \$1}')
 if [ -n "\$SESSION_ID" ]; then
@@ -39,7 +40,8 @@ else
     echo "Impossible de déterminer l'ID de session pour l'utilisateur distant."
 fi
 "@
-        ssh "$ssh_user@$ip" $lockCommand
+
+        ssh "$ssh_user@$ip" "bash -c '$lockCommand'"
     }
     '4' {
         Write-Host "Fermeture du script."
