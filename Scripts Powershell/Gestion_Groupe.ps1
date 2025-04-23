@@ -1,96 +1,70 @@
 ####################################################################################
-# Autor : Pauline 
-# Version : 1.0 
-# Description : Script Gestion_Groupe.ps1
-# Etat : A tester
+# Auteur : Pauline 
+# Version : 1.1 
+# Description : Script Gestion_Groupe.ps1
+# État : a tester
 ####################################################################################
 
-Read-Host "------------------------------------------------------------"
-Read-Host "Pour ajouter au groupe admin      : 1"
-Read-Host "Pour ajouter à un groupe local    : 2"
-Read-Host "Pour supprimer d'un groupe local  : 3"
-Read-Host "Pour quitter                      : retour"
-Read-Host "------------------------------------------------------------"
-$Choix = Read-Host "Entrez votre choix"
+$Choix = ""
 
-while ("$choix" -ne "retour") {
-    
+while ($Choix -ne "retour") {
+
+    Write-Host "`n------------------------------------------------------------"
+    Write-Host " [1] Ajouter un utilisateur au groupe Administrateurs"
+    Write-Host " [2] Ajouter un utilisateur à un groupe local"
+    Write-Host " [3] Supprimer un utilisateur d'un groupe local"
+    Write-Host " [retour] Quitter"
+    Write-Host "------------------------------------------------------------"
+    $Choix = Read-Host "Entrez votre choix"
+
     switch ($Choix) {
-            "1" {# AJOUT A UN GROUPE D'ADMINISTRATION
-                #Demander $User
-                $User = Read-Host "Veuillez entrer le nom de l'utilisateur concerné" 
-                # Vérifier si l'utilisateur existe
-                if (Get-LocalUser -Name $User) 
-                { #Si $User existe 
-                    Add-LocalGroupMember -Group "Administrateurs" -Member $User
-                    Write-Host "L'utilisateur $User a bien été ajouté à Administrateur" -ForegroundColor Green
-                    # Commande retour menu précédent ???
-                }
-                else 
-                {
-                    Write-Host "L'utilisateur $User n'existe pas" -ForegroundColor Red
-                    #Commande retour menu précédent ???
-            }}
 
-            "2" {# AJOUT A UN GROUPE LOCAL 
-                #Demander $User
-                $User = Read-Host "Veuillez entrer le nom de l'utilisateur concerné" 
-                
-                # Vérifier si l'utilisateur existe
-                if (Get-LocalUser -Name $User) 
-                { #Si $User existe 
-                        # Demander groupe 
-                                $Group = Read-Host "Veuillez entrer le groupe concerné" 
-                                #Verifier si $Group Existe  
-                                if (Get-LocalGroup -Name $Group) 
-                                    { #Si $Group existe 
-                                        Add-LocalGroupMember -Group $Group -Member $User  
-                                        Write-Host "L'utilisateur $User a bien été ajouté à $Group" -ForegroundColor Green
-                                        #Commande retour menu précédent ???
-                                    }
-                                    else 
-                                    { #Si $Group n'existe pas 
-                                        Write-Host "Le groupe $Group' n'existe pas." -ForegroundColor Red
-                                        #Commande retour menu précédent ???
-                                    }
-                }
-                else 
-                { #Si $User n'existe pas 
-                    Write-Host "L'utilisateur $User n'existe pas." -ForegroundColor Red
-                    #Commande Retour menu précédent ???
-                }}
-
-            "3" {# SORTIE D'UN GROUPE LOCAL 
-
-            #Demander $User
+        "1" {
             $User = Read-Host "Veuillez entrer le nom de l'utilisateur concerné" 
-            
-            # Vérifier si l'utilisateur existe
-            if (Get-LocalUser -Name $User) 
-            { #Si $User existe 
-                    # Demander groupe 
-                            $Group = Read-Host "Veuillez entrer le groupe concerné" 
-                            #Verifier si $Group Existe  
-                            if (Get-LocalGroup -Name $Group) 
-                                { #Si $Group existe 
-                                    Remove-LocalGroupMember -Group $Group -Member $User  
-                                    Write-Host "L'utilisateur $User a bien été supprimé de $Group" -ForegroundColor Green
-                                    #Commande retour menu précédent ???
-                                }
-                                else 
-                                { #Si $Group n'existe pas 
-                                    Write-Host "Le groupe $Group' n'existe pas." -ForegroundColor Red
-                                    #Commande retour menu précédent ???
-                                }
+            if (Get-LocalUser -Name $User -ErrorAction SilentlyContinue) {
+                Add-LocalGroupMember -Group "Administrateurs" -Member $User
+                Write-Host "✔️ L'utilisateur $User a bien été ajouté au groupe 'Administrateurs'." -ForegroundColor Green
+            } else {
+                Write-Host "❌ L'utilisateur $User n'existe pas." -ForegroundColor Red
             }
-            else 
-            { #Si $User n'existe pas 
-                Write-Host "L'utilisateur $User n'existe pas." -ForegroundColor Red
-                #Commande Retour menu précédent ??? 
-            }}
+        }
 
-            "4" {}
+        "2" {
+            $User = Read-Host "Veuillez entrer le nom de l'utilisateur concerné"
+            if (Get-LocalUser -Name $User -ErrorAction SilentlyContinue) {
+                $Group = Read-Host "Veuillez entrer le nom du groupe local"
+                if (Get-LocalGroup -Name $Group -ErrorAction SilentlyContinue) {
+                    Add-LocalGroupMember -Group $Group -Member $User
+                    Write-Host "✔️ L'utilisateur $User a bien été ajouté au groupe '$Group'." -ForegroundColor Green
+                } else {
+                    Write-Host "❌ Le groupe '$Group' n'existe pas." -ForegroundColor Red
+                }
+            } else {
+                Write-Host "❌ L'utilisateur $User n'existe pas." -ForegroundColor Red
+            }
+        }
 
-            Default {Write-Host "Entrée incorrecte, Veuillez entrer 1, 2 3 ou 4 svp"}
-    }    
+        "3" {
+            $User = Read-Host "Veuillez entrer le nom de l'utilisateur concerné"
+            if (Get-LocalUser -Name $User -ErrorAction SilentlyContinue) {
+                $Group = Read-Host "Veuillez entrer le nom du groupe local"
+                if (Get-LocalGroup -Name $Group -ErrorAction SilentlyContinue) {
+                    Remove-LocalGroupMember -Group $Group -Member $User
+                    Write-Host "✔️ L'utilisateur $User a bien été retiré du groupe '$Group'." -ForegroundColor Green
+                } else {
+                    Write-Host "❌ Le groupe '$Group' n'existe pas." -ForegroundColor Red
+                }
+            } else {
+                Write-Host "❌ L'utilisateur $User n'existe pas." -ForegroundColor Red
+            }
+        }
+
+        "retour" {
+            Write-Host "`nFin du script. À bientôt !" -ForegroundColor Cyan
+        }
+
+        Default {
+            Write-Host "❓ Entrée incorrecte, veuillez taper 1, 2, 3 ou 'retour'." -ForegroundColor Yellow
+        }
+    }
 }
