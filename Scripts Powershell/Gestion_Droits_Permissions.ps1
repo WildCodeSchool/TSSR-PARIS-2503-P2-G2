@@ -1,9 +1,9 @@
 ####################################################################################
-# Autor : Pauline 
-# Version : 1.0 
-# Description : Script droit et permission.ps1
-# Etat : a tester
-#########################################################
+# Auteur : Pauline 
+# Version : 1.1 
+# Description : Script droit et permission.ps1
+# État : À tester
+####################################################################################
 
 # --- Infos SSH ---
 $ip = Read-Host "Adresse IP de la machine distante"
@@ -14,14 +14,18 @@ $chemin = Read-Host "Veuillez indiquer le chemin du fichier/dossier"
 $user = Read-Host "Veuillez indiquer l'utilisateur concerné"
 
 # --- Vérification existence fichier/dossier et utilisateur ---
-$testCommand = "[ -e '$chemin' ] && id '$user' &> /dev/null"
-Invoke-Command -HostName $ip -UserName $sshUser -ScriptBlock { bash -c $using:testCommand } -ErrorAction SilentlyContinue
+try {
+    $testCommand = "[ -e '$chemin' ] && id '$user' &> /dev/null"
+    Invoke-Command -HostName $ip -UserName $sshUser -ScriptBlock {
+        param($cmd)
+        bash -c $cmd
+    } -ArgumentList $testCommand -ErrorAction Stop
 
-if (-not $?) {
-    Write-Host " Le fichier/dossier ou l'utilisateur n'existe pas sur la machine distante." -ForegroundColor Red
-    exit
-} else {
     Write-Host "Vérification réussie." -ForegroundColor Green
+}
+catch {
+    Write-Host "Le fichier/dossier ou l'utilisateur n'existe pas sur la machine distante." -ForegroundColor Red
+    exit
 }
 
 # --- Menu principal ---
@@ -52,9 +56,11 @@ while ($choix -ne "retour") {
 
                 if ($cmd) {
                     Invoke-Command -HostName $ip -UserName $sshUser -ScriptBlock {
-                        bash -c $using:cmd
-                    }
-                    Write-Host "Droit ajouté avec succès."
+                        param($commande)
+                        bash -c $commande
+                    } -ArgumentList $cmd
+
+                    Write-Host "Droit '$choixAdd' ajouté avec succès sur '$chemin'."
                 }
             }
         }
@@ -77,9 +83,11 @@ while ($choix -ne "retour") {
 
                 if ($cmd) {
                     Invoke-Command -HostName $ip -UserName $sshUser -ScriptBlock {
-                        bash -c $using:cmd
-                    }
-                    Write-Host " Droit supprimé avec succès."
+                        param($commande)
+                        bash -c $commande
+                    } -ArgumentList $cmd
+
+                    Write-Host "Droit '$choixDel' supprimé avec succès sur '$chemin'."
                 }
             }
         }
@@ -93,4 +101,3 @@ while ($choix -ne "retour") {
         }
     }
 }
-
