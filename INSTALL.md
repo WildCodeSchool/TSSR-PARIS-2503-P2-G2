@@ -229,16 +229,41 @@ Ce projet peut être dupliqué en suivant les étapes ci-dessus et en ajustant l
 Si vous rencontrez des problèmes de connexion, vérifiez la configuration IP sur chaque machine et assurez-vous que les interfaces réseaux sont correctement configurées.
 
 
+# INSTALLATION WIN-RM (sur windows)    
+
+
+
+# INSTALLATION SSH (sur linux)   
+
+1. **Faire mise à jour et installer openssh-server** :
+   ```bash
+   sudo apt update && sudo apt install openssh-server -y 
+   ```
+
+2. **Vérifier statut de SSH** :
+   ```bash
+   sudo systemctl status ssh
+   ```
+
+   S'il n'est pas actif
+    ```bash
+   sudo systemctl start ssh
+   ```
+
+
 # LANCEMENT DES SCRIPTS DEPUIS SERVER   
+
 Les scripts, leurs annexes ainsi que les livrables sont disponible ici : https://github.com/WildCodeSchool/TSSR-PARIS-2503-P2-G2
 
 ### - Depuis Windows Server  
+
 - Pour récuperer le contenu du repository avec wget
 ``` powershell
 cmd
 ```
 
 ### - Depuis Debian Server  
+
 - Pour récupérer le contenu du repository
 ``` bash
 git clone https://github.com/WildCodeSchool/TSSR-PARIS-2503-P2-G2
