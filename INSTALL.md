@@ -4,7 +4,6 @@ Cette documentation explique les étapes à suivre pour configurer un réseau en
 Nous utiliserons Proxmox pour la virtualisation des machines.  
 
 
-
 # PREREQUIS
 
 ## 1. Matériel  
@@ -39,30 +38,9 @@ Assurez-vous également d'avoir installé la commande `sudo`. Sinon suivez les �
    sudo usermod -aG sudo nom_utilisateur # Remplacez `nom_utilisateur` par le nom de l'utilisateur.
 
 
-## 3. Installation ssh   
-
-
-1. **Faire mise à jour et installer openssh-server** :
-   ```bash
-   sudo apt update && sudo apt install openssh-server -y 
-   ```
-
-2. **Vérifier statut de SSH** :
-   ```bash
-   sudo systemctl status ssh
-   ```
-
-   S'il n'est pas actif
-    ```bash
-   sudo systemctl start ssh
-   ```
-
-
 # CONFIGURATION RESEAUX    
 
-
 ## 1. Configuration du réseau interne entre Debian Server et Ubuntu Client
-
 
 ### - Etape 1 : Installation des carte réseaux
 
@@ -145,7 +123,6 @@ Sur **Ubuntu Client**, ajouter une carte réseaux :
 
 ## 2. Configuration du réseau sur Windows Server et Windows 11 Client
 
-
 ### - Étape 1 : Modifier les paramètres réseau sur Windows
 
 1. Aller dans les **Paramètres Ethernet** :
@@ -178,13 +155,11 @@ Selon le cas, entrer les lignes de commandes dans un terminal.
 S'il y a une réponse, alors la connexion est établie. 
 Sinon, reprendre l'installation et vérifier les configurations 
 
-
 ### Ping entre Debian Server et Ubuntu Client 
 
 ```bash
 ping (adresse IP Ubuntu Client) 
 ```
-
 
 ### Ping entre Ubuntu Client et Debian Server   
 
@@ -192,13 +167,11 @@ ping (adresse IP Ubuntu Client)
 ping (adresse IP Debian Server) 
 ```
 
-
 ### Ping entre Debian Server et Google
 
 ```bash
 ping google.com
 ```
-
 
 ### Ping entre Windows Server et Windows 11
 
@@ -206,22 +179,17 @@ ping google.com
 ping (adresse IP Windows 11) 
 ```
 
-
 ### Ping entre Windows 11 et Windows Server
 
 ```powershell 
 ping (adresse IP Windows Server) 
 ```
 
-
 ### Ping entre Windows Server et Google
 
 ```powershell 
 ping google.com
 ```
-
-
-## 4. Conclusion
 
 Une fois ces configurations terminées, vous avez un réseau configuré entre Debian Server/Ubuntu Client et Windows Server/Windows 11 Client. 
 Ce projet peut être dupliqué en suivant les étapes ci-dessus et en ajustant les paramètres IP selon votre environnement.
@@ -250,6 +218,10 @@ Si vous rencontrez des problèmes de connexion, vérifiez la configuration IP su
    sudo systemctl start ssh
    ```
 
+   Vérifier que le ssh soit activé
+    ```bash
+   sudo systemctl status ssh
+   ```
 
 # LANCEMENT DES SCRIPTS DEPUIS SERVER   
 
