@@ -15,15 +15,17 @@ Le script principal propose un menu permettant d'accéder à différentes foncti
 ## Structure Générale
 
 ### Menu Principal
-```text
-1 - Gestion utilisateur ![Screenshot from 2025-04-23 14-45-36](https://github.com/user-attachments/assets/655fd5e5-45f3-4f6f-99aa-688d67854b09)
 
-2 - Informations du systeme ![Screenshot from 2025-04-23 14-46-03](https://github.com/user-attachments/assets/8b3a4977-02f5-4d8b-b8e0-7176a95e30b2)
+1 - Gestion utilisateur  
+<img src="https://github.com/user-attachments/assets/655fd5e5-45f3-4f6f-99aa-688d67854b09" alt="Gestion utilisateur" width="600"/>
 
-3 - Maintenance du systeme ![Screenshot from 2025-04-23 14-46-35](https://github.com/user-attachments/assets/c1bd625e-f3e9-48b3-adb2-b2d07e107aab)
+2 - Informations du systeme  
+<img src="https://github.com/user-attachments/assets/8b3a4977-02f5-4d8b-b8e0-7176a95e30b2" alt="Informations du systeme" width="600"/>
+
+3 - Maintenance du systeme  
+<img src="https://github.com/user-attachments/assets/c1bd625e-f3e9-48b3-adb2-b2d07e107aab" alt="Maintenance du systeme" width="600"/>
 
 4 - Quitter le script
-```
 
 
 
