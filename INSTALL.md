@@ -199,6 +199,34 @@ Si vous rencontrez des problèmes de connexion, vérifiez la configuration IP su
 
 # INSTALLATION WIN-RM (sur windows)    
 
+- Sur Windows Server et Windows 11
+
+- Activer le service WinRM
+Ouvrir une invite PowerShell en administrateur :
+``` powershell 
+Enable-PSRemoting -Force
+```
+
+- Vérifier que le service est démarré
+``` powershell 
+Get-Service WinRM
+```
+
+- S’il n’est pas en cours d’exécution, démarre-le avec :
+``` powershell  
+Start-Service WinRM
+``` 
+
+- Optionnel : Configurer la liste des hôtes approuvés
+Si les machines ne sont pas dans un domaine Active Directory, il faut ajouter manuellement les hôtes de confiance :
+``` powershell  
+Set-Item WSMan:\localhost\Client\TrustedHosts "NomOuIP"
+```
+
+Ou autoriser tous les hôtes (peu sécurisé) :
+``` powershell 
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value "*" -Force
+``` 
 
 
 # INSTALLATION SSH (sur linux)   
@@ -222,6 +250,7 @@ Si vous rencontrez des problèmes de connexion, vérifiez la configuration IP su
     ```bash
    sudo systemctl status ssh
    ```
+
 
 # LANCEMENT DES SCRIPTS DEPUIS SERVER   
 
