@@ -1,7 +1,7 @@
 # Guide Utilisateur - Script Global de Gestion Système
 
 ## Description
-Ce guide présente l'utilisation d'un ensemble de scripts Bash permettant la gestion d'un système Linux, incluant la gestion des utilisateurs, l'obtention d'informations système, et la maintenance.
+Ce guide présente l'utilisation d'un ensemble de scripts Bash permettant la gestion d'une machine distante, incluant la gestion des utilisateurs, l'obtention d'informations système, et la maintenance.
 
 Le script principal propose un menu permettant d'accéder à différentes fonctionnalités via des sous-menus.
 
