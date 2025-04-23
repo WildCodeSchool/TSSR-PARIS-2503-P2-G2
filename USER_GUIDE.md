@@ -12,10 +12,6 @@ Le script principal propose un menu permettant d'accéder à différentes foncti
 - `Library/menu2_informations_systeme.sh` : Menu 2 - Informations système.
 - `Library/menu3_maintenance_systeme.sh` : Menu 3 - Maintenance système.
 
-![Aperçu](https://github.com/user-attachments/assets/5e003e68-a338-42b1-9217-8794c878c0bc)
-<img src="https://github.com/user-attachments/assets/5e003e68-a338-42b1-9217-8794c878c0bc" alt="Apercu" width="400"/>
-
-
 ## Structure Générale
 
 ### Menu Principal
@@ -73,6 +69,12 @@ Puis lancez :
 ```
 
 Pour lancer le script sur Powershell, il suffit de remplacer Bash par Powershell et l'extension .sh par .ps1
+
+## Utilisation du Script
+
+Pour utiliser le script, il suffit d'indiquer son choix à chaque menu ou sous-menu. Des options de retour au menu précédent ou de fermeture du script sont disponibles. Voici un exemple concret d'utilisation du script pour une demande d'informations OS, catégorie Maintenance système, pour une machine Ubuntu connectée à distance : 
+
+![Aperçu](https://github.com/user-attachments/assets/5e003e68-a338-42b1-9217-8794c878c0bc)
 
 ## Remarques
 - Le script principal vérifie l'existence du fichier log à chaque exécution.
