@@ -265,7 +265,7 @@ cmd
 
 ### - Depuis Debian Server  
 
-- Pour récupérer le contenu du repository
+- Pour récupérer le contenu du repository en utilisant GitClone
 ``` bash
 git clone https://github.com/WildCodeSchool/TSSR-PARIS-2503-P2-G2
 ```
