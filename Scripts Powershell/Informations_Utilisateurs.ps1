@@ -1,8 +1,8 @@
 ####################################################################################
-# Autor : Pauline 
-# Version : 1.0 
-# Description : Script information utilisateur.ps1
-# Etat : a tester
+# Auteur : Pauline 
+# Version : 1.1 
+# Description : Script information utilisateur.ps1
+# État : à tester
 ####################################################################################
 
 # --- Demande de l'adresse IP de la machine distante ---
@@ -27,27 +27,50 @@ while ($choix -ne "retour") {
     switch ($choix) {
         "1" {
             Write-Host "Date de dernière connexion de l'utilisateur $user sur $ip"
-            Invoke-Command -HostName $ip -ScriptBlock {
-                lastlog -u $using:user
+            Invoke-Command -ComputerName $ip -ScriptBlock {
+                $user = $using:user
+                # Commande pour récupérer la dernière connexion de l'utilisateur sur Windows
+                $logonInfo = Get-WinEvent -LogName Security | Where-Object { $_.Message -like "*$user*" -and $_.Id -eq 4624 } | Select-Object -First 1
+                if ($logonInfo) {
+                    $logonTime = $logonInfo.TimeCreated
+                    Write-Host "Dernière connexion : $logonTime"
+                } else {
+                    Write-Host "Aucune connexion trouvée pour l'utilisateur $user."
+                }
             }
         }
 
         "2" {
             Write-Host "Date de dernière modification du mot de passe de l'utilisateur $user sur $ip"
-            Invoke-Command -HostName $ip -ScriptBlock {
-                chage -l $using:user | grep "Last password change"
+            Invoke-Command -ComputerName $ip -ScriptBlock {
+                $user = $using:user
+                # Utilisation de Get-LocalUser pour récupérer la date de modification du mot de passe
+                $userInfo = Get-LocalUser -Name $user
+                if ($userInfo) {
+                    Write-Host "Dernière modification du mot de passe : $($userInfo.PasswordLastSet)"
+                } else {
+                    Write-Host "L'utilisateur $user n'existe pas sur cette machine."
+                }
             }
         }
 
         "3" {
             Write-Host "Liste des sessions ouvertes par l'utilisateur $user sur $ip"
-            Invoke-Command -HostName $ip -ScriptBlock {
-                who | grep $using:user
+            Invoke-Command -ComputerName $ip -ScriptBlock {
+                $user = $using:user
+                # Utilisation de query pour lister les sessions ouvertes
+                $sessions = query user | Where-Object { $_ -like "*$user*" }
+                if ($sessions) {
+                    Write-Host "Sessions ouvertes par $user :"
+                    $sessions
+                } else {
+                    Write-Host "Aucune session ouverte trouvée pour l'utilisateur $user."
+                }
             }
         }
 
         "retour" {
-            Write-Host "Retour au menu precedent"
+            Write-Host "Retour au menu précédent"
         }
 
         default {
@@ -55,4 +78,3 @@ while ($choix -ne "retour") {
         }
     }
 }
-
