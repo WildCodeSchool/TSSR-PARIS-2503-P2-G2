@@ -13,6 +13,8 @@ Le script principal propose un menu permettant d'accéder à différentes foncti
 - `Library/menu3_maintenance_systeme.sh` : Menu 3 - Maintenance système.
 
 ![Aperçu](https://github.com/user-attachments/assets/5e003e68-a338-42b1-9217-8794c878c0bc)
+<img src="https://github.com/user-attachments/assets/5e003e68-a338-42b1-9217-8794c878c0bc" alt="Apercu" width="400"/>
+
 
 ## Structure Générale
 
