@@ -3,8 +3,8 @@
 # Auteur : Pauline PRAK
 # version : 1.0 
 # Description : script informations utilisateurs 
-# manque logs
 ######################################################################
+
 # Demander IP/hostname de la machine cliente
 read -p "Adresse IP ou nom d'hôte de la machine Ubuntu client : " client
 
@@ -23,19 +23,23 @@ read -p "Nom de l'utilisateur à auditer : " utilisateur
 while [ "$choix" != "retour" ]; do
     case "$choix" in
         1)
+            sudo echo "$DATE-$HEURE-$USER-$1 : Affichage derniere date de connecion de l'utilisateur $utilisateur" >> $LOGFILE
             echo -e "Dernière connexion de $utilisateur :"
             ssh "$client" "lastlog -u $utilisateur" 
 
             ;;
         2)
+            sudo echo "$DATE-$HEURE-$USER-$1 : Affichage date derniere modification du mot de passe de $utilisateur " >> $LOGFILE
             echo -e "Dernière modification du mot de passe :"
             ssh "$client" "chage -l $utilisateur | awk 'NR==1 {print}'"
             ;;
         3)
+            sudo echo "$DATE-$HEURE-$USER-$1 : affichage de la liste des sessions ouvertes par $utilisateur" >> $LOGFILE
             echo -e "Sessions ouvertes pour $utilisateur :"
             ssh "$client" "who | grep '^$utilisateur'"
             ;;
         retour)
+            sudo echo "$DATE-$HEURE-$USER-$1 : retour au menu precedent" >> $LOGFILE
             echo "Retour menu précédent."
             ;;
         quitter)
