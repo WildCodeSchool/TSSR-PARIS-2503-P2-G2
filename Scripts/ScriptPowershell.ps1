@@ -14,7 +14,7 @@ LOGFILE="C:\Windows\System32\LogFiles\$FICHIERDUJOUR"
 
 #Vérification et Création fichier de log 
 if (-not (Test-Path $LOGFILE)) {
-    New-Item -path $LOGFILE -ItemType File -Force
+    sudo New-Item -path $LOGFILE -ItemType File -Force
 }
 
 #ajout premiere ligne 
