@@ -33,7 +33,7 @@ creation_fichier_log
 fi 
 
 #ajout premiere ligne 
-echo "************************StartScript************************" >> $LOGFILE 
+sudo echo "************************StartScript************************" >> $LOGFILE 
 
 while [ "$choix_menu_principal" != "4" ]; do
     
