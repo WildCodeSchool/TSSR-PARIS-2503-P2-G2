@@ -260,13 +260,14 @@ Les scripts, leurs annexes ainsi que les livrables sont disponible ici : https:/
 
 - Pour récuperer le contenu du repository avec wget
 ``` powershell
-cmd
+wget https://github.com/WildCodeSchool/TSSR-PARIS-2503-P2-G2/archive/refs/heads/main.zip
 ```
+- Il faut ensuite dézipper le fichier main.zip
 
 ### - Depuis Debian Server  
 
-- Pour récupérer le contenu du repository en utilisant GitClone
+- Pour récupérer le contenu du repository avec wget
 ``` bash
-git clone https://github.com/WildCodeSchool/TSSR-PARIS-2503-P2-G2
+wget https://github.com/WildCodeSchool/TSSR-PARIS-2503-P2-G2/archive/refs/heads/main.zip
 ```
-
+- Il faut ensuite dézipper le fichier main.zip
