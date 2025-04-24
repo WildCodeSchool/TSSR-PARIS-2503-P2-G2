@@ -7,10 +7,10 @@ $cred = Get-Credential  # Utilisateur du domaine ou local de la machine distante
 function Show-Menu {
     Clear-Host
     Write-Host "=== Gestion des utilisateurs sur la machine distante ($remotePC) ==="
-    Write-Host "1) Création de compte utilisateur local"
+    Write-Host "1) Creation de compte utilisateur local"
     Write-Host "2) Changement de mot de passe"
     Write-Host "3) Suppression de compte utilisateur local"
-    Write-Host "4) Désactivation de compte utilisateur local"
+    Write-Host "4) Desactivation de compte utilisateur local"
     Write-Host "5) Quitter"
 }
 
@@ -40,36 +40,3 @@ do {
             Invoke-Command -ComputerName $remotePC -Credential $cred -ScriptBlock {
                 param($u, $p)
                 net user $u $p
-            } -ArgumentList $user, $plain
-        }
-
-        "3" {
-            $delUser = Read-Host "Nom de l'utilisateur à supprimer"
-            Invoke-Command -ComputerName $remotePC -Credential $cred -ScriptBlock {
-                param($u)
-                net user $u /delete
-            } -ArgumentList $delUser
-        }
-
-        "4" {
-            $disableUser = Read-Host "Nom de l'utilisateur à désactiver"
-            Invoke-Command -ComputerName $remotePC -Credential $cred -ScriptBlock {
-                param($u)
-                net user $u /active:no
-            } -ArgumentList $disableUser
-        }
-
-        "5" {
-            Write-Host "Fin du script."
-            break
-        }
-
-        default {
-            Write-Host "Option invalide. Veuillez choisir un nombre entre 1 et 5."
-        }
-    }
-
-    if ($choix -ne "5") {
-        Pause
-    }
-} while ($choix -ne "5")
