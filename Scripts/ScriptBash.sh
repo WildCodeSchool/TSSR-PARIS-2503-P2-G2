@@ -61,7 +61,7 @@ while [ "$choix_menu_principal" != "4" ]; do
         #Quitter 
             echo "Fin du script"
 #ajout premiere ligne 
-echo "************************EndScript************************" >> $LOGFILE 
+sudo echo "************************EndScript************************" >> $LOGFILE 
             sleep 1
             exit 0       
         ;;
