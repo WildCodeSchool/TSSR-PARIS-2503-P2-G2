@@ -23,16 +23,19 @@ echo "Vous avez entré : $choix"
 
 case "$choix" in
     1)
+        sudo echo "$DATE-$HEURE-$USER-$1 : Arret de l'ordinateur" >> $LOGFILE
         echo "Arrêt de l'ordinateur distant..."
         sleep 3
         ssh -t ${ssh_user}@${ip} "sudo shutdown now"
         ;;
     2)
+        sudo echo "$DATE-$HEURE-$USER-$1 : Redemarrage de l'ordinateur" >> $LOGFILE
         echo "Redémarrage de l'ordinateur distant..."
         sleep 3
         ssh -t ${ssh_user}@${ip} "sudo reboot"
         ;;
     3)
+        sudo echo "$DATE-$HEURE-$USER-$1 : Verrouillage de la session distante " >> $LOGFILE
         echo "Verrouillage de la session distante..."
         sleep 3
         ssh -t ${ssh_user}@${ip} '
