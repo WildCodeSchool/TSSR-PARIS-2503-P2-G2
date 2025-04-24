@@ -48,7 +48,7 @@ echo "=== Gestion des Utilisateurs sur $cible ==="
             ;;
         5)
             echo "Retour au menu precedent."
-            sleep 3
+            exec ./Library/menu1_gestion_utilisateursetdossier.sh
             ;;
         6) 
             exit 0
