@@ -3,7 +3,6 @@
 # Auteur : Pauline PRAK 
 # version : 1.0 
 # Description : Script Global
-# LOGS a finir  
 ######################################################################
 
 USER=$(whoami)
