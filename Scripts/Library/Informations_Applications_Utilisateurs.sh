@@ -3,7 +3,6 @@
 # Auteur : Pauline PRAK
 # version : 1.0 
 # Description : script Informations Application Utilisateurs 
-# manque logs
 ######################################################################
 
 echo "Entrez l'adresse IP de la machine Ubuntu client :"
@@ -21,13 +20,15 @@ while [ "$choix" != "retour" ]; do
     case "$choix" in
         1)
             echo "Connexion à $client..."
-            ssh "$client" 'dpkg --list | less'
+            sudo echo "$DATE-$HEURE-$USER-$1 : affichage de la liste des paquets installées : $ip" >> $LOGFILE
+            ssh "$client" 'dpkg --list | less'sudo echo "$DATE-$HEURE-$USER-$1 : demande IP de la machine distante : $ip" >> $LOGFILE
             ;;
         2)
-            echo "Connexion à $client..."
+            sudo echo "$DATE-$HEURE-$USER-$1 : affichage de la liste des utilisateurs locaux : $ip" >> $LOGFILE
             ssh "$client" "awk -F: '{ print \$1}' /etc/passwd"
             ;;
         retour)
+            sudo echo "$DATE-$HEURE-$USER-$1 : retour au menu précédent" >> $LOGFILE
             echo "Retour au menu precedent "
             sleep 3 
             ;;
